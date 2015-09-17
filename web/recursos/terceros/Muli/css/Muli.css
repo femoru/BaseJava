@@ -1,0 +1,7 @@
+@font-face {
+    font-family: 'Muli';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Muli'), url("#{resource['thirdParty/Muli/font/Muli.woff2']}") format('woff2'), 
+        url("#{resource['thirdParty/Muli/font/Muli.woff']}") format('woff');
+}
