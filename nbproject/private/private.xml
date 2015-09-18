@@ -2,11 +2,10 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="EE">
-            <file>file:/C:/Users/fmoctezuma/Documents/NetBeansProjects/SIOCuentasMedicas/src/java/com/co/sio/java/db/DBControl.java</file>
-            <file>file:/C:/Users/fmoctezuma/Documents/NetBeansProjects/SIOCuentasMedicas/web/recursos/css/stylesheet.css</file>
-            <file>file:/C:/Users/fmoctezuma/Documents/NetBeansProjects/SIOCuentasMedicas/src/java/com/co/sio/java/db/DBServlet.java</file>
-            <file>file:/C:/Users/fmoctezuma/Documents/NetBeansProjects/SIOCuentasMedicas/src/java/com/co/sio/java/utils/SIOUtils.java</file>
+        <group>
+            <file>file:/C:/Users/bmunoz/Documents/NetBeansProjects/SIOCuentasMedicas/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/bmunoz/Documents/NetBeansProjects/SIOCuentasMedicas/nbproject/project.properties</file>
+            <file>file:/C:/Users/bmunoz/Documents/NetBeansProjects/SIOCuentasMedicas/src/java/com/co/sio/java/db/DBServlet.java</file>
         </group>
     </open-files>
 </project-private>

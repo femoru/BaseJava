@@ -5,11 +5,7 @@
  */
 package com.co.sio.java.servlets.filtros;
 
-import com.co.sio.java.db.DBControl;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -25,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author fmoctezuma
  */
-@WebFilter(filterName = "FiltroSession", urlPatterns = {"/modulos/*"})
+@WebFilter(filterName = "FiltroSession", urlPatterns = {"/modulos/*"}) 
 public class FiltroSession implements Filter {
 
     private FilterConfig filterConfig = null;
