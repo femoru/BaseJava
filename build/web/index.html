@@ -16,40 +16,48 @@
             </div>
         </header>
         <section>
-            <img class="img-responsive" src="recursos/img/logo-sio.png" id="logo"/>
-            <div class="col-lg-4 col-md-4 col-sm-0 col-xs-0"></div>
-            <div id="formlogin" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <form>
-                <div class="form-group">
-                  <label for="usuario">Usuario</label>
-                  <div class="inner-addon left-addon">
-                        <i class="fa fa-user"></i>
-                        <input type="text" class="form-control" id="usuario" placeholder="Usuario" />
+            <img class="img-responsive" src="recursos/img/logo-sio.png" id="logo" alt=""/>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 hidden-sm hidden-xs"></div>
+                    <div id="formlogin" class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <form>
+                            <div class="form-group">
+                              <label for="usuario">Usuario</label>
+                              <div class="inner-addon left-addon">
+                                    <i class="fa fa-user"></i>
+                                    <input type="text" class="form-control" id="usuario" placeholder="Usuario" />
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                              <label for="password">Contraseña</label>
+                              <div class="inner-addon left-addon">
+                                    <i class="fa fa-lock"></i>
+                                  <input type="password" class="form-control" id="password" placeholder="Contraseña">
+                               </div>
+                            </div>
+                            
+                            <div class="checkbox">
+                                <label>
+                                  <input type="checkbox">Recordarme
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary col-lg-4 col-md-4 col-sm-12 col-xs-12 botonesfrm">Ingresar</button>
+                            <div id="forgetpassword"><a href="#">Olvidaste tu contraseña?</a></div>
+                           <!-- <div id="linkregistarse"><a href="#">Registrarse</a></div>-->
+                        </form>
                     </div>
+                    <div class="col-lg-4 col-md-4 hidden-sm hidden-xs"></div>
                 </div>
-                <div class="form-group">
-                  <label for="password">Contraseña</label>
-                  <div class="inner-addon left-addon">
-                        <i class="fa fa-lock"></i>
-                      <input type="password" class="form-control" id="password" placeholder="Contraseña">
-                   </div>
-                </div>
-                    <div class="checkbox">
-                        <label>
-                          <input type="checkbox">Recordarme
-                        </label>
-                      </div>
-                <button type="submit" class="btn btn-primary col-lg-4 col-md-4 col-sm-12 col-xs-12 btningresar">Ingresar</button>
-                <div id="forgetpassword"><a href="#">Olvidaste tu contraseña?</a></div>
-               <!-- <div id="linkregistarse"><a href="#">Registrarse</a></div>-->
-                </form>
-             <div class="col-lg-4 col-md-4 col-sm-0 col-xs-0"></div>
-            </div>
+           </div>
         </section>
         <div class="corte col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>
         <footer class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <script type="text/javascript" src="recursos/terceros/jquery/js/jquery.min.js"></script>
             <script type="text/javascript" src="recursos/terceros/bootstrap/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="recursos/js/personalizado.js"></script>
             <div id="footer">
                 <p class="copyright">SIO S.A. | Cali: Cra 100 # 14 - 96 Barrio Ciudad Jardín PBX: (57 2) 485 5757 - (572) 485 5758 </p>
                 <p class="copyright1">Colombia</p>

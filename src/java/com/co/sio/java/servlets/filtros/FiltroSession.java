@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author fmoctezuma
  */
-@WebFilter(filterName = "FiltroSession", urlPatterns = {"/modulos/*"}) 
+//@WebFilter(filterName = "FiltroSession", urlPatterns = {"/modulos/*"}) 
 public class FiltroSession implements Filter {
 
     private FilterConfig filterConfig = null;
