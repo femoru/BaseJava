@@ -4,10 +4,11 @@
     Author     : bmunoz
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="es"><!--Temporal mientras se define el layout-->
     <head>
-        <title>Recuperar Contraseña</title>
+        <title>SIO Cuentas Médicas</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../../recursos/terceros/bootstrap/css/bootstrap.min.css" />
         <link rel="stylesheet" href="../../recursos/terceros/fontAwesome/css/font-awesome.min.css" />
@@ -16,8 +17,8 @@
     <body>
         <header>
             <div class="page-header">
-                <h1>SIO Cuentas Médicas </h1>
-                <small>Control y Seguimiento de Cuentas Médicas</small>
+                <img src="../../recursos/img/logo-header-1.png" id="logoheader" alt="Soluciones Integrales de Oficina" title="Soluciones Integrales de Oficina"/> 
+                <span id="tituloheader">CUENTAS MÉDICAS</span>
             </div>
         </header><!-- --------------------------------------------- -->
         <section>

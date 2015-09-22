@@ -12,9 +12,16 @@ body{
     padding: 0px;
 }
 header{
-   background-color: #E8E8E8;
+   background-color: #154295;
     margin: -40px 0px 0px !important;
     padding: 2px;
+    height: 90px;
+    color:white;
+    font-weight: 600;
+    box-shadow: 0px 0px 5px black;
+}
+#logoheader{
+    width: 90px;
 }
 .page-header h1{
     margin-top: 50px !important;
@@ -99,6 +106,11 @@ footer{
         height: 2.1em !important;
         text-decoration: none;
     }
+    #logo2{
+        display: block !important;
+        margin: 0 auto !important;
+        //border: 1px solid;
+    }
 }
 /*-----------------Vista Registro de Usuarios--------------*/
 
@@ -118,6 +130,14 @@ footer{
 }
 
 /*-----------------Vista Home--------------*/
+.menuperfil a{
+    font-size: 17px;
+}
+.menuperfil li a{
+    display: block;
+    width: 100%;
+    
+}
 #contentmenu,#contentsectionp{
     height: 100%;
 }
