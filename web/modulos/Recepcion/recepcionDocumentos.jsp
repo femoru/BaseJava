@@ -5,31 +5,14 @@
 --%>
 <!DOCTYPE html>
 <html>
-    <div class="table-responsive contenttablas">
-    <table id="jqGrid" class="tablasdatos"></table>
-    <div id="jqGridPager"></div>
-</div>
-    <script type="text/javascript"> 
-        $(document).ready(function () {
-			
-            $("#jqGrid").jqGrid({
-                url: 'http://trirand.com/blog/phpjqgrid/examples/jsonp/getjsonp.php?callback=?&qwery=longorders',
-                mtype: "GET",
-				styleUI : 'Bootstrap',
-                datatype: "jsonp",
-                colModel: [
-                    { label: 'OrderID', name: 'OrderID', key: true },
-                    { label: 'Customer ID', name: 'CustomerID'},
-                    { label: 'Order Date', name: 'OrderDate' },
-                    { label: 'Freight', name: 'Freight'},
-                    { label:'Ship Name', name: 'ShipName' }
-                ],
-				viewrecords: true,
-                height: 350,
-                rowNum: 20,
-                pager: "#jqGridPager"
-            });
-        });
- 
-   </script>
+    <head>
+        <title>Recepción de Documentos</title>
+      <link rel="stylesheet" type="text/css" href="recursos/css/recepcionDocumentos.css" />
+        <script type="text/javascript" src="recursos/js/recepcionDocumentos.js"></script>
+    </head>
+    <div class="contenttablas">
+        <table id="jqGrid" class="tablasdatos"></table>
+        <div id="jqGridPager"></div>
+        <div id="pgtoolbar1"></div>
+    </div>
 </html>

@@ -1,0 +1,8 @@
+/*-----------------Vista Registro de Usuarios--------------*/
+
+#frmregistrousers label, input{
+    margin-bottom: 8px
+}
+#btnregistrar{
+     margin-top: 18px
+}

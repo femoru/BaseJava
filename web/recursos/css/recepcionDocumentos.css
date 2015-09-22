@@ -1,0 +1,12 @@
+
+/*-----------------Recepcion de documentos--------------*/
+.iconsexport{
+    float: right;
+    margin-right: 10px;
+    font-size: 20px;
+    margin-top: 3px;
+    cursor: pointer;
+}
+#exportpdf{
+    margin-right: 30px;
+}

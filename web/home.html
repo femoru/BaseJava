@@ -3,17 +3,24 @@
     <head>
         <title>SIO Cuentas Médicas</title>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport"  content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="recursos/terceros/bootstrap/css/bootstrap.css" />
         <link rel="stylesheet" type="text/css" href="recursos/terceros/fontAwesome/css/font-awesome.min.css" />
         <link rel="stylesheet" type="text/css" media="screen" href="recursos/terceros/jqgrid/css/ui.jqgrid-bootstrap.css" />
-        <link rel="stylesheet" type="text/css" href="recursos/css/personalizado.css" />
+       
+        <link rel="stylesheet" type="text/css" href="recursos/css/general.css" />
+        <link rel="stylesheet" type="text/css" href="recursos/css/home.css" />
+        <link rel="stylesheet" type="text/css" href="recursos/css/menuPrincipal.css" />
         <!-- ----------------------------------------------------------------------------------------- -->
         <script type="text/javascript" src="recursos/terceros/jquery/js/jquery.min.js"></script>
         <script type="text/javascript" src="recursos/terceros/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="recursos/terceros/jqgrid/js/i18n/grid.locale-es.js"></script>
         <script type="text/javascript" src="recursos/terceros/jqgrid/js/jquery.jqGrid.min.js"></script>
-        <script type="text/javascript" src="recursos/js/personalizado.js"></script>
+        <script type="text/javascript" src="recursos/js/general.js"></script>
+        
+        
+        <!--<link rel="stylesheet" type="text/css" href="recursos/css/recepcionDocumentos.css" />
+        <script type="text/javascript" src="recursos/js/recepcionDocumentos.js"></script>-->
     </head>
     <body>
         <header>
@@ -27,7 +34,7 @@
             <aside>
                 <div id="cabeceramenu">
                     <div class="col-lg-6 col-md-6 hidden-sm hidden-xs">
-                        <i class="fa fa-bars"></i>
+                        <i class="fa fa-bars" id="compresormenu"></i>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <img class="" src="recursos/img/sio.png" id="logo2" alt=""/>
@@ -37,21 +44,21 @@
                     <div class="accordion-group">
                         <div class="accordion-heading">
                             <a class="accordion-toggle linkhome" data-parent="#leftMenu" href="#">
-                                  <i class="fa fa-home"></i> Inicio
+                                <i class="fa fa-home"></i> <span class="titulosmenus">Inicio</span>
                             </a>
                         </div>
                     </div>
                     <div class="accordion-group">
                         <div class="accordion-heading">
                             <a class="accordion-toggle" data-parent="#leftMenu" href="#" id="linkrecdocs">
-                                <i class="fa fa-file-text"></i> Recepción de Documentos
+                                <i class="fa fa-file-text"></i> <span class="titulosmenus">Recepción de Documentos</span>
                             </a>
                         </div>
                     </div>
                     <div class="accordion-group">
                         <div class="accordion-heading">
                             <a class="accordion-toggle" data-toggle="collapse" data-parent="#leftMenu" href="#collapseThree">
-                                <i class="fa fa-newspaper-o"></i> Radicación de Facturas
+                                <i class="fa fa-newspaper-o"></i><span class="titulosmenus"> Radicación de Facturas</span>
                             </a>
                         </div>
                         <div id="collapseThree" class="accordion-body collapse" style="height: 0px; ">
