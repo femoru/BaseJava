@@ -5,6 +5,20 @@
  */
 $(document).on("ready",function(){
     $('.carousel').carousel();
+    
+    $("#linkrecdocs").on("click",function(){
+        $('.seccionjumbo').remove();
+        $('.contenidotemporal').remove();
+        $('.seccioninfo').remove();
+        $('.navbar-brand').html("");
+        $('.navbar-brand').html("RECEPCIÓN DE DOCUMENTOS");
+        $( ".nuevapagina" ).load( "modulos/Recepcion/recepcionDocumentos.jsp" );
+    });
+    $(".linkhome").on("click",function(){
+        location.reload();
+    });
+   $.jgrid.defaults.width = 780;
+    
 });
 
 
