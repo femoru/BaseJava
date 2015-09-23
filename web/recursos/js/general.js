@@ -13,9 +13,15 @@ $(document).on("ready",function(){
     });
     
     $( "#compresormenu" ).click(function() {
-        $( ".titulosmenus" ).toggle( "slow" );
+        
+        
+        /*$( ".titulosmenus" ).toggle( "slow" );
         $( "#logo2" ).toggle( "slow" );
+        $( "#collapseThree" ).toggle( "slow" );
+        $( "#collapseThree" ).toggle( "slow",function(){ 
+                 //funcion para comprimir menu
+         });*/
     });
-    
+
    //$.jgrid.defaults.width = 780;    
 });
