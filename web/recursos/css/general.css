@@ -106,4 +106,7 @@ footer{
         //border: 1px solid;
     }
 }
+#cd,#usb, #v_cd input, #trv_usb input{
+    width:0;
+}
 

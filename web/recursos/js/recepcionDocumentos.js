@@ -1,166 +1,218 @@
-  
-var jqgrid_data = [{
+  var jqgrid_data = [{
 		id : "1",
-		date : "2014-10-01",
-		name : "Test 1",
-		note : "0",
-		amount : "150.00",
-		tax : "15.00",
-		total : "210.00"
+		fecharecibido : "2014-10-01",
+		radicacion : "Comfandi",
+		nit : "890806490",
+		prestador : "Comfandi",
+		remitente : "Comfandi",
+                fechaentrega : "2014-10-01",
+                tipocuenta : "0",
+		nroguia : "",
+                cd:"0",
+                usb:"",
+                detalle:"",
+                entregadoa:"Olga Izquierdo",
+                entregadopor:"Jheison Combita"
 	}, {
 		id : "2",
-		date : "2014-10-02",
-		name : "Test 2",
-		note : "1",
-		amount : "220.00",
-		tax : "22.00",
-		total : "320.00"
+		fecharecibido : "2014-10-01",
+		radicacion : "Comfandi",
+		nit : "890806490",
+		prestador : "Comfandi",
+		remitente : "Comfandi",
+                fechaentrega : "2014-10-01",
+                tipocuenta : "0",
+		nroguia : "",
+                cd:"0",
+                usb:"",
+                detalle:"",
+                entregadoa:"Olga Izquierdo",
+                entregadopor:"Jheison Combita"
 	}, {
 		id : "3",
-		date : "2014-09-01",
-		name : "Test 3",
-		note : "2",
-		amount : "40.00",
-		tax : "4.00",
-		total : "430.00"
+		fecharecibido : "2014-10-01",
+		radicacion : "Comfandi",
+		nit : "890806490",
+		prestador : "Comfandi",
+		remitente : "Comfandi",
+                fechaentrega : "2014-10-01",
+                tipocuenta : "0",
+		nroguia : "",
+                cd:"0",
+                usb:"",
+                detalle:"",
+                entregadoa:"Olga Izquierdo",
+                entregadopor:"Jheison Combita"
 	}, {
 		id : "4",
-		date : "2014-10-04",
-		name : "Test 4",
-		note : "3",
-		amount : "510.00",
-		tax : "51.00",
-		total : "210.00"
+		fecharecibido : "2014-10-01",
+		radicacion : "Comfandi",
+		nit : "890806490",
+		prestador : "Comfandi",
+		remitente : "Comfandi",
+                fechaentrega : "2014-10-01",
+                tipocuenta : "0",
+		nroguia : "",
+                cd:"0",
+                usb:"",
+                detalle:"",
+                entregadoa:"Olga Izquierdo",
+                entregadopor:"Jheison Combita"
 	}, {
 		id : "5",
-		date : "2014-10-05",
-		name : "Test 5",
-		note : "1",
-		amount : "210.00",
-		tax : "21.00",
-		total : "320.00"
+		fecharecibido : "2014-10-01",
+		radicacion : "Comfandi",
+		nit : "890806490",
+		prestador : "Comfandi",
+		remitente : "Comfandi",
+                fechaentrega : "2014-10-01",
+                tipocuenta : "0",
+		nroguia : "",
+                cd:"0",
+                usb:"",
+                detalle:"",
+                entregadoa:"Olga Izquierdo",
+                entregadopor:"Jheison Combita"
 	}, {
 		id : "6",
-		date : "2014-09-06",
-		name : "Test 6",
-		note : "1",
-		amount : "70.00",
-		tax : "7.00",
-		total : "430.00"
+		fecharecibido : "2014-10-01",
+		radicacion : "Comfandi",
+		nit : "890806490",
+		prestador : "Comfandi",
+		remitente : "Comfandi",
+                fechaentrega : "2014-10-01",
+                tipocuenta : "0",
+		nroguia : "",
+                cd:"0",
+                usb:"",
+                detalle:"",
+                entregadoa:"Olga Izquierdo",
+                entregadopor:"Jheison Combita"
 	}, {
 		id : "7",
-		date : "2014-10-04",
-		name : "Test 7",
-		note : "2",
-		amount : "80.00",
-		tax : "10.00",
-		total : "210.00"
+		fecharecibido : "2014-10-01",
+		radicacion : "Comfandi",
+		nit : "890806490",
+		prestador : "Comfandi",
+		remitente : "Comfandi",
+                fechaentrega : "2014-10-01",
+                tipocuenta : "0",
+		nroguia : "",
+                cd:"0",
+                usb:"",
+                detalle:"",
+                entregadoa:"Olga Izquierdo",
+                entregadopor:"Jheison Combita"
 	}, {
 		id : "8",
-		date : "2014-10-03",
-		name : "Test 8",
-		note : "3",
-		amount : "300.00",
-		tax : "10.00",
-		total : "320.00"
+		fecharecibido : "2014-10-01",
+		radicacion : "Comfandi",
+		nit : "890806490",
+		prestador : "Comfandi",
+		remitente : "Comfandi",
+                fechaentrega : "2014-10-01",
+                tipocuenta : "0",
+		nroguia : "",
+                cd:"0",
+                usb:"",
+                detalle:"",
+                entregadoa:"Olga Izquierdo",
+                entregadopor:"Jheison Combita"
 	}, {
 		id : "9",
-		date : "2014-09-01",
-		name : "Test 9",
-		note : "1",
-		amount : "90.00",
-		tax : "10.00",
-		total : "430.00"
+		fecharecibido : "2014-10-01",
+		radicacion : "Comfandi",
+		nit : "890806490",
+		prestador : "Comfandi",
+		remitente : "Comfandi",
+                fechaentrega : "2014-10-01",
+                tipocuenta : "0",
+		nroguia : "",
+                cd:"0",
+                usb:"",
+                detalle:"",
+                entregadoa:"Olga Izquierdo",
+                entregadopor:"Jheison Combita"
 	}, {
 		id : "10",
-		date : "2014-10-01",
-		name : "Test 10",
-		note : "1",
-		amount : "200.00",
-		tax : "20.00",
-		total : "210.00"
+		fecharecibido : "2014-10-01",
+		radicacion : "Comfandi",
+		nit : "890806490",
+		prestador : "Comfandi",
+		remitente : "Comfandi",
+                fechaentrega : "2014-10-01",
+                tipocuenta : "0",
+		nroguia : "",
+                cd:"0",
+                usb:"",
+                detalle:"",
+                entregadoa:"Olga Izquierdo",
+                entregadopor:"Jheison Combita"
 	}, {
 		id : "11",
-		date : "2014-10-02",
-		name : "Test 11",
-		note : "2",
-		amount : "77.00",
-		tax : "9.00",
-		total : "320.00"
+		fecharecibido : "2014-10-01",
+		radicacion : "Comfandi",
+		nit : "890806490",
+		prestador : "Comfandi",
+		remitente : "Comfandi",
+                fechaentrega : "2014-10-01",
+                tipocuenta : "0",
+		nroguia : "",
+                cd:"0",
+                usb:"",
+                detalle:"",
+                entregadoa:"Olga Izquierdo",
+                entregadopor:"Jheison Combita"
 	}, {
 		id : "12",
-		date : "2014-09-01",
-		name : "Test 12",
-		note : "1",
-		amount : "56.00",
-		tax : "8.00",
-		total : "430.00"
+		fecharecibido : "2014-10-01",
+		radicacion : "Comfandi",
+		nit : "890806490",
+		prestador : "Comfandi",
+		remitente : "Comfandi",
+                fechaentrega: "2014-10-01",
+                tipocuenta : "0",
+		nroguia : "",
+                cd:"0",
+                usb:"",
+                detalle:"",
+                entregadoa:"Olga Izquierdo",
+                entregadopor:"Jheison Combita"
 	}, {
 		id : "13",
-		date : "2014-10-04",
-		name : "Test 13",
-		note : "1",
-		amount : "554.00",
-		tax : "10.00",
-		total : "210.00"
-	}, {
-		id : "14",
-		date : "2014-10-05",
-		name : "Test 14",
-		note : "3",
-		amount : "265.00",
-		tax : "2.00",
-		total : "320.00"
-	}, {
-		id : "15",
-		date : "2014-09-06",
-		name : "Test 15",
-		note : "1",
-		amount : "765.00",
-		tax : "3.00",
-		total : "430.00"
-	}, {
-		id : "16",
-		date : "2014-10-04",
-		name : "Test 16",
-		note : "1",
-		amount : "89.00",
-		tax : "1.00",
-		total : "210.00"
-	}, {
-		id : "17",
-		date : "2014-10-03",
-		name : "Test 17",
-		note : "3",
-		amount : "99.00",
-		tax : "2.00",
-		total : "320.00"
-	}, {
-		id : "18",
-		date : "2014-09-01",
-		name : "Test 18",
-		note : "1",
-		amount : "49.00",
-		tax : "3.00",
-		total : "430.00"
+		fecharecibido : "2014-10-01",
+		radicacion : "Comfandi",
+		nit : "890806490",
+		prestador : "Comfandi",
+		remitente : "Comfandi",
+                fechaentrega : "2014-10-01",
+                tipocuenta : "0",
+		nroguia : "",
+                cd:"1",
+                usb:"1",
+                detalle:"descripcion y detalle del documento entregado",
+                entregadoa:"Olga Izquierdo",
+                entregadopor:"Jheison Combita"
 	}];
-
 	// ----------------------------------------------------------------------------------------------------
 	jQuery("#jqGrid").jqGrid({
 		data : jqgrid_data,
                 styleUI : 'Bootstrap',
 		datatype : "local",
-		height : '370',
-		colNames : ['ID', 'Fecha Recibido', 'Radicación', 'NIT', 'Prestador', 'Remitente', 'Tipo de Doc','Opciones'],
+		height : '400',
+                //rownumbers: true,
+		colNames : ['id', 'Fecha Recibido', 'Radicación', 'NIT', 'Prestador', 'Remitente','Fecha Entrega', 'Tipo documento','N# Guía','CD','USB','Detalle','Entregado a','Entregado por'],
 		colModel : [
                     { name : 'id', index : 'id',editable : false, hidden:true }, 
-                    { name : 'date', index : 'sdate', editable : true, sorttype:"date",unformat: pickDate}, 
-                    { name : 'name', index : 'name', editable : true }, 
-                    { name : 'amount', index : 'amount', align : "right", editable : true }, 
-                    { name : 'tax', index : 'tax', align : "right", editable : true }, 
-                    { name : 'total', index : 'total', align : "right", editable : true }, 
-                    { name : 'note', index : 'note', sortable : false, editable : true, formatter: "select" ,edittype: "select", stype: "select",searchoptions: {
+                    { name : 'fecharecibido', index : 'sdate', editable : true, sorttype:"date",unformat: pickDate, align : "left",frozen: true}, 
+                    { name : 'radicacion', index : 'name', editable : true, align : "left" }, 
+                    { name : 'nit', index : 'name', editable : true, align : "left",hidden:true,editrules: {edithidden:true}   },
+                    { name : 'prestador', index : 'amount', align : "left", editable : true }, 
+                    { name : 'remitente', index : 'tax', align : "left", editable : true }, 
+                    { name : 'fechaentrega', index : 'sdate', editable : true, sorttype:"date",unformat: pickDate, align : "left"},
+                    { name : 'tipocuenta', index : 'tipocuenta', align : "left", sortable : false, editable : true, formatter: "select" ,edittype: "select", stype: "select",searchoptions: {
                     defaultValue: 0,
+                    shrinkToFit: false,
                                     value: {
                                          0: "Glosas",
                                          1: "Devoluciones",
@@ -178,7 +230,16 @@ var jqgrid_data = [{
                                      }
                                  }
                              },
-                        { name : 'act', index:'act', sortable:false }
+                        { name : 'nroguia', index : 'total', align : "left", editable : true,hidden:true,editrules: {edithidden:true}  }, 
+                        { name : 'cd', index : 'cd', align : "left", editable : true,edittype: 'checkbox', editoptions: { value: "True:False" }, 
+                        formatter: "checkbox", formatoptions: { disabled: false},hidden:true,editrules: {edithidden:true}   }, 
+                        { name : 'usb', index : 'usb', align : "left", editable : true,edittype: 'checkbox', editoptions: { value: "True:False" }, 
+                        formatter: "checkbox", formatoptions: { disabled: false},hidden:true ,editrules: {edithidden:true}  }, 
+                        { name : 'detalle', index : 'detalle', align : "left", editable : true,hidden:true ,editrules: {edithidden:true},
+                        edittype: 'textarea', formatter: "textarea",editoptions: {rows:"2",cols:"43"} },
+                        { name : 'entregadoa', index : 'entregadoa', align : "left", editable : true },
+                        { name : 'entregadopor', index : 'entregadopor', align : "left", editable : true }
+                        
                     ],
 		rowNum : 10,
 		rowList : [10, 20, 30 ,50 ,100 ,1000 ,10000],
@@ -199,7 +260,7 @@ var jqgrid_data = [{
                     }	
 		},*/
 		editurl : "dummy.html",
-		caption : "Matriz de Recepción de Documentos",
+		caption : "<b>Matriz Recepción de Documentos</b>",
 		multiselect : true,
 		autowidth : true
 	});			
@@ -219,15 +280,41 @@ var jqgrid_data = [{
             }, 0);*/
 	}
         
-        $(".ui-jqgrid-caption").append("<i class='fa fa-file-pdf-o iconsexport' title='Exportar PDF' id='exportpdf'></i>");  
-        $(".ui-jqgrid-caption").append("<i class='fa fa-file-excel-o iconsexport' title='Exportar Excel' id='exportexcel'></i>");
+        $(".ui-jqgrid-caption").append("<button title='Exportar PDF' class='btn btn-danger iconsexport' id='exportpdf'><i class='fa fa-file-pdf-o '></i></button>");  
+        $(".ui-jqgrid-caption").append("<button title='Exportar Excel' class='btn btn-success iconsexport' id='exportexcel'><i class='fa fa-file-excel-o '></i></button>");
         
 	jQuery("#jqGrid").jqGrid('navGrid', "#jqGridPager", {
-		edit : true,
-		add : true,
-		del : true,
-                view: true
-	});
+            edit : true,
+            add : true,
+            del : true,
+            view: true
+            //position: "left"
+                
+	},{
+            height: 'auto',
+            width: 620,
+            recreateForm: true,
+            closeAfterEdit: true,
+            errorTextFormat: function (data) {
+                return 'Error oshe: ' + data.responseText;
+            }
+        },
+                // options for the Add Dialog
+                {
+                    height: 'auto',
+                    width: 620,
+                    closeAfterAdd: true,
+                    recreateForm: true,
+                    errorTextFormat: function (data) {
+                        return 'Error: ' + data.responseText;
+                    }
+                },
+                // options for the Delete Dailog
+                {
+                    errorTextFormat: function (data) {
+                        return 'Error: ' + data.responseText;
+                    }
+                });
 
 	//jQuery("#jqGrid").jqGrid('inlineNav', "#jqGridPager");
 

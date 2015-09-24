@@ -3,22 +3,29 @@
 .iconsexport{
     float: right;
     margin-right: 10px;
-    font-size: 20px;
-    margin-top: 3px;
+    font-size: 10px;
     cursor: pointer;
+    margin-top: -2px
+}
+.iconsexport .fa{
+     font-size: 18px;
 }
 #exportpdf{
     margin-right: 30px;
 }
-@media(min-width: 992px){
+.contenttablas  div{
+    max-width: 100% ;
+    //border: 1px solid red;
+    //overflow: scroll;
+}
+
+
+/*@media(min-width: 992px){
 #contentmenu{
     width: 24%;
 }
-}
-#jqGridPager_center{
-    float: left;
-    margin-left: 30px;
-}
+}*/
+
 /*.bootstrap-datetimepicker-widget{
    // border: 1px solid red !important;
     z-index: 2147483647 !important;
