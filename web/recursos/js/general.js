@@ -1,6 +1,5 @@
 $(document).on("ready",function(){
-    
-    $("#linkrecdocs").on("click",function(){
+    $("#linkrecdocs").on("click",function(){//muestra la vista de recepcion de documentos (temporal)
         $('.seccionjumbo').remove();
         $('.contenidotemporal').remove();
         $('.seccioninfo').remove();
@@ -8,13 +7,21 @@ $(document).on("ready",function(){
         $('.navbar-brand').html("RECEPCIÓN DE DOCUMENTOS");
         $( ".nuevapagina" ).load( "modulos/Recepcion/recepcionDocumentos.jsp" );
     });
+    $("#linkradconrips").on("click",function(){//muestra la vista de radicacion de documentos (temporal)
+        $('.seccionjumbo').remove();
+        $('.contenidotemporal').remove();
+        $('.seccioninfo').remove();
+        $('.navbar-brand').html("");
+        $('.navbar-brand').html("RADICACIÓN DE DOCUMENTOS");
+        $( ".nuevapagina" ).load( "modulos/Radicacion/radicacionConRips.jsp" );
+    });
     $(".linkhome").on("click",function(){
         location.reload();
     });
     
     $( "#compresormenu" ).click(function() {
        $( "#logo2" ).toggle();//remuevo el logo 
-       $('.titulosmenus').toggle();//remuevo los titulos
+       $('.titulosmenus').toggle();//remuevo los titulos del menu
        
       if($('#contentmenu').hasClass('col-lg-3')|| $('#contentmenu').hasClass('col-md-3')) {
         $('#contentmenu').removeClass('col-lg-3').removeClass('col-md-3');//compresion del menu
@@ -37,9 +44,11 @@ $(document).on("ready",function(){
         $('#leftMenu .fa').css("margin-left","0px");
          $('#contentmenu #collapseThree ul').css('padding-left','40px');
       }
-      $(window).bind('resize', function() {//se ajusta la grilla al nuevo tamaño de la pantalla
-                $("#jqGrid").setGridWidth($(window).width());
-            }).trigger('resize');
+      //$(window).bind('resize', function() {//se ajusta la grilla al nuevo tamaño de la pantalla+
+  
+        $("#jqGrid").jqGrid('setGridWidth',$("#contentsectionp").width(),true);
+         $("#jqGrid2").jqGrid('setGridWidth',$("#contentsectionp").width(),true);       
+            //});
       
     });
    //$.jgrid.defaults.width = 780;    

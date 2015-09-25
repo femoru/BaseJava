@@ -1,5 +1,5 @@
 <%-- 
-    Document   : recuperarContrasena
+    Document   : configuracionUsuario
     Created on : 21/09/2015, 10:09:41 AM
     Author     : bmunoz
 --%>
@@ -13,7 +13,6 @@
         <link rel="stylesheet" href="../../recursos/terceros/bootstrap/css/bootstrap.css" />
         <link rel="stylesheet" href="../../recursos/terceros/fontAwesome/css/font-awesome.min.css" />
          <link rel="stylesheet" href="../../recursos/css/general.css" />
-         <link rel="stylesheet" href="../../recursos/css/recuperacionContrasena.css" />
          
          <script type="text/javascript" src="../../recursos/terceros/jquery/js/jquery.min.js"></script>
         <script type="text/javascript" src="../../recursos/terceros/bootstrap/js/bootstrap.min.js"></script>
@@ -28,17 +27,27 @@
         </header><!-- --------------------------------------------- -->
         <section>
             <img class="img-responsive" src="../../recursos/img/logo-sio.png" id="logo" alt=""/>
-            <h2 class="titulosviews">Recuperación de Contraseña</h2>
+            <h2 class="titulosviews">Configuración</h2>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-4 hidden-sm hidden-xs"></div>
                     <div id="formlogin" class="col-md-4">
                         <form role="form">
                             <div class="form-group">
-                              <label for="correorecuperar">Ingrese su correo</label>
+                              <label for="contrasenaanterior">Ingrese su contraseña anterior</label>
                               <div class="inner-addon left-addon">
-                                    <i class="fa fa-envelope"></i>
-                                    <input type="text" class="form-control" name="correorecuperar" placeholder="Correo" />
+                                    <i class="fa fa-lock"></i>
+                                    <input type="text" class="form-control" name="contrasenaanterior"/>
+                                </div>
+                              <label for="contrasenanueva">Contraseña Nueva</label>
+                              <div class="inner-addon left-addon">
+                                    <i class="fa fa-lock"></i>
+                                    <input type="text" class="form-control" name="contrasenanueva"/>
+                                </div>
+                              <label for="confirmar">Confirmar Contraseña Nueva</label>
+                              <div class="inner-addon left-addon">
+                                    <i class="fa fa-lock"></i>
+                                    <input type="text" class="form-control" name="confirmar"/>
                                 </div>
                             </div>
 

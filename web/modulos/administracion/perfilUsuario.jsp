@@ -1,10 +1,10 @@
 <%-- 
-    Document   : registroUsuarios
-    Created on : 21/09/2015, 08:59:41 AM
+    Document   : PerfilUsuario
+    Created on : 23/09/2015, 09:13:09 AM
     Author     : bmunoz
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es"><!--Temporal mientras se define el layout-->
     <head>
@@ -31,8 +31,8 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4 hidden-sm hidden-xs"></div>
                     <div class="col-md-4">
-                        <h2 class="titulosviews">Registro de Usuarios</h2>
-                        <form method="" action="" id="frmregistrousers" role="form">
+                        <h2 class="titulosviews">Mi Perfil</h2>
+                        <form  id="frmperfiluser" role="form">
                             <div class="form-group">
                                 <label for="idusuario">Identificación</label>
                                 <div class="inner-addon left-addon">
