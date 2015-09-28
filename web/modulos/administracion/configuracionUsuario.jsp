@@ -4,7 +4,6 @@
     Author     : bmunoz
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html lang="es"><!--Temporal mientras se define el layout-->
     <head>
@@ -26,7 +25,7 @@
             </div>
         </header><!-- --------------------------------------------- -->
         <section>
-            <img class="img-responsive" src="../../recursos/img/logo-sio.png" id="logo" alt=""/>
+            <img class="img-responsive" src="../../recursos/img/logo-sio.png" id="logo" alt="Soluciones Integrales de Oficina" title="Soluciones Integrales de Oficina"/> 
             <h2 class="titulosviews">Configuración</h2>
             <div class="container">
                 <div class="row">
@@ -51,15 +50,15 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-primary col-lg-4 col-md-4 col-sm-12 col-xs-12 botonesfrm" id="btnrecontrasena">Enviar</button>
+                            <button type="submit" class="btn btn-primary col-lg-4 botonesfrm" id="btnrecontrasena">Enviar</button>
                         </form>
                      </div>
                      <div class="col-lg-4 col-md-4 hidden-sm hidden-xs"></div>
                 </div>
            </div>
        </section>
-        <div class="corte col-lg-12 col-md-12 col-sm-12 col-xs-12"></div><!--Temporal mientras se define el layout-->
-        <footer class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="corte col-lg-12 col-md-12"></div><!--Temporal mientras se define el layout-->
+        <footer class="col-lg-12 col-md-12">
             <div id="footer">
                 <p class="copyright">SIO S.A. | Cali: Cra 100 # 14 - 96 Barrio Ciudad Jardín PBX: (57 2) 485 5757 - (572) 485 5758 </p>
                 <p class="copyright1">Colombia</p>

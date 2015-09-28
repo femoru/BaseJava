@@ -1,287 +1,150 @@
-  var jqgrid_data = [{
-		id : "1",
-		fecharecibido : "2014-10-01",
-		radicacion : "Comfandi",
-		nit : "890806490",
-		prestador : "Comfandi",
-		remitente : "Comfandi",
-                fechaentrega : "2014-10-01",
-                tipocuenta : "0",
-		nroguia : "",
-                cd:"0",
-                usb:"",
-                detalle:"",
-                entregadoa:"Olga Izquierdo",
-                entregadopor:"Jheison Combita"
-	}, {
-		id : "2",
-		fecharecibido : "2014-10-01",
-		radicacion : "Comfandi",
-		nit : "890806490",
-		prestador : "Comfandi",
-		remitente : "Comfandi",
-                fechaentrega : "2014-10-01",
-                tipocuenta : "0",
-		nroguia : "",
-                cd:"0",
-                usb:"",
-                detalle:"",
-                entregadoa:"Olga Izquierdo",
-                entregadopor:"Jheison Combita"
-	}, {
-		id : "3",
-		fecharecibido : "2014-10-01",
-		radicacion : "Comfandi",
-		nit : "890806490",
-		prestador : "Comfandi",
-		remitente : "Comfandi",
-                fechaentrega : "2014-10-01",
-                tipocuenta : "0",
-		nroguia : "",
-                cd:"0",
-                usb:"",
-                detalle:"",
-                entregadoa:"Olga Izquierdo",
-                entregadopor:"Jheison Combita"
-	}, {
-		id : "4",
-		fecharecibido : "2014-10-01",
-		radicacion : "Comfandi",
-		nit : "890806490",
-		prestador : "Comfandi",
-		remitente : "Comfandi",
-                fechaentrega : "2014-10-01",
-                tipocuenta : "0",
-		nroguia : "",
-                cd:"0",
-                usb:"",
-                detalle:"",
-                entregadoa:"Olga Izquierdo",
-                entregadopor:"Jheison Combita"
-	}, {
-		id : "5",
-		fecharecibido : "2014-10-01",
-		radicacion : "Comfandi",
-		nit : "890806490",
-		prestador : "Comfandi",
-		remitente : "Comfandi",
-                fechaentrega : "2014-10-01",
-                tipocuenta : "0",
-		nroguia : "",
-                cd:"0",
-                usb:"",
-                detalle:"",
-                entregadoa:"Olga Izquierdo",
-                entregadopor:"Jheison Combita"
-	}, {
-		id : "6",
-		fecharecibido : "2014-10-01",
-		radicacion : "Comfandi",
-		nit : "890806490",
-		prestador : "Comfandi",
-		remitente : "Comfandi",
-                fechaentrega : "2014-10-01",
-                tipocuenta : "0",
-		nroguia : "",
-                cd:"0",
-                usb:"",
-                detalle:"",
-                entregadoa:"Olga Izquierdo",
-                entregadopor:"Jheison Combita"
-	}, {
-		id : "7",
-		fecharecibido : "2014-10-01",
-		radicacion : "Comfandi",
-		nit : "890806490",
-		prestador : "Comfandi",
-		remitente : "Comfandi",
-                fechaentrega : "2014-10-01",
-                tipocuenta : "0",
-		nroguia : "",
-                cd:"0",
-                usb:"",
-                detalle:"",
-                entregadoa:"Olga Izquierdo",
-                entregadopor:"Jheison Combita"
-	}, {
-		id : "8",
-		fecharecibido : "2014-10-01",
-		radicacion : "Comfandi",
-		nit : "890806490",
-		prestador : "Comfandi",
-		remitente : "Comfandi",
-                fechaentrega : "2014-10-01",
-                tipocuenta : "0",
-		nroguia : "",
-                cd:"0",
-                usb:"",
-                detalle:"",
-                entregadoa:"Olga Izquierdo",
-                entregadopor:"Jheison Combita"
-	}, {
-		id : "9",
-		fecharecibido : "2014-10-01",
-		radicacion : "Comfandi",
-		nit : "890806490",
-		prestador : "Comfandi",
-		remitente : "Comfandi",
-                fechaentrega : "2014-10-01",
-                tipocuenta : "0",
-		nroguia : "",
-                cd:"0",
-                usb:"",
-                detalle:"",
-                entregadoa:"Olga Izquierdo",
-                entregadopor:"Jheison Combita"
-	}, {
-		id : "10",
-		fecharecibido : "2014-10-01",
-		radicacion : "Comfandi",
-		nit : "890806490",
-		prestador : "Comfandi",
-		remitente : "Comfandi",
-                fechaentrega : "2014-10-01",
-                tipocuenta : "0",
-		nroguia : "",
-                cd:"0",
-                usb:"",
-                detalle:"",
-                entregadoa:"Olga Izquierdo",
-                entregadopor:"Jheison Combita"
-	}, {
-		id : "11",
-		fecharecibido : "2014-10-01",
-		radicacion : "Comfandi",
-		nit : "890806490",
-		prestador : "Comfandi",
-		remitente : "Comfandi",
-                fechaentrega : "2014-10-01",
-                tipocuenta : "0",
-		nroguia : "",
-                cd:"0",
-                usb:"",
-                detalle:"",
-                entregadoa:"Olga Izquierdo",
-                entregadopor:"Jheison Combita"
-	}, {
-		id : "12",
-		fecharecibido : "2014-10-01",
-		radicacion : "Comfandi",
-		nit : "890806490",
-		prestador : "Comfandi",
-		remitente : "Comfandi",
-                fechaentrega: "2014-10-01",
-                tipocuenta : "0",
-		nroguia : "",
-                cd:"0",
-                usb:"",
-                detalle:"",
-                entregadoa:"Olga Izquierdo",
-                entregadopor:"Jheison Combita"
-	}, {
-		id : "13",
-		fecharecibido : "2014-10-01",
-		radicacion : "Comfandi",
-		nit : "890806490",
-		prestador : "Comfandi",
-		remitente : "Comfandi",
-                fechaentrega : "2014-10-01",
-                tipocuenta : "0",
-		nroguia : "",
-                cd:"1",
-                usb:"1",
-                detalle:"descripcion y detalle del documento entregado",
-                entregadoa:"Olga Izquierdo",
-                entregadopor:"Jheison Combita"
-	}];
-	// ----------------------------------------------------------------------------------------------------
-	jQuery("#jqGrid").jqGrid({
-		data : jqgrid_data,
-                styleUI : 'Bootstrap',
-		datatype : "local",
-		height : '400',
-                //rownumbers: true,
-		colNames : ['id', 'Fecha Recibido', 'Radicación', 'NIT', 'Prestador', 'Remitente','Fecha Entrega', 'Tipo documento','N# Guía','CD','USB','Detalle','Entregado a','Entregado por'],
-		colModel : [
-                    { name : 'id', index : 'id',editable : false, hidden:true }, 
-                    { name : 'fecharecibido', index : 'sdate', editable : true, sorttype:"date",unformat: pickDate, align : "left",frozen: true}, 
-                    { name : 'radicacion', index : 'name', editable : true, align : "left" }, 
-                    { name : 'nit', index : 'name', editable : true, align : "left",hidden:true,editrules: {edithidden:true}   },
-                    { name : 'prestador', index : 'amount', align : "left", editable : true }, 
-                    { name : 'remitente', index : 'tax', align : "left", editable : true }, 
-                    { name : 'fechaentrega', index : 'sdate', editable : true, sorttype:"date",unformat: pickDate, align : "left"},
-                    { name : 'tipocuenta', index : 'tipocuenta', align : "left", sortable : false, editable : true, formatter: "select" ,edittype: "select", stype: "select",searchoptions: {
-                    defaultValue: 0,
-                    shrinkToFit: false,
-                                    value: {
-                                         0: "Glosas",
-                                         1: "Devoluciones",
-                                         2: "Guías de Correspondencia",
-                                         3: "Otros Documentos"
-                                     }
-                                 },
-                                 editoptions: {
-                                     value: {
-                                         0: "Glosas",
-                                         1: "Devoluciones",
-                                         2: "Guías de Correspondencia",
-                                         3: "Otros Documentos"
+var jqgrid_data = [{
+        OrderID:"10248",
+        OrderDat:"1996-07-04",
+        CustomerID:"WILMK",
+        ShipName:"Vins et alcools Chevalier",
+        Freight:"32.3800"
+}];
 
+$("#jqGrid").jqGrid({
+        //url: 'data.json',
+       // editurl: 'clientArray',
+        data : jqgrid_data,
+        styleUI : 'Bootstrap',
+        datatype : "local",
+        height : '600',
+        page:1,
+        autowidth : true,
+        colModel: [
+            { label: 'Order ID', name: 'OrderID', key: true, width: 75 },                   
+            {
+                label: 'Order Date',
+                name: 'OrderDate',
+                width: 150,
+                editable: true,
+                edittype:"text",
+                editoptions: {
+                    // dataInit is the client-side event that fires upon initializing the toolbar search field for a column
+                    // use it to place a third party control to customize the toolbar
+                    dataInit: function (element) {
+                       $(element).datetimepicker({
+                                //autoclose: true,
+                                locale: 'es',
+                                format: 'YYYY/MM/DD HH:mm'
+                               // orientation : 'auto bottom'
+                        });
+                    }
+                }
+            },
+             {
+                                         label: 'Customer ID',
+                 name: 'CustomerID',
+                 width: 150,
+                 editable: true,
+                 edittype: "select",
+                 editoptions: {
+                     value: "ALFKI:ALFKI;ANATR:ANATR;ANTON:ANTON;AROUT:AROUT;BERGS:BERGS;BLAUS:BLAUS;BLONP:BLONP;BOLID:BOLID;BONAP:BONAP;BOTTM:BOTTM;BSBEV:BSBEV;CACTU:CACTU;CENTC:CENTC;CHOPS:CHOPS;COMMI:COMMI;CONSH:CONSH;DRACD:DRACD;DUMON:DUMON;EASTC:EASTC;ERNSH:ERNSH;FAMIA:FAMIA;FISSA:FISSA;FOLIG:FOLIG;FOLKO:FOLKO;FRANK:FRANK;FRANR:FRANR;FRANS:FRANS;FURIB:FURIB;GALED:GALED;GODOS:GODOS;GOURL:GOURL;GREAL:GREAL;GROSR:GROSR;HANAR:HANAR;HILAA:HILAA;HUNGC:HUNGC;HUNGO:HUNGO;ISLAT:ISLAT;KOENE:KOENE;LACOR:LACOR;LAMAI:LAMAI;LAUGB:LAUGB;LAZYK:LAZYK;LEHMS:LEHMS;LETSS:LETSS;LILAS:LILAS;LINOD:LINOD;LONEP:LONEP;MAGAA:MAGAA;MAISD:MAISD;MEREP:MEREP;MORGK:MORGK;NORTS:NORTS;OCEAN:OCEAN;OLDWO:OLDWO;OTTIK:OTTIK;PARIS:PARIS;PERIC:PERIC;PICCO:PICCO;PRINI:PRINI;QUEDE:QUEDE;QUEEN:QUEEN;QUICK:QUICK;RANCH:RANCH;RATTC:RATTC;REGGC:REGGC;RICAR:RICAR;RICSU:RICSU;ROMEY:ROMEY;SANTG:SANTG;SAVEA:SAVEA;SEVES:SEVES;SIMOB:SIMOB;SPECD:SPECD;SPLIR:SPLIR;SUPRD:SUPRD;THEBI:THEBI;THECR:THECR;TOMSP:TOMSP;TORTU:TORTU;TRADH:TRADH;TRAIH:TRAIH;VAFFE:VAFFE;VICTE:VICTE;VINET:VINET;WANDK:WANDK;WARTH:WARTH;WELLI:WELLI;WHITC:WHITC;WILMK:WILMK;WOLZA:WOLZA"
+                 }
+             },
+            {
+                                        label: 'Freigh',
+                name: 'Freight',
+                width: 150,
+                                        sorttype:"number",
+                editable: true,
+                edittype: "custom",
+                editoptions: {
+                    custom_value: getFreightElementValue,
+                    custom_element: createFreightEditElement
+                }
+            },
+            {
+                                        label: 'Ship Name',
+                name: 'ShipName',
+                width: 150,
+                editable: true,
+                edittype: "text",
+                editoptions: {
+                    // dataInit is the client-side event that fires upon initializing the toolbar search field for a column
+                    // use it to place a third party control to customize the toolbar
+                    dataInit: function (element) {
+                        $(element).attr("autocomplete","off").typeahead({ 
+                                appendTo : "body",
+                                     source: function(query, proxy) {
+                                             $.ajax({
+                                                     url: 'http://trirand.com/blog/phpjqgrid/examples/jsonp/autocompletepbs.php?callback=?&acelem=ShipName',
+                                                     dataType: "jsonp",
+                                                     data: {term: query},
+                                                     success : proxy
+                                             });
                                      }
-                                 }
-                             },
-                        { name : 'nroguia', index : 'total', align : "left", editable : true,hidden:true,editrules: {edithidden:true}  }, 
-                        { name : 'cd', index : 'cd', align : "left", editable : true,edittype: 'checkbox', editoptions: { value: "True:False" }, 
-                        formatter: "checkbox", formatoptions: { disabled: false},hidden:true,editrules: {edithidden:true}   }, 
-                        { name : 'usb', index : 'usb', align : "left", editable : true,edittype: 'checkbox', editoptions: { value: "True:False" }, 
-                        formatter: "checkbox", formatoptions: { disabled: false},hidden:true ,editrules: {edithidden:true}  }, 
-                        { name : 'detalle', index : 'detalle', align : "left", editable : true,hidden:true ,editrules: {edithidden:true},
-                        edittype: 'textarea', formatter: "textarea",editoptions: {rows:"2",cols:"43"} },
-                        { name : 'entregadoa', index : 'entregadoa', align : "left", editable : true },
-                        { name : 'entregadopor', index : 'entregadopor', align : "left", editable : true }
-                        
-                    ],
-		rowNum : 10,
-		rowList : [10, 20, 30 ,50 ,100 ,1000 ,10000],
-		pager : '#jqGridPager',
-		sortname : 'id',
-		toolbarfilter: true,
-		viewrecords : true,
-		sortorder : "asc",
+                        });
+                    }
+                }
+            }
+        ],
+                        loadonce : true,
+        onSelectRow: editRow, // the javascript function to call on row click. will ues to to put the row in edit mode
+        viewrecords: true,
+        height: '400',
+        rowNum: 20,
+        pager: "#jqGridPager",
+        caption : "<b>Matriz Recepción de Documentos</b>"
+    });
+    
+
+    var lastSelection;
+
+    function editRow(id) {
+        if (id && id !== lastSelection) {
+            var grid = $("#jqGrid");
+            grid.jqGrid('restoreRow',lastSelection);
+            grid.jqGrid('editRow',id, {keys:true, focusField: 4});
+            lastSelection = id;
+        }
+    }
+
+    function createFreightEditElement(value, editOptions) {
+        var div =$("<div style='margin-top:5px'></div>");
+        var label = $("<label class='radio-inline'></label>");
+        var radio = $("<input>", { type: "radio", value: "0", name: "freight", id: "zero", checked: (value != 25 && value != 50 && value != 100) });
+                        label.append(radio).append("0");
+        var label1 = $("<label class='radio-inline'></label>");
+        var radio1 = $("<input>", { type: "radio", value: "25", name: "freight", id: "twentyfive", checked: value == 25 });
+                        label1.append(radio1).append("25");
+        var label2 = $("<label class='radio-inline'></label>");
+        var radio2 = $("<input>", { type: "radio", value: "50", name: "freight", id: "fifty", checked: value == 50 });
+                        label2.append(radio2).append("50");
+        //var label3 = $("<label class='radio-inline'></label>");
+        //var radio3 = $("<input>", { type: "radio", value: "100", name: "freight", id: "hundred", checked: value == 100 });
+                        //label3.append(radio3).append("100");
+        div.append(label).append(label1).append(label2);//.append(label3);
+       
+        jQuery("#jqGrid").jqGrid('navGrid', "#jqGridPager", {
+            edit : true,
+            add : true,
+            del : true,
+            view: true
+            //position: "left"
                 
-		/*gridComplete: function(){
-                    var ids = jQuery("#jqGrid").jqGrid('getDataIDs');
-                    for(var i=0;i < ids.length;i++){
-                            var cl = ids[i];
-                            be = "<button class='btn btn-xs btn-default btn-quick' title='Edit Row' onclick=\"jQuery('#jqGrid').editRow('"+cl+"');\"><i class='fa fa-pencil'></i></button>"; 
-                            se = "<button class='btn btn-xs btn-default btn-quick' title='Save Row' onclick=\"jQuery('#jqGrid').saveRow('"+cl+"');\"><i class='fa fa-save'></i></button>";
-                            ca = "<button class='btn btn-xs btn-default btn-quick' title='Cancel' onclick=\"jQuery('#jqGrid').restoreRow('"+cl+"');\"><i class='fa fa-times'></i></button>";  
-                            jQuery("#jqGrid").jqGrid('setRowData',ids[i],{act:be+se+ca});
-                    }	
-		},*/
-		editurl : "dummy.html",
-		caption : "<b>Matriz Recepción de Documentos</b>",
-		multiselect : true,
-		autowidth : true
-	});			
-	// ----------------------------------------------------------------------------------------------------
+	});
+        return div;
+    }
 
-	//enable datepicker
-	function pickDate( cellvalue, options, cell ) {
-                setTimeout(function(){        
-                $(cell).find('input[type=text]').datetimepicker()({
-                     
-                    });
-                });
-                 
-            /*setTimeout(function(){
-                    jQuery(cell) .find('input[type=text]')
-                    .datepicker({format:'yyyy-mm-dd' , autoclose:true}); 
-            }, 0);*/
-	}
-        
-        $(".ui-jqgrid-caption").append("<button title='Exportar PDF' class='btn btn-danger iconsexport' id='exportpdf'><i class='fa fa-file-pdf-o '></i></button>");  
-        $(".ui-jqgrid-caption").append("<button title='Exportar Excel' class='btn btn-success iconsexport' id='exportexcel'><i class='fa fa-file-excel-o '></i></button>");
+    // The javascript executed specified by JQGridColumn.EditTypeCustomGetValue when EditType = EditType.Custom
+    // One parameter passed - the custom element created in JQGridColumn.EditTypeCustomCreateElement
+    function getFreightElementValue(elem, oper, value) {
+        if (oper === "set") {
+            var radioButton = $(elem).find("input:radio[value='" + value + "']");
+            if (radioButton.length > 0) {
+                radioButton.prop("checked", true);
+            }
+        }
+
+        if (oper === "get") {
+            return $(elem).find("input:radio:checked").val();
+        }
+}
         
 	jQuery("#jqGrid").jqGrid('navGrid', "#jqGridPager", {
             edit : true,
@@ -315,7 +178,6 @@
                         return 'Error: ' + data.responseText;
                     }
                 });
-
 	//jQuery("#jqGrid").jqGrid('inlineNav', "#jqGridPager");
 
 	/* Add tooltips */
@@ -361,7 +223,8 @@
 
 	});
 
-	// ----------------------------------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------------------------------
 
 	/**
 		@STYLING

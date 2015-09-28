@@ -4,7 +4,6 @@
     Author     : bmunoz
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html lang="es"><!--Temporal mientras se define el layout-->
     <head>
@@ -26,7 +25,7 @@
             </div>
         </header><!-- --------------------------------------------- -->
         <section>
-            <img class="img-responsive" src="../../recursos/img/logo-sio.png" id="logo" alt=""/>
+            <img class="img-responsive" src="../../recursos/img/logo-sio.png" id="logo" alt="Soluciones Integrales de Oficina" title="Soluciones Integrales de Oficina"/>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-4 hidden-sm hidden-xs"></div>
@@ -37,34 +36,33 @@
                                 <label for="idusuario">Identificación</label>
                                 <div class="inner-addon left-addon">
                                     <i class="fa fa-credit-card"></i>
-                                    <input type="text" class="form-control" name="idusuario" placeholder="Identificación"/>
+                                    <input type="text" class="form-control" name="idusuario" />
                                 </div>
 
                                 <label for="usuario">Usuario</label>
                                 <div class="inner-addon left-addon">
                                     <i class="fa fa-user"></i>
-                                    <input type="text" class="form-control" name="usuario" placeholder="Usuario"/>
+                                    <input type="text" class="form-control" name="usuario" />
                                 </div>
 
                                 <label for="correo">Correo</label>
                                 <div class="inner-addon left-addon">
                                     <i class="fa fa-envelope-o"></i>
-                                    <input type="text" class="form-control" name="correo" placeholder="Correo"/>
+                                    <input type="text" class="form-control" name="correo" />
                                 </div>
 
                                 <label for="contrasena">Contraseña</label>
                                 <div class="inner-addon left-addon">
                                     <i class="fa fa-lock"></i>
-                                    <input type="password" class="form-control" name="contrasena" placeholder="Contraseña"/>
+                                    <input type="password" class="form-control" name="contrasena" />
                                 </div>
 
                                 <label for="confirmar">Confirmar Contraseña</label>
                                 <div class="inner-addon left-addon">
                                     <i class="fa fa-keyboard-o"></i>
-                                    <input type="password" class="form-control" name="confirmar" placeholder="Confirmar"/>
+                                    <input type="password" class="form-control" name="confirmar" />
                                 </div>
-
-                                <button type="submit" class="btn btn-primary col-lg-4 col-md-4 col-sm-12 col-xs-12 botonesfrm" id="btnregistrar">Registrar</button>
+                                <br/><button type="submit" class="btn btn-primary col-lg-4 col-md-4 col-sm-12 col-xs-12 botonesfrm" id="btnregistrar">Registrar</button>
                             </div>
                         </form>
                     </div>
@@ -81,5 +79,3 @@
         </footer><!-- --------------------------------------------- -->
     </body>
 </html>
-
-

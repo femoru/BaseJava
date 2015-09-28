@@ -7,13 +7,21 @@ $(document).on("ready",function(){
         $('.navbar-brand').html("RECEPCIÓN DE DOCUMENTOS");
         $( ".nuevapagina" ).load( "modulos/Recepcion/recepcionDocumentos.jsp" );
     });
-    $("#linkradconrips").on("click",function(){//muestra la vista de radicacion de documentos (temporal)
+    $("#linkradconrips").on("click",function(){//muestra la vista de radicacion de documentos CR(temporal)
         $('.seccionjumbo').remove();
         $('.contenidotemporal').remove();
         $('.seccioninfo').remove();
         $('.navbar-brand').html("");
-        $('.navbar-brand').html("RADICACIÓN DE DOCUMENTOS");
+        $('.navbar-brand').html("RADICACIÓN DE DOCUMENTOS CON RIPS");
         $( ".nuevapagina" ).load( "modulos/Radicacion/radicacionConRips.jsp" );
+    });
+    $("#linkradsinrips").on("click",function(){//muestra la vista de radicacion de documentos SR (temporal)
+        $('.seccionjumbo').remove();
+        $('.contenidotemporal').remove();
+        $('.seccioninfo').remove();
+        $('.navbar-brand').html("");
+        $('.navbar-brand').html("RADICACIÓN DE DOCUMENTOS SIN RIPS");
+        $( ".nuevapagina" ).load( "modulos/Radicacion/radicacionSinRips.jsp" );
     });
     $(".linkhome").on("click",function(){
         location.reload();

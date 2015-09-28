@@ -33,28 +33,26 @@ var jqgrid_data = [{
         
         var jqgrid_data = [{
           id : "1",
-          numerofactura : "MS3500435",
-          fechafactura : "2014-10-01 12:00",
+          fecharadicacion : "2014-10-01 12:00",
+          oficina : "135.000",
+          prefijofactura : "EM",
+          sufijofactura : "123051",
+          numerofactura: "EM123051",
+          fechafactura: "2014-10-01 12:00",
           valorfactura : "135.000",
-          valoriva : "0",
-          tipoplan : "1",
-          tipocuenta: "1",
-          facturafisica : "",
           motivoestado : "",
-          fecharadicacion: "2014-10-01 12:00",
-          estadofactura: ""
+          estadofactura: "Proceso"
         },{
           id : "2",
-          numerofactura : "MS3500435",
-          fechafactura : "2014-10-01 12:00",
+          fecharadicacion : "2014-10-01 12:00",
+          oficina : "135.000",
+          prefijofactura : "EM",
+          sufijofactura : "123051",
+          numerofactura: "EM123051",
+          fechafactura: "2014-10-01 12:00",
           valorfactura : "135.000",
-          valoriva : "0",
-          tipoplan : "1",
-          tipocuenta: "1",
-          facturafisica : "",
           motivoestado : "",
-          fecharadicacion: "2014-10-01 12:00",
-          estadofactura: ""
+          estadofactura: "Proceso"
       }];
 // ----------------------------------------------------------------------------------------------------
 	jQuery("#jqGrid2").jqGrid({
@@ -63,19 +61,19 @@ var jqgrid_data = [{
 		datatype : "local",
 		height : '400',
                 //rownumbers: true,
-		colNames : ['id', 'Número Factura', 'Fecha Factura', 'Valor Factura', 'Valor IVA', 'Tipo Plan', 'Tipo Cuenta','Factura Física', 'Motivo Estado','Fecha Radicación','Estado Factura'],
+		colNames : ['id', 'Fecha Radicación', 'Oficina', 'Prefijo Factura', 'Sufijo Factura', 'N# Factura', 'Fecha Factura','Valor Factura', 'Motivo Estado','Estado Factura','Opciones'],
 		colModel : [
                     { name : 'id', index : 'id',editable : false, hidden:true},
-                    { name : 'numerofactura', index : 'numerofactura',editable : false,width:125},
-                    { name : 'fechafactura', index : 'fechafactura', editable : false, sorttype:"date",unformat: pickDate, align : "left",width:130},
-                    { name : 'valorfactura', index : 'valorfactura',editable : true,width:110},
-                    { name : 'valoriva', index : 'valoriva',editable : true,width:100},
-                    { name : 'tipoplan', index : 'tipoplan',editable : true,width:120},
-                    { name : 'tipocuenta', index : 'tipoplan',editable : true,width:120},
-                    { name : 'facturafisica', index : 'facturafisica',editable : true,width:110},
-                    { name : 'motivoestado', index : 'motivoestado',editable : true,width:115},
                     { name : 'fecharadicacion', index : 'fecharadicacion', editable : false, sorttype:"date",unformat: pickDate, align : "left",width:140},
-                    { name : 'estadofactura', index : 'estadofactura',editable : true,width:130}
+                    { name : 'oficina', index : 'oficina',editable : true,width:110},
+                    { name : 'prefijofactura', index : 'prefijofactura',editable : true,width:130,align : "center"},
+                    { name : 'sufijofactura', index : 'sufijofactura',editable : true,width:120},
+                    { name : 'numerofactura', index : 'numerofactura',editable : true,width:90},
+                    { name : 'fechafactura', index : 'fechafactura',editable : true,width:125},
+                    { name : 'valorfactura', index : 'valorfactura',editable : true,width:110},
+                    { name : 'motivoestado', index : 'motivoestado', editable : false, align : "left",width:140},
+                    { name : 'estadofactura', index : 'estadofactura',editable : true,width:130},
+                    { name : 'opciones', index : 'opciones',width:110}
                 ],
 		rowNum : 10,
 		rowList : [10, 20, 30 ,50 ,100 ,1000 ,10000],
@@ -92,8 +90,18 @@ var jqgrid_data = [{
                         lastsel=id;
                         }
                 },
-
-		editurl : "dummy.html",
+                
+		gridComplete: function(){
+                    var ids = jQuery("#jqGrid2").jqGrid('getDataIDs');
+                    for(var i=0;i < ids.length;i++){
+                        var cl = ids[i];
+                        //be = "<button class='btn btn-xs btn-default btn-quick' title='Editar' onclick=\"jQuery('#jqGrid2').editRow('"+cl+"');\"><i class='fa fa-pencil'></i></button>"; 
+                        se = "<button class='btn btn-xs btn-default btn-quick' title='Guardar'><i class='fa fa-save'></i></button>";
+                        ca = "<button class='btn btn-xs btn-default btn-quick' title='Cancelar'><i class='fa fa-times'></i></button>";  
+                        jQuery("#jqGrid2").jqGrid('setRowData',ids[i],{opciones:se+ca});
+                    }	
+		},
+		//editurl : "#",
 		caption : "<b>Radicación de Documentos</b>",
 		multiselect : false,
 		autowidth : true
@@ -226,3 +234,4 @@ var jqgrid_data = [{
 
 	jQuery( ".ui-icon.ui-icon-seek-end" ).wrap( "" );
 	jQuery(".ui-icon.ui-icon-seek-end").removeClass().addClass("fa fa-fast-forward");
+
