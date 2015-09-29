@@ -38,4 +38,7 @@ legend.scheduler-border {
     margin-bottom: -20px;
     cursor: pointer;
 }
+.contenttablas .ui-jqgrid tr.jqgrow td{
+    white-space: inherit !important;
+}
 

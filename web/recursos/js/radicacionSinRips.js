@@ -61,29 +61,66 @@ var jqgrid_data = [{
 		datatype : "local",
 		height : '400',
                 //rownumbers: true,
-		colNames : ['id', 'Fecha Radicación', 'Oficina', 'Prefijo Factura', 'Sufijo Factura', 'N# Factura', 'Fecha Factura','Valor Factura', 'Motivo Estado','Estado Factura','Opciones'],
+		colNames : ['id', 'Fecha Radicación', 'Oficina', 'Prefijo Factura', 'Sufijo Factura', 'N# Factura', 'Fecha Factura','Valor Factura', 'Motivo Estado','Estado Factura'/*,'Opciones'*/],
 		colModel : [
                     { name : 'id', index : 'id',editable : false, hidden:true},
-                    { name : 'fecharadicacion', index : 'fecharadicacion', editable : false, sorttype:"date",unformat: pickDate, align : "left",width:140},
+                    { name : 'fecharadicacion', index : 'fecharadicacion',editable : true, sorttype:"date",editoptions: {
+                    dataInit: function (element) {
+                        var dateNow = new Date();
+                       $(element).datetimepicker({
+                            locale: 'es',
+                            format: 'YYYY/MM/DD HH:mm',
+                            defaultDate:dateNow,
+                            //debug: true
+                        });
+                    }
+                }, align : "left",width:140},
                     { name : 'oficina', index : 'oficina',editable : true,width:110},
                     { name : 'prefijofactura', index : 'prefijofactura',editable : true,width:130,align : "center"},
                     { name : 'sufijofactura', index : 'sufijofactura',editable : true,width:120},
                     { name : 'numerofactura', index : 'numerofactura',editable : true,width:90},
-                    { name : 'fechafactura', index : 'fechafactura',editable : true,width:125},
+                    { name : 'fechafactura', index : 'fechafactura',editable : true, sorttype:"date",editoptions: {
+                    dataInit: function (element) {
+                        var dateNow = new Date();
+                       $(element).datetimepicker({
+                            locale: 'es',
+                            format: 'YYYY/MM/DD HH:mm',
+                            defaultDate:dateNow
+                        });
+                    }
+                }, align : "left",width:140},
                     { name : 'valorfactura', index : 'valorfactura',editable : true,width:110},
                     { name : 'motivoestado', index : 'motivoestado', editable : false, align : "left",width:140},
-                    { name : 'estadofactura', index : 'estadofactura',editable : true,width:130},
-                    { name : 'opciones', index : 'opciones',width:110}
+                    { name : 'estadofactura', index : 'estadofactura',editable : false,width:130},
+                    //{ name : 'opciones', index : 'opciones',width:110,  searchoptions: {searchhidden: false},search:false}
                 ],
 		rowNum : 10,
-		rowList : [10, 20, 30 ,50 ,100 ,1000 ,10000],
+		rowList : [10, 20, 30 ,50 ,100 ,1000],
 		pager : '#jqGridPager',
 		sortname : 'id',
 		toolbarfilter: true,
 		viewrecords : true,
 		sortorder : "asc",
                 shrinkToFit: false,
-                onSelectRow: function(id){
+                loadComplete: function (data) {
+                    var grid = jQuery("#jqGrid2"),
+                      pageSize = parseInt(grid.jqGrid("getGridParam", "rowNum")),
+                      emptyRows = pageSize - data.rows.length;
+
+                    if (emptyRows > 0) {
+                      for (var i = 1; i <= emptyRows; i++)
+                          // Send rowId as undefined to force jqGrid to generate random rowId
+                          grid.jqGrid('addRowData', undefined, {});
+
+                      // adjust the counts at lower right
+                      grid.jqGrid("setGridParam", {
+                        reccount: grid.jqGrid("getGridParam", "reccount") - emptyRows,
+                        records: grid.jqGrid("getGridParam", "records") - emptyRows
+                      });
+                      grid[0].updatepager();
+                    }
+                  },
+                ondblClickRow: function(id){
                     if(id && id!==lastsel){
                         jQuery('#jqGrid2').jqGrid('restoreRow',lastsel);
                         jQuery('#jqGrid2').jqGrid('editRow',id,true);
@@ -91,46 +128,39 @@ var jqgrid_data = [{
                         }
                 },
                 
-		gridComplete: function(){
+		/*gridComplete: function(){
                     var ids = jQuery("#jqGrid2").jqGrid('getDataIDs');
                     for(var i=0;i < ids.length;i++){
                         var cl = ids[i];
                         //be = "<button class='btn btn-xs btn-default btn-quick' title='Editar' onclick=\"jQuery('#jqGrid2').editRow('"+cl+"');\"><i class='fa fa-pencil'></i></button>"; 
                         se = "<button class='btn btn-xs btn-default btn-quick' title='Guardar'><i class='fa fa-save'></i></button>";
-                        ca = "<button class='btn btn-xs btn-default btn-quick' title='Cancelar'><i class='fa fa-times'></i></button>";  
+                        ca = "<button class='btn btn-xs btn-default btn-quick' title='Cancelar' id='btnCancel'><i class='fa fa-times'></i></button>";  
                         jQuery("#jqGrid2").jqGrid('setRowData',ids[i],{opciones:se+ca});
                     }	
-		},
+		},*/
 		//editurl : "#",
-		caption : "<b>Radicación de Documentos</b>",
+		caption : "<b>Radicación de Documentos sin RIPS</b>",
 		multiselect : false,
 		autowidth : true
-	});			
-	// ----------------------------------------------------------------------------------------------------
+	});
+        
+        jQuery("#btnCancel").click(function () {
+        var id = jQuery("#jqGrid2").jqGrid('getGridParam', 'selrow');
+        jQuery("#btnSave, #btnCancel").attr('disabled', true);
+        jQuery("#btnEdit").attr('disabled', false);
+        jQuery("#jqGrid2").restoreRow(id);
+        //alert(id + " cancelled");
+    });
 
-	//enable datepicker
-	function pickDate( cellvalue, options, cell ) {
-                setTimeout(function(){   
-                $(cell).find('input[type=text]').datetimepicker()({
-                    });
-                });
-                 
-            /*setTimeout(function(){
-                    jQuery(cell) .find('input[type=text]')
-                    .datepicker({format:'yyyy-mm-dd' , autoclose:true}); 
-            }, 0);*/
-	}
-        
+	// ----------------------------------------------------------------------------------------------------
         $(".ui-jqgrid-caption").append("<button title='Exportar PDF' class='btn btn-danger iconsexport' id='exportpdf'><i class='fa fa-file-pdf-o '></i></button>");  
-        $(".ui-jqgrid-caption").append("<button title='Exportar Excel' class='btn btn-success iconsexport' id='exportexcel'><i class='fa fa-file-excel-o '></i></button>");
-        
+        $(".ui-jqgrid-caption").append("<button title='Exportar Excel' class='btn btn-success iconsexport' id='exportexcel'><i class='fa fa-file-excel-o '></i></button>");    
 	jQuery("#jqGrid2").jqGrid('navGrid', "#jqGridPager", {
             edit : true,
             add : true,
             del : true,
-            view: true
-            //position: "left"
-                
+            view: false
+            //position: "left" 
 	},{
             height: 'auto',
             width: 620,
@@ -145,7 +175,7 @@ var jqgrid_data = [{
                     height: 'auto',
                     width: 620,
                     closeAfterAdd: true,
-                    recreateForm: true,
+                   // recreateForm: true,
                     errorTextFormat: function (data) {
                         return 'Error: ' + data.responseText;
                     }
@@ -158,51 +188,24 @@ var jqgrid_data = [{
                 });
 
 	//jQuery("#jqGrid").jqGrid('inlineNav', "#jqGridPager");
-
 	/* Add tooltips */
 	jQuery('.navtable .ui-pg-button').tooltip({
 		container : 'body'
 	});
-
 	// Get Selected ID's
 	jQuery("a.get_selected_ids").bind("click", function() {
 		s = jQuery("#jqGrid2").jqGrid('getGridParam', 'selarrrow');
 		alert(s);
 	});
-
 	// Select/Unselect specific Row by id
 	jQuery("a.select_unselect_row").bind("click", function() {
 		jQuery("#jqGrid").jqGrid('setSelection', "13");
 	});
-
 	// Select/Unselect specific Row by id
 	jQuery("a.delete_row").bind("click", function() {
 		var su=jQuery("#jqGrid2").jqGrid('delRowData',1);
 		if(su) alert("Succes. Write custom code to delete row from server"); else alert("Already deleted or not in list");
 	});
-
-
-	// On Resize
-	jQuery(window).resize(function() {
-
-		if(window.afterResize) {
-			clearTimeout(window.afterResize);
-		}
-
-		window.afterResize = setTimeout(function() {
-
-			/**
-				After Resize Code
-				.................
-			**/
-
-			jQuery("#jqGrid2").jqGrid('setGridWidth', jQuery(".ui-jqGrid").parent().width());
-
-		}, 500);
-
-	});
-
-	// ----------------------------------------------------------------------------------------------------
 
 	/**
 		@STYLING

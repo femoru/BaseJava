@@ -1,10 +1,10 @@
  $(function () {
         $('[data-toggle="tooltip"]').tooltip();   
  });
-      var lastsel;
+var lastsel;
 var jqgrid_data = [{
           id : "1",
-          sucursal : "1",
+          sucursal : "Profamilia Palmira",
           ciudad : "2014-10-01",
           direccion : "Comfandi",
           telefono : "890806490"
@@ -29,8 +29,7 @@ var jqgrid_data = [{
 		editurl : "dummy.html",
 		autowidth : true
 	});
-        
-        
+
         var jqgrid_data = [{
           id : "1",
           numerofactura : "MS3500435",
@@ -39,10 +38,10 @@ var jqgrid_data = [{
           valoriva : "0",
           tipoplan : "1",
           tipocuenta: "1",
-          facturafisica : "",
+          facturafisica : "1",
           motivoestado : "",
           fecharadicacion: "2014-10-01 12:00",
-          estadofactura: ""
+          estadofactura: "En Proceso"
         },{
           id : "2",
           numerofactura : "MS3500435",
@@ -50,11 +49,11 @@ var jqgrid_data = [{
           valorfactura : "135.000",
           valoriva : "0",
           tipoplan : "1",
-          tipocuenta: "1",
-          facturafisica : "",
+          tipocuenta: "0",
+          facturafisica : "1",
           motivoestado : "",
           fecharadicacion: "2014-10-01 12:00",
-          estadofactura: ""
+          estadofactura: "En Proceso"
       }];
 // ----------------------------------------------------------------------------------------------------
 	jQuery("#jqGrid2").jqGrid({
@@ -66,15 +65,61 @@ var jqgrid_data = [{
 		colNames : ['id', 'Número Factura', 'Fecha Factura', 'Valor Factura', 'Valor IVA', 'Tipo Plan', 'Tipo Cuenta','Factura Física', 'Motivo Estado','Fecha Radicación','Estado Factura'],
 		colModel : [
                     { name : 'id', index : 'id',editable : false, hidden:true},
-                    { name : 'numerofactura', index : 'numerofactura',editable : false,width:125},
-                    { name : 'fechafactura', index : 'fechafactura', editable : false, sorttype:"date",unformat: pickDate, align : "left",width:130},
+                    { name : 'numerofactura', index : 'numerofactura',editable : true,width:125},
+                    { name : 'fechafactura', index : 'fechafactura', editable : true, sorttype:"date",editoptions: {
+                    dataInit: function (element) {
+                        var dateNow = new Date();
+                       $(element).datetimepicker({
+                            locale: 'es',
+                            format: 'YYYY/MM/DD HH:mm',
+                            defaultDate:dateNow
+                        });
+                    }
+                }, align : "left",width:130},
                     { name : 'valorfactura', index : 'valorfactura',editable : true,width:110},
                     { name : 'valoriva', index : 'valoriva',editable : true,width:100},
-                    { name : 'tipoplan', index : 'tipoplan',editable : true,width:120},
-                    { name : 'tipocuenta', index : 'tipoplan',editable : true,width:120},
-                    { name : 'facturafisica', index : 'facturafisica',editable : true,width:110},
+                    { name : 'tipoplan', index : 'tipoplan',editable : true,width:120, formatter: "select",
+                        edittype: "select",
+                        editoptions: {
+                            value: {
+                               0: "POS",
+                               1: "FAMILIAR",
+                               2: "EXCELENCIA",
+                               3: "QUIMBAYA",
+                               4: "BIENESTAR",
+                               5: "SUBSIDIADO"
+                            }
+                        }
+                    },
+                    { name : 'tipocuenta', index : 'tipoplan',editable : true,width:130, formatter: "select",
+                        edittype: "select",
+                        editoptions: {
+                            value: {
+                               0: "MEDICAMENTOS DE USO AMBULATORIO",
+                               1: "URGENCIAS",
+                               2: "HOSPITALIZACION-  SERVICIOS DE INTERNACION Y/O CIRUGIA HOSPITALARIA",
+                               3: "CAPITACION",
+                               4: "NO POS AUTORIZADOS POR C.T.C. O TUTELA (MEDICAMENTOS - PROCEDIMIENTOS)",
+                               5: "FACTURA GLOBAL",
+                               6: "CIRUGIAS AMBULATORIAS",
+                               7: "SERVICIOS AMBULATORIOS"
+                            }
+                        }
+                    },
+                    { name : 'facturafisica', index : 'facturafisica',editable : true,width:110,align:"center",
+                 formatter: "checkbox",
+                 edittype: "checkbox", editoptions: { value: "1:0", defaultValue: "0" },},
                     { name : 'motivoestado', index : 'motivoestado',editable : true,width:115},
-                    { name : 'fecharadicacion', index : 'fecharadicacion', editable : false, sorttype:"date",unformat: pickDate, align : "left",width:140},
+                    { name : 'fecharadicacion', index : 'fecharadicacion', editable : true, sorttype:"date",editoptions: {
+                    dataInit: function (element) {
+                        var dateNow = new Date();
+                       $(element).datetimepicker({
+                            locale: 'es',
+                            format: 'YYYY/MM/DD HH:mm',
+                            defaultDate:dateNow
+                        });
+                    }
+                }, align : "left",width:140},
                     { name : 'estadofactura', index : 'estadofactura',editable : true,width:130}
                 ],
 		rowNum : 10,
@@ -85,7 +130,7 @@ var jqgrid_data = [{
 		viewrecords : true,
 		sortorder : "asc",
                 shrinkToFit: false,
-                onSelectRow: function(id){
+                ondblClickRow: function(id){
                     if(id && id!==lastsel){
                         jQuery('#jqGrid2').jqGrid('restoreRow',lastsel);
                         jQuery('#jqGrid2').jqGrid('editRow',id,true);
@@ -93,29 +138,13 @@ var jqgrid_data = [{
                         }
                 },
 
-		editurl : "dummy.html",
-		caption : "<b>Radicación de Documentos</b>",
+		editurl : "#",
+		caption : "<b>Radicación de Documentos con RIPS</b>",
 		multiselect : false,
 		autowidth : true
 	});			
-	// ----------------------------------------------------------------------------------------------------
-
-	//enable datepicker
-	function pickDate( cellvalue, options, cell ) {
-                setTimeout(function(){   
-                $(cell).find('input[type=text]').datetimepicker()({
-                    });
-                });
-                 
-            /*setTimeout(function(){
-                    jQuery(cell) .find('input[type=text]')
-                    .datepicker({format:'yyyy-mm-dd' , autoclose:true}); 
-            }, 0);*/
-	}
-        
         $(".ui-jqgrid-caption").append("<button title='Exportar PDF' class='btn btn-danger iconsexport' id='exportpdf'><i class='fa fa-file-pdf-o '></i></button>");  
         $(".ui-jqgrid-caption").append("<button title='Exportar Excel' class='btn btn-success iconsexport' id='exportexcel'><i class='fa fa-file-excel-o '></i></button>");
-        
 	jQuery("#jqGrid2").jqGrid('navGrid', "#jqGridPager", {
             edit : true,
             add : true,
@@ -150,51 +179,24 @@ var jqgrid_data = [{
                 });
 
 	//jQuery("#jqGrid").jqGrid('inlineNav', "#jqGridPager");
-
 	/* Add tooltips */
 	jQuery('.navtable .ui-pg-button').tooltip({
 		container : 'body'
 	});
-
 	// Get Selected ID's
 	jQuery("a.get_selected_ids").bind("click", function() {
 		s = jQuery("#jqGrid2").jqGrid('getGridParam', 'selarrrow');
 		alert(s);
 	});
-
 	// Select/Unselect specific Row by id
 	jQuery("a.select_unselect_row").bind("click", function() {
 		jQuery("#jqGrid").jqGrid('setSelection', "13");
 	});
-
 	// Select/Unselect specific Row by id
 	jQuery("a.delete_row").bind("click", function() {
 		var su=jQuery("#jqGrid2").jqGrid('delRowData',1);
 		if(su) alert("Succes. Write custom code to delete row from server"); else alert("Already deleted or not in list");
 	});
-
-
-	// On Resize
-	jQuery(window).resize(function() {
-
-		if(window.afterResize) {
-			clearTimeout(window.afterResize);
-		}
-
-		window.afterResize = setTimeout(function() {
-
-			/**
-				After Resize Code
-				.................
-			**/
-
-			jQuery("#jqGrid2").jqGrid('setGridWidth', jQuery(".ui-jqGrid").parent().width());
-
-		}, 500);
-
-	});
-
-	// ----------------------------------------------------------------------------------------------------
 
 	/**
 		@STYLING

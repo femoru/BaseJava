@@ -111,10 +111,12 @@ footer{
     }
 }
 #cd,#usb, #v_cd input, #trv_usb input{
-    width:0;
+    //width:0;
 }
 #jqGridPager_center table{
     margin-left: 30px;
 }
 .datepicker{z-index:1151 !important;}
-
+.bootstrap-datetimepicker-widget{
+    bottom: auto !important;
+}

@@ -8,7 +8,12 @@
 <html>
     <head>
         <title>Radicación de Documentos</title>
+        <link rel="stylesheet" type="text/css" href="recursos/terceros/bootstrap_datepicker/css/bootstrap-datetimepicker.css" />
         <link rel="stylesheet" type="text/css" href="recursos/css/radicacion.css" />
+        
+        <script type="text/javascript" src="recursos/terceros/bootstrap-typeahead/bootstrap3-typeahead.js"></script>
+        <script type="text/javascript" src="recursos/terceros/momentjs/momentjs.min.js"></script>
+        <script type="text/javascript" src="recursos/terceros/bootstrap_datepicker/js/bootstrap-datetimepicker.js"></script>
         <script type="text/javascript" src="recursos/js/radicacionConRips.js"></script>
     </head>
     <body>
@@ -133,8 +138,14 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6 ">
                                     <select class="form-control" name="tipocuenta">
-                                            <option value="1">Consulta</option>
-                                            <option value="2">Familiar</option>
+                                            <option value="1">MEDICAMENTOS DE USO AMBULATORIO</option>
+                                            <option value="2">URGENCIAS</option>
+                                            <option value="3">HOSPITALIZACION-  SERVICIOS DE INTERNACION Y/O CIRUGIA HOSPITALARIA</option>
+                                            <option value="4">CAPITACION</option>
+                                            <option value="5">NO POS AUTORIZADOS POR C.T.C. O TUTELA (MEDICAMENTOS - PROCEDIMIENTOS)</option>
+                                            <option value="6">FACTURA GLOBAL</option>
+                                            <option value="7">CIRUGIAS AMBULATORIAS</option>
+                                            <option value="8">SERVICIOS AMBULATORIOS</option>
                                     </select>
                                 </div>
                             </div>
