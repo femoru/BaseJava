@@ -16,6 +16,7 @@
         <script type="text/javascript" src="recursos/js/radicacionSinRips.js"></script>
     </head>
     <body>
+        
           <form id="frminforadicacion" role="form">
             <fieldset class="scheduler-border">
                 <legend class="scheduler-border">Información de Radicación</legend>
@@ -143,8 +144,12 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6 ">
                                     <select class="form-control" name="plan">
-                                            <option value="1">Bienestar</option>
-                                            <option value="2">Familiar</option>
+                                            <option value="1">POS</option>
+                                            <option value="2">FAMILIAR</option>
+                                            <option value="3">EXCELENCIA</option>
+                                            <option value="4">QUIMBAYA</option>
+                                            <option value="5">BIENESTAR</option>
+                                            <option value="6">SUBSIDIADO</option>
                                     </select>
                                 </div>
                             </div>
@@ -156,8 +161,14 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6 ">
                                     <select class="form-control" name="tipocuenta">
-                                            <option value="1">Medicamentos Especiales</option>
-                                            <option value="2">Familiar</option>
+                                            <option value="1">MEDICAMENTOS DE USO AMBULATORIO</option>
+                                            <option value="2">URGENCIAS</option>
+                                            <option value="3">HOSPITALIZACION-  SERVICIOS DE INTERNACION Y/O CIRUGIA HOSPITALARIA</option>
+                                            <option value="4">CAPITACION</option>
+                                            <option value="5">NO POS AUTORIZADOS POR C.T.C. O TUTELA (MEDICAMENTOS - PROCEDIMIENTOS)</option>
+                                            <option value="6">FACTURA GLOBAL</option>
+                                            <option value="7">CIRUGIAS AMBULATORIAS</option>
+                                            <option value="8">SERVICIOS AMBULATORIOS</option>
                                     </select>
                                 </div>
                             </div>
