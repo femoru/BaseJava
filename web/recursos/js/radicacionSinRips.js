@@ -2,6 +2,8 @@
         $('[data-toggle="tooltip"]').tooltip();   
  });
       var lastSel;
+      var selICol; 
+      var selIRow;
 var jqgrid_data = [{
           id : "1",
           sucursal : "Profamilia Palmira",
@@ -109,7 +111,37 @@ var jqgrid_data = [{
                 { name : 'valorfactura', index : 'valorfactura',editable : true,width:110,editrules:{
                     required: true,
                     number:true
-                }},
+                },editoptions: {
+                    dataEvents: [
+                         { 
+                        type: 'keydown', 
+                        fn: function(e) { 
+                            var key = e.charCode || e.keyCode;
+                            if (key == 9 || key == 13){
+                                var gridArr = $("#jqGrid2").getDataIDs();
+                                var selrow = $("#jqGrid2").getGridParam("selrow");
+                                var curr_index = 0;
+                                for (var i = 0; i < gridArr.length; i++) {
+                                    if (gridArr[i] == selrow) {
+                                        curr_index = i;
+                                    }
+                                }
+                                if ((curr_index + 1) < gridArr.length){
+                                    $("#jqGrid2").setSelection(gridArr[curr_index + 1], true);
+                                  }
+                                  var valorinput = $('input[name="valorfactura"]').val();
+                                  var valorfecha = $('input[name="fecharadicacion"]').val();
+                                  if (valorinput==''){
+                                      valorfecha.focus();
+                                  }else{
+                                    jQuery("#jqGrid2").saveRow(gridArr[curr_index]);
+                                    jQuery("#jqGrid2").editRow(gridArr[curr_index + 1], true);
+                                  }
+                            }
+                        }
+                    } 
+                    ]
+                 }},
                 { name : 'motivoestado', index : 'motivoestado', editable : false, align : "left",width:140},
                 { name : 'estadofactura', index : 'estadofactura',editable : false,width:130}
                 //{ name : 'opciones', index : 'opciones',width:110,  searchoptions: {searchhidden: false},search:false}
@@ -122,8 +154,10 @@ var jqgrid_data = [{
             viewrecords : true,
             sortorder : "asc",
             shrinkToFit: false,
+            
             loadComplete: function (data) {
-                var grid = jQuery("#jqGrid2"),
+                var grid = jQuery("#jqGrid2"),//creador de filas vacias
+                
                   pageSize = parseInt(grid.jqGrid("getGridParam", "rowNum")),
                   emptyRows = pageSize - data.rows.length;
 

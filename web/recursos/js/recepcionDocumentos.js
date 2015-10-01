@@ -91,6 +91,8 @@ $("#jqGrid").jqGrid({
                             defaultDate:dateNow
                         });
                     }
+                },editrules:{
+                    required: true
                 }
             },
              { label: 'Radicación',
