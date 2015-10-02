@@ -117,7 +117,7 @@ var jqgrid_data = [{
                         type: 'keydown', 
                         fn: function(e) { 
                             var key = e.charCode || e.keyCode;
-                            if (key == 9 || key == 13){
+                            if (key == 9 || key ==13){
                                 var gridArr = $("#jqGrid2").getDataIDs();
                                 var selrow = $("#jqGrid2").getGridParam("selrow");
                                 var curr_index = 0;
@@ -129,10 +129,13 @@ var jqgrid_data = [{
                                 if ((curr_index + 1) < gridArr.length){
                                     $("#jqGrid2").setSelection(gridArr[curr_index + 1], true);
                                   }
-                                  var valorinput = $('input[name="valorfactura"]').val();
-                                  var valorfecha = $('input[name="fecharadicacion"]').val();
-                                  if (valorinput==''){
-                                      valorfecha.focus();
+                                  var valorfactura = $('input[name="valorfactura"]').val();
+                                  if (valorfactura=='' || isNaN(valorfactura)){
+                                    var inputgrid = gridArr[curr_index]+"_fechafactura";
+                                    alert("Ingrese un valor válido");
+                                    $('#'+inputgrid).focus();
+                                     $("#jqGrid2").setSelection(gridArr[curr_index], true);
+
                                   }else{
                                     jQuery("#jqGrid2").saveRow(gridArr[curr_index]);
                                     jQuery("#jqGrid2").editRow(gridArr[curr_index + 1], true);

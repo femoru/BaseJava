@@ -11,11 +11,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../../recursos/terceros/bootstrap/css/bootstrap.css" />
         <link rel="stylesheet" href="../../recursos/terceros/fontAwesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="../../recursos/terceros/validetta/validetta.css" />
         <link rel="stylesheet" href="../../recursos/css/general.css" />
          
         <script type="text/javascript" src="../../recursos/terceros/jquery/js/jquery.min.js"></script>
         <script type="text/javascript" src="../../recursos/terceros/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../../recursos/js/general.js"></script>
+         <script type="text/javascript" src="../../recursos/terceros/validetta/validetta.js"></script>
+        <script type="text/javascript" src="../../recursos/terceros/validetta/validetta-es.js"></script>
+        
     </head>
     <body>
         <header>
@@ -36,31 +40,31 @@
                                 <label for="idusuario">Identificación</label>
                                 <div class="inner-addon left-addon">
                                     <i class="fa fa-credit-card"></i>
-                                    <input type="text" class="form-control" name="idusuario" placeholder="Identificación"/>
+                                    <input type="text" class="form-control" name="idusuario" placeholder="Identificación" data-validetta="required,number"/>
                                 </div>
 
                                 <label for="usuario">Usuario</label>
                                 <div class="inner-addon left-addon">
                                     <i class="fa fa-user"></i>
-                                    <input type="text" class="form-control" name="usuario" placeholder="Usuario"/>
+                                    <input type="text" class="form-control" name="usuario" placeholder="Usuario" data-validetta="required"/>
                                 </div>
 
                                 <label for="correo">Correo</label>
                                 <div class="inner-addon left-addon">
                                     <i class="fa fa-envelope-o"></i>
-                                    <input type="text" class="form-control" name="correo" placeholder="Correo"/>
+                                    <input type="text" class="form-control" name="correo" placeholder="Correo" data-validetta="required,email"/>
                                 </div>
 
                                 <label for="contrasena">Contraseña</label>
                                 <div class="inner-addon left-addon">
                                     <i class="fa fa-lock"></i>
-                                    <input type="password" class="form-control" name="contrasena" placeholder="Contraseña"/>
+                                    <input type="password" class="form-control" name="contrasena" placeholder="Contraseña" data-validetta="required"/>
                                 </div>
 
                                 <label for="confirmar">Confirmar Contraseña</label>
                                 <div class="inner-addon left-addon">
                                     <i class="fa fa-keyboard-o"></i>
-                                    <input type="password" class="form-control" name="confirmar" placeholder="Confirmar"/>
+                                    <input type="password" class="form-control" name="confirmar" placeholder="Confirmar" data-validetta="required,equalTo[contrasena]"/>
                                 </div>
                                 <br/><button type="submit" class="btn btn-primary col-lg-4 col-md-4 botonesfrm" id="btnregistrar">Registrar</button>
                             </div>
@@ -77,6 +81,13 @@
                 <p class="copyright1">Colombia</p>
             </div>
         </footer><!-- --------------------------------------------- -->
+          <script>
+             $(document).on('ready',function(){
+                $('#frmperfiluser').validetta({
+                    realTime : true
+                });
+            });
+         </script>
     </body>
 </html>
 

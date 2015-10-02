@@ -37,7 +37,7 @@
                               <label for="correorecuperar">Ingrese su correo</label>
                               <div class="inner-addon left-addon">
                                     <i class="fa fa-envelope"></i>
-                                    <input type="text" class="form-control" name="correorecuperar" placeholder="Correo" />
+                                    <input type="text" class="form-control" name="correorecuperar" placeholder="Correo" required="required"/>
                                 </div>
                             </div>
 

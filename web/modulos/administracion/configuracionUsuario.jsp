@@ -11,11 +11,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../../recursos/terceros/bootstrap/css/bootstrap.css" />
         <link rel="stylesheet" href="../../recursos/terceros/fontAwesome/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="../../recursos/terceros/validetta/validetta.css" />
          <link rel="stylesheet" href="../../recursos/css/general.css" />
          
          <script type="text/javascript" src="../../recursos/terceros/jquery/js/jquery.min.js"></script>
         <script type="text/javascript" src="../../recursos/terceros/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="../../recursos/js/general.js"></script>
+        <script type="text/javascript" src="../../recursos/terceros/validetta/validetta.js"></script>
+        <script type="text/javascript" src="../../recursos/terceros/validetta/validetta-es.js"></script>
     </head>
     <body>
         <header>
@@ -31,22 +34,22 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4 hidden-sm hidden-xs"></div>
                     <div id="formlogin" class="col-md-4">
-                        <form role="form">
+                        <form role="form" id="formconfiguracion">
                             <div class="form-group">
                               <label for="contrasenaanterior">Ingrese su contraseña anterior</label>
                               <div class="inner-addon left-addon">
                                     <i class="fa fa-lock"></i>
-                                    <input type="text" class="form-control" name="contrasenaanterior"/>
+                                    <input type="text" class="form-control" name="contrasenaanterior" data-validetta="required"/>
                                 </div>
                               <label for="contrasenanueva">Contraseña Nueva</label>
                               <div class="inner-addon left-addon">
                                     <i class="fa fa-lock"></i>
-                                    <input type="text" class="form-control" name="contrasenanueva"/>
+                                    <input type="text" class="form-control" name="contrasenanueva" data-validetta="required"/>
                                 </div>
                               <label for="confirmar">Confirmar Contraseña Nueva</label>
                               <div class="inner-addon left-addon">
                                     <i class="fa fa-lock"></i>
-                                    <input type="text" class="form-control" name="confirmar"/>
+                                    <input type="text" class="form-control" name="confirmar" data-validetta="required"/>
                                 </div>
                             </div>
 
@@ -64,5 +67,12 @@
                 <p class="copyright1">Colombia</p>
             </div>
         </footer><!-- --------------------------------------------- -->
+        <script>
+             $(document).on('ready',function(){
+                $('#formconfiguracion').validetta({
+                    realTime : true
+                });
+            });
+         </script>
     </body>
 </html>
