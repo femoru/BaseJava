@@ -23,6 +23,14 @@ $(document).on("ready",function(){
         $('.navbar-brand').html("RADICACIÓN DE DOCUMENTOS SIN RIPS");
         $( ".nuevapagina" ).load( "modulos/Radicacion/radicacionSinRips.jsp" );
     });
+     $("#pruebas").on("click",function(){//muestra la vista de pruebas
+        $('.seccionjumbo').remove();
+        $('.contenidotemporal').remove();
+        $('.seccioninfo').remove();
+        $('.navbar-brand').html("");
+        $('.navbar-brand').html("PRUEBAS");
+        $( ".nuevapagina" ).load( "modulos/administracion/Pruebas.jsp" );
+    });
     $(".linkhome").on("click",function(){
         location.reload();
     });

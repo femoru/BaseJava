@@ -8,11 +8,13 @@
     <head>
         <title>Radicación de Documentos</title>
         <link rel="stylesheet" type="text/css" href="recursos/terceros/bootstrap_datepicker/css/bootstrap-datetimepicker.css" />
+       <!-- <link rel="stylesheet" type="text/css" href="recursos/terceros/jquery-ui/jquery-ui.css" />-->
         <link rel="stylesheet" type="text/css" href="recursos/css/radicacion.css" />
         
         <script type="text/javascript" src="recursos/terceros/bootstrap-typeahead/bootstrap3-typeahead.js"></script>
         <script type="text/javascript" src="recursos/terceros/momentjs/momentjs.min.js"></script>
         <script type="text/javascript" src="recursos/terceros/bootstrap_datepicker/js/bootstrap-datetimepicker.js"></script>
+        <!--<script type="text/javascript" src="recursos/terceros/jquery-ui/jquery-ui.js"></script>-->
         <script type="text/javascript" src="recursos/js/radicacionSinRips.js"></script>
     </head>
     <body>

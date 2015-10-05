@@ -57,12 +57,21 @@ var jqgrid_data = [{
       estadofactura: "Proceso"
   }];
 // ----------------------------------------------------------------------------------------------------
+var gridArr = $("#jqGrid2").getDataIDs();
+                                var selrow = $("#jqGrid2").getGridParam("selrow");
+             var curr_index = 0;
+                                for (var i = 0; i < gridArr.length; i++) {
+                                    if (gridArr[i] == selrow) {
+                                        curr_index = i;
+                                    }
+                                };
     jQuery("#jqGrid2").jqGrid({
             data : jqgrid_data,
             styleUI : 'Bootstrap',
             datatype : "local",
             height : '400',
             editurl: '#',
+            
             colNames : ['id', 'Fecha Radicación', 'Oficina', 'Prefijo Factura', 'Sufijo Factura', 'N# Factura', 'Fecha Factura','Valor Factura', 'Motivo Estado','Estado Factura'/*,'Opciones'*/],
             colModel : [
                 { name : 'id', index : 'id',editable : false, hidden:true},
@@ -78,23 +87,26 @@ var jqgrid_data = [{
                     }
                 },
                 editrules:{
-                    //required: true,
-                    custom:true,
-                    custom_func:validateFecha
+                    custom: true,
+                    custom_func: campoVacio
                 }
            , align : "left",width:140},
-
+        
                 { name : 'oficina', index : 'oficina',editable : true,width:110, editrules:{
-                    required: true
+                   custom: true,
+                    custom_func: campoVacio
                 }},
                 { name : 'prefijofactura', index : 'prefijofactura',editable : true,width:130,align : "center",editrules:{
-                    required: true
+                    custom: true,
+                    custom_func: campoVacio
                 }},
-                { name : 'sufijofactura', index : 'sufijofactura',editable : true,width:120,editrules:{
-                    required: true
+                { name : 'sufijofactura', index : 'sufijofactura',editable : true,width:120, editrules:{
+                    custom: true,
+                    custom_func: campoNumerico
                 }},
                 { name : 'numerofactura', index : 'numerofactura',editable : true,width:90,editrules:{
-                    required: true
+                     custom: true,
+                    custom_func: campoVacio
                 }},
                 { name : 'fechafactura', index : 'fechafactura',editable : true, sorttype:"date",editoptions: {
                     dataInit: function (element) {
@@ -108,9 +120,9 @@ var jqgrid_data = [{
                  }, editrules:{
                     required: true
                 },align : "left",width:140},
-                { name : 'valorfactura', index : 'valorfactura',editable : true,width:110,editrules:{
-                    required: true,
-                    number:true
+                { name : 'valorfactura', index : 'valorfactura',editable : true,width:110 ,editrules:{
+                    //required: true,
+                    //number:true
                 },editoptions: {
                     dataEvents: [
                          { 
@@ -130,13 +142,35 @@ var jqgrid_data = [{
                                     $("#jqGrid2").setSelection(gridArr[curr_index + 1], true);
                                   }
                                   var valorfactura = $('input[name="valorfactura"]').val();
-                                  if (valorfactura=='' || isNaN(valorfactura)){
-                                    var inputgrid = gridArr[curr_index]+"_fechafactura";
+                                  var idvalorfactura = gridArr[curr_index]+"_valorfactura";
+                                  if (valorfactura==''){
+                                
+                                    $.jgrid.info_dialog(
+                                        $.jgrid.regional["es"].errors.errcap,
+                                        '<div class="ui-state-error"><b>Valor Factura:</b> faltan datos por ingresar</div>', 
+                                        $.jgrid.regional["es"].edit.bClose,
+                                        {buttonalign:'right', styleUI : 'Bootstrap', zIndex: 1234,top: 800, left: 400}
+                                    );
+                                    $('#'+valorfactura).focus();
+                                        $("#jqGrid2").setSelection(gridArr[curr_index], true);
+                                  }
+                                    else if (isNaN(valorfactura)){
+                                        $.jgrid.info_dialog(
+                                         $.jgrid.regional["es"].errors.errcap,
+                                         '<div class="ui-state-error"><b>Valor Factura:</b> es un campo númerico</div>', 
+                                         $.jgrid.regional["es"].edit.bClose,
+                                         {buttonalign:'right', styleUI : 'Bootstrap', zIndex: 1234,top: 800, left: 400}      
+                                        );
+                                        $('#'+idvalorfactura).focus();
+                                        $("#jqGrid2").setSelection(gridArr[curr_index], true);
+                                         
+                                    /*var inputgrid = gridArr[curr_index]+"_fechafactura";
                                     alert("Ingrese un valor válido");
                                     $('#'+inputgrid).focus();
-                                     $("#jqGrid2").setSelection(gridArr[curr_index], true);
-
+                                    $("#jqGrid2").setSelection(gridArr[curr_index], true);*/
+                                     
                                   }else{
+                                      alert("is here");
                                     jQuery("#jqGrid2").saveRow(gridArr[curr_index]);
                                     jQuery("#jqGrid2").editRow(gridArr[curr_index + 1], true);
                                   }
@@ -216,7 +250,7 @@ var jqgrid_data = [{
             recreateForm: true,
             closeAfterEdit: true,
             errorTextFormat: function (data) {
-                return 'Error: ' + data.responseText
+                return 'Error: ' + data.responseText;
             }
         },
         // options for the Add Dialog
@@ -224,13 +258,13 @@ var jqgrid_data = [{
             closeAfterAdd: true,
             recreateForm: true,
             errorTextFormat: function (data) {
-                return 'Error: ' + data.responseText
+                return 'Error: ' + data.responseText;
             }
         },
         // options for the Delete Dailog
         {
             errorTextFormat: function (data) {
-                return 'Error: ' + data.responseText
+                return 'Error: ' + data.responseText;
             }
         });
 
@@ -247,4 +281,29 @@ var jqgrid_data = [{
     }
      else
     {return [true, ""];}
-} 
+}
+
+function campoVacio(val, nm, valref) {
+    if (val != '') {
+        return [true];
+    } else {
+       return [false,$.jgrid.info_dialog(
+               $.jgrid.regional["es"].errors.errcap,
+                '<div class="ui-state-error"><b>'+nm+':</b> faltan datos por ingresar</div>', 
+                $.jgrid.regional["es"].edit.bClose,
+                {buttonalign:'right', styleUI : 'Bootstrap', zIndex: 1234,top: 800, left: 400}
+            )];
+    }
+}
+function campoNumerico(val, nm, valref) {
+    if (isNaN(val)) {
+       return  [$.jgrid.info_dialog(
+            $.jgrid.regional["es"].errors.errcap,
+            '<div class="ui-state-error"><b>'+nm+':</b> es un campo númerico</div>', 
+            $.jgrid.regional["es"].edit.bClose,
+            {buttonalign:'right', styleUI : 'Bootstrap', zIndex: 1234,top: 800, left: 400}
+        )];
+    } else {
+       return[true];
+    }
+}
