@@ -19,7 +19,7 @@
         <script type="text/javascript" src="recursos/js/pruebas.js"></script>
     </head>
     <body>
-        <div style="margin-left:20px">
+        <div>
             <table id="jqGrid"></table>
             <div id="jqGridPager"></div>
         </div>

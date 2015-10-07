@@ -6,8 +6,17 @@ var data = [{
           Url : "http://www.google.com"
   }];
   
- 			if (!window.console) window.console = {};
-			if (!window.console.log) window.console.log = function () { };
+    if (!window.console) window.console = {};
+    if (!window.console.log) window.console.log = function () { };
+
+    var gridArr = $("#jqGrid2").getDataIDs();
+            var selrow = $("#jqGrid2").getGridParam("selrow");
+            var curr_index = 0;
+            for (var i = 0; i < gridArr.length; i++) {
+                if (gridArr[i] == selrow) {
+                    curr_index = i;
+                }
+            };
 
                     $("#jqGrid").jqGrid({
                // url: 'data.json',
@@ -15,6 +24,9 @@ var data = [{
                 datatype: "local",
                 data:data,
                 styleUI : 'Bootstrap',
+                modal: true,
+                autoOpen: false,
+                ignoreCase: true,
                 colModel: [
                     {
                         name: 'Integer',
@@ -22,17 +34,10 @@ var data = [{
                         editable: true,
                         editrules:{
                             //custom rules
-                            custom_func: validatePositive,
+                            custom_func: personalizada,
                             custom: true,
                             //required: true
                         },
-                        editoptions: {
-                            dataEvents: [
-                                 { 
-                                type: 'keydown', 
-                                fn: onEnter
-                                 }
-                            ]},
                         
                         width: 75
                     },
@@ -43,14 +48,7 @@ var data = [{
                         editrules: {
                            custom_func: validatePositive,
                             custom: true
-                        },
-                        editoptions: {
-                            dataEvents: [
-                                 { 
-                                type: 'keydown', 
-                                fn: onEnter
-                                 }
-                            ]},
+                        }
                     },
                     {
                         name: 'Email',
@@ -73,12 +71,12 @@ var data = [{
                 ],
 				loadonce : true,
                 onSelectRow: editRow,
-                width: 780,
+                autowidth: true,
                 height: 200,
-                 rowNum : 10,
-                 rowList : [10, 20, 30 ,50 ,100 ,500,1000],
+                rowNum : 10,
+                rowList : [10, 20, 30 ,50 ,100 ,500,1000],
                 toolbarfilter: true,
-                 viewrecords : true,
+                viewrecords : true,
                 pager: "#jqGridPager",
                 loadComplete: function (data) {
                 var grid = jQuery("#jqGrid"),//creador de filas vacias
@@ -111,8 +109,8 @@ var data = [{
                // alert(sel_id);
                 var index = $("#jqGrid").jqGrid('getInd',sel_id); 
                 var cm = $("#jqGrid").jqGrid("getGridParam", "colNames");
+               
                 //alert(cm[index-1]);
-
                 $.jgrid.info_dialog(
                 $.jgrid.regional["es"].errors.errcap,
                 '<div class="ui-state-error">Faltan datos por ingresar</div>', 
@@ -148,7 +146,7 @@ var data = [{
             '<div class="ui-state-error">es un campo númerico</div>', 
             $.jgrid.regional["es"].edit.bClose,
             {buttonalign:'right', styleUI : 'Bootstrap', zIndex: 1234}
-                 )
+                 );
         }
 
         function validatePositive(value, column) {
@@ -157,3 +155,20 @@ var data = [{
             else
                 return [true, ""];
         }                
+    function personalizada (value, colName, valueLength) {
+        if (value.length === valueLength) {
+            return [true, ""];
+        }
+        else {
+            instancia(colName);
+            return [false, ''];//debe retornar un arreglo pero devuelve un alert vacio
+        }
+    }
+    function instancia(colName){
+         $.jgrid.info_dialog(
+            $.jgrid.regional["es"].errors.errcap,
+            '<div class="ui-state-error">'+colName+'</div>', 
+            $.jgrid.regional["es"].edit.bClose,
+            {buttonalign:'right', styleUI : 'Bootstrap', zIndex: 1234}
+        );
+    }
