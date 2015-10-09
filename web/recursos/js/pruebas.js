@@ -27,7 +27,7 @@ var data = [{
                 modal: true,
                 autoOpen: false,
                 ignoreCase: true,
-                colModel: [
+                colModel: [ 
                     {
                         name: 'Integer',
                         key: true,
@@ -160,7 +160,6 @@ var data = [{
             return [true, ""];
         }
         else {
-            instancia(colName);
             return [false, ''];//debe retornar un arreglo pero devuelve un alert vacio
         }
     }

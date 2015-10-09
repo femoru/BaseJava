@@ -12,7 +12,6 @@
         <link rel="stylesheet" href="../../recursos/terceros/bootstrap/css/bootstrap.css" />
         <link rel="stylesheet" href="../../recursos/terceros/fontAwesome/css/font-awesome.min.css" />
          <link rel="stylesheet" href="../../recursos/css/general.css" />
-         <link rel="stylesheet" href="../../recursos/css/recuperacionContrasena.css" />
          
          <script type="text/javascript" src="../../recursos/terceros/jquery/js/jquery.min.js"></script>
         <script type="text/javascript" src="../../recursos/terceros/bootstrap/js/bootstrap.min.js"></script>
