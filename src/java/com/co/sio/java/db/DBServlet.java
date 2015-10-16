@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -51,8 +52,10 @@ public class DBServlet extends HttpServlet {
             out.println("<h1>Servlet DBServlet at " + request.getContextPath() + "</h1>");
 
             try {
-                String query = "Select * from cusuarios where idcusuario = ? and usuario = ?";
-                String[] params = {request.getParameter("user"), request.getParameter("usuario"), ""};
+                String query = "SELECT * FROM CMUSUARIOS WHERE idusuario = ? and usuario = ?";
+                String[] params = {request.getParameter("user"), request.getParameter("usuario")};
+                
+                
                 ArrayList<HashMap<String, Object>> consultar = db.consultar(query, params);
 
                 out.println(consultar.size() + "</br>");

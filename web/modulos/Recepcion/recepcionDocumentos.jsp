@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+
         <title>Recepción de Documentos</title>
         <link rel="stylesheet" type="text/css" href="recursos/terceros/bootstrap_datepicker/css/bootstrap-datetimepicker.css" />
         <link rel="stylesheet" type="text/css" href="recursos/css/recepcionDocumentos.css" />

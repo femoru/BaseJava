@@ -36,7 +36,9 @@ public class DBControl {
     static {
         try {
             InitialContext ctx = new InitialContext();
-            ds = (DataSource) ctx.lookup("jdbc/SaludPool");
+            ds = (DataSource)ctx.lookup("java:comp/env/jdbc/myoracle");
+           
+            
         } catch (NamingException ex) {
             Logger.getLogger(DBControl.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -48,8 +50,11 @@ public class DBControl {
      * @throws SQLException
      */
     public void conectar() throws SQLException {
-        OracleDataSource ods = DBControl.ds.unwrap(OracleDataSource.class);
-        this.conn = ods.getConnection();
+        
+        //DataSource ods = DBControl.ds.unwrap(DataSource.class);
+        this.conn = ds.getConnection();
+        
+        
     }
 
     /**
@@ -59,6 +64,7 @@ public class DBControl {
      * @throws SQLException en caso de que no se pueda realizar la consulta
      */
     public boolean consultar() throws SQLException {
+
         try {
             this.rs = this.query.executeQuery();
             this.rsmd = rs.getMetaData();
@@ -89,6 +95,7 @@ public class DBControl {
      */
     public ArrayList<HashMap<String, Object>> consultar(String consulta, String[] params) throws SQLException {
         conectar();
+       
         this.query = this.conn.prepareStatement(consulta);
 
         for (int i = 0; i < params.length; i++) {

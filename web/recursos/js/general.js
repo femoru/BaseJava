@@ -3,17 +3,17 @@ $(document).on("ready",function(){
         $('.seccionjumbo').remove();
         $('.contenidotemporal').remove();
         $('.seccioninfo').remove();
+        $( ".nuevapagina" ).load( "modulos/Recepcion/recepcionDocumentos.jsp" );
         $('.navbar-brand').html("");
         $('.navbar-brand').html("RECEPCIÓN DE DOCUMENTOS");
-        $( ".nuevapagina" ).load( "modulos/Recepcion/recepcionDocumentos.jsp" );
     });
     $("#linkradconrips").on("click",function(){//muestra la vista de radicacion de documentos CR(temporal)
         $('.seccionjumbo').remove();
         $('.contenidotemporal').remove();
         $('.seccioninfo').remove();
+        $( ".nuevapagina" ).load( "modulos/Radicacion/radicacionConRips.jsp" );
         $('.navbar-brand').html("");
         $('.navbar-brand').html("RADICACIÓN DE DOCUMENTOS CON RIPS");
-        $( ".nuevapagina" ).load( "modulos/Radicacion/radicacionConRips.jsp" );
     });
     $("#linkradsinrips").on("click",function(){//muestra la vista de radicacion de documentos SR (temporal)
         $('.seccionjumbo').remove();
