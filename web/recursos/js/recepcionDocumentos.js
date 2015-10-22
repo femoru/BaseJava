@@ -1,84 +1,27 @@
-var jqgrid_data = [
-        {
-        id : "1",
-        fecharecibido : "2015-10-01 12:00",
-        radicacion : "Comfandi",
-        nit : "890806490",
-        prestador : "Comfandi",
-        remitente : "Comfandi",
-        fechaentrega : "2014-10-01",
-        tipodocumento : "1",
-        nroguia : "",
-        cd:"1",
-        usb:"0",
-        detalle:"",
-        entregadoa:"Olga Izquierdo",
-        entregadopor:"Jheison Combita"
-        },
-        {
-        id : "2",
-        fecharecibido : "2015-11-01 12:00",
-        radicacion : "Comfandi",
-        nit : "890806490",
-        prestador : "Comfandi",
-        remitente : "Comfandi",
-        fechaentrega : "2014-10-01",
-        tipodocumento : "2",
-        nroguia : "98756465456",
-        cd:"0",
-        usb:"1",
-        detalle:"",
-        entregadoa:"Olga Izquierdo",
-        entregadopor:"Jheison Combita"
-        },
-        {
-        id : "3",
-        fecharecibido : "2015-10-01 12:00",
-        radicacion : "Comfandi",
-        nit : "890806490",
-        prestador : "Comfandi",
-        remitente : "Comfandi",
-        fechaentrega : "2014-10-01",
-        tipodocumento : "3",
-        nroguia : "",
-        cd:"1",
-        usb:"1",
-        detalle:"",
-        entregadoa:"Olga Izquierdo",
-        entregadopor:"Jheison Combita"
-        },
-        {
-        id : "4",
-        fecharecibido : "2015-10-01 12:00",
-        radicacion : "Comfandi",
-        nit : "890806490",
-        prestador : "Comfandi",
-        remitente : "Comfandi",
-        fechaentrega : "2014-10-01",
-        tipodocumento : "1",
-        nroguia : "",
-        cd:"0",
-        usb:"0",
-        detalle:"",
-        entregadoa:"Olga Izquierdo",
-        entregadopor:"Jheison Combita"
-        }
-];
+var lastSel;
+var cerrar = {text: "Cancelar", click: function() {
+        $(this).dialog("close");
+    },
+    icons: {
+        primary: "ui-icon-close"
+    }
+};
+var fecha_entrega = $("#fecha_entrega");
 
-$("#jqGrid").jqGrid({
-        //url: 'data.json',
-       // editurl: 'clientArray',
-        data : jqgrid_data,
+var myGrid = $("#jqGrid").jqGrid({
+        url: '/CuentasMedicas/RecepcionServlet',
+        editurl: '/CuentasMedicas/RecepcionServlet',
+        loadonce: true,
         styleUI : 'Bootstrap',
-        datatype : "local",
-        height : '600',
+        datatype : "json",
+        height : '400',
         page:1,
         //multiselect:'true',
         autowidth : true,
         colModel: [
             { label: 'ID', name: 'id', key: true,hidden : true},                   
             { label: 'Fecha Recibido',
-                name: 'fecharecibido',
+                name: 'FECHA_RECIBIDO',
                 width: 150,
                 editable: true,
                 edittype:"text",
@@ -96,15 +39,14 @@ $("#jqGrid").jqGrid({
                 }
             },
              { label: 'Radicación',
-                 name: 'radicacion',
-                 hidden:true,
-                 width: 150,
+                 name: 'RADICACION',
+                  width: 150,
                  editable: true,
                  edittype: "text",
-                 searchoptions: {searchhidden: true}
+                 editrules: {edithidden:true}
              },
              { label: 'NIT',
-                 name: 'nit',
+                 name: 'NIT',
                  width: 150,
                  hidden:true,
                  editable: true,
@@ -113,21 +55,21 @@ $("#jqGrid").jqGrid({
                  searchoptions: {searchhidden: true}
              },
              { label: 'Prestador',
-                 name: 'prestador',
+                 name: 'PRESTADOR',
                  width: 150,
                  editable: true,
                  edittype: "text",
                  editrules: {edithidden:true}
              },
              { label: 'Remitente',
-                 name: 'remitente',
+                 name: 'REMITENTE',
                  width: 150,
                  editable: true,
                  edittype: "text",
                  editrules: {edithidden:true}
              },
              { label: 'Fecha Entrega',
-                name: 'fechaentrega',
+                name: 'FECHA_ENTREGA',
                 width: 150,
                 editable: true,
                 edittype:"text",
@@ -143,7 +85,7 @@ $("#jqGrid").jqGrid({
                 }
             },
             { label: 'Tipo Documento',
-                 name: 'tipodocumento',
+                 name: 'TIPO_DOCUMENTO',
                  width: 150,
                  editable: true,
                  hidden:false,
@@ -159,7 +101,7 @@ $("#jqGrid").jqGrid({
                  editrules: {edithidden:true}
              },
              { label: 'N# Guía',
-                 name: 'nroguia',
+                 name: 'NUMERO_GUIA',
                  width: 150,
                  hidden:true,
                  editable: true,
@@ -168,7 +110,7 @@ $("#jqGrid").jqGrid({
                  searchoptions: {searchhidden: true}
              },
             { label: 'CD',
-                 name: 'cd',
+                 name: 'CD',
                  width: 150,
                  hidden:true,
                  editable: true,
@@ -179,7 +121,7 @@ $("#jqGrid").jqGrid({
              },
              
              { label: 'USB',
-                 name: 'usb',
+                 name: 'USB',
                  width: 150,
                  hidden:true,
                  editable: true,
@@ -189,7 +131,7 @@ $("#jqGrid").jqGrid({
                  editrules: {edithidden:true}
              },
             { label: 'Detalle',
-                 name: 'detalle',
+                 name: 'DETALLE',
                  width: 150,
                  hidden:true,
                  editable: true,
@@ -199,14 +141,14 @@ $("#jqGrid").jqGrid({
                  searchoptions: {searchhidden: true}
              },
              { label: 'Entregado a',
-                 name: 'entregadoa',
+                 name: 'ENTREGADO_A',
                  width: 150,
                  editable: true,
                  edittype: "text",
                  editrules: {edithidden:true}
              },
             { label: 'Entregado por',
-                 name: 'entregadopor',
+                 name: 'ENTREGADO_POR',
                  width: 150,
                  editable: true,
                  edittype: "text",
@@ -227,20 +169,20 @@ $("#jqGrid").jqGrid({
                 }
             }
         ],
-        loadonce : false,
         viewrecords: true,
-        height: '400',
         rowNum: 20,
         pager: "#jqGridPager",
         caption : "<b>Matriz Recepción de Documentos</b>"
     });
+
         $(".ui-jqgrid-caption").append("<button title='Exportar PDF' class='btn btn-danger iconsexport' id='exportpdf'><i class='fa fa-file-pdf-o '></i></button>");  
         $(".ui-jqgrid-caption").append("<button title='Exportar Excel' class='btn btn-success iconsexport' id='exportexcel'><i class='fa fa-file-excel-o '></i></button>");
         jQuery("#jqGrid").jqGrid('navGrid', "#jqGridPager", {
             edit : true,
             add : true,
             del : true,
-            view: true
+            view: true,
+            search: true
             //position: "left"  
 	},{
             height: 'auto',
@@ -286,6 +228,7 @@ $("#jqGrid").jqGrid({
 		var su=jQuery("#jqGrid").jqGrid('delRowData',1);
 		if(su) alert("Succes. Write custom code to delete row from server"); else alert("Already deleted or not in list");
 	});
+ 
 	/**
 		@estilo a los botones
 	**/

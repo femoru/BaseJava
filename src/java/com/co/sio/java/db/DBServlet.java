@@ -52,9 +52,16 @@ public class DBServlet extends HttpServlet {
             out.println("<h1>Servlet DBServlet at " + request.getContextPath() + "</h1>");
 
             try {
-                String query = "SELECT * FROM CMUSUARIOS WHERE idusuario = ? and usuario = ?";
-                String[] params = {request.getParameter("user"), request.getParameter("usuario")};
+               // String query = "SELECT * FROM CMUSUARIOS WHERE idusuario = ? and usuario = ?";
                 
+                String query = "SELECT  r.id,r.fecha_recibido,r.nit,r.prestador,\n" +
+                    "r.remitente,r.fecha_entrega,r.tipo_documento,r.numero_guia,r.cd,r.usb,r.detalle,\n" +
+                    "r.entregado_a,r.entregado_por,(CONCAT(u.nombres,CONCAT(' ', u.apellidos ))) as usuario\n" +
+                    "FROM CMRECEPCION r INNER JOIN CMUSUARIOS u\n" +
+                    "ON r.idusuario = u.idusuario\n" +
+                    "";
+                //String[] params = {request.getParameter("user"), request.getParameter("usuario")};
+                String[] params = null;
                 
                 ArrayList<HashMap<String, Object>> consultar = db.consultar(query, params);
 

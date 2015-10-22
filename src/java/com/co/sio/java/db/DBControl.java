@@ -6,11 +6,16 @@
 package com.co.sio.java.db;
 
 import com.co.sio.java.utils.SIOUtils;
+import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -32,6 +37,7 @@ public class DBControl {
     private PreparedStatement query;
     private ResultSet rs;
     private ResultSetMetaData rsmd;
+    private CallableStatement st;
 
     static {
         try {
@@ -97,10 +103,11 @@ public class DBControl {
         conectar();
        
         this.query = this.conn.prepareStatement(consulta);
-
-        for (int i = 0; i < params.length; i++) {
-            String param = params[i];
-            this.query.setString(i + 1, param);
+        if(params != null){
+            for (int i = 0; i < params.length; i++) {
+                String param = params[i];
+                this.query.setString(i + 1, param);
+            }
         }
 
         this.rs = this.query.executeQuery();
@@ -110,6 +117,54 @@ public class DBControl {
         desconectar();
 
         return lista;
+    }
+    
+     public void callableStatement(String Sql) throws SQLException {
+        this.st = this.conn.prepareCall(Sql);
+    }
+    
+     public void AsignarParametro(int parametro, String valor, int tipo) throws SQLException, ParseException {
+
+        DateFormat sdf;
+        java.util.Date date;
+
+        switch (tipo) {
+            case 1:
+                this.st.setString(parametro, valor);
+                break;
+            case 2:
+                this.st.setInt(parametro, Integer.parseInt(valor));
+                break;
+            case 3:
+                //sdf = new SimpleDateFormat("yyyy-MM-dd");
+                sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS'0'");
+                date = sdf.parse(valor);
+                this.st.setDate(parametro, Date.valueOf(sdf.format(date)));
+                break;
+            case 4:
+                //sdf = new SimpleDateFormat("dd/MM/yyyy");("yyyy-MM-dd HH:mm:ss.SSS'0'");
+                sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS'0'");
+                date = sdf.parse(valor);
+                this.st.setDate(parametro, Date.valueOf(sdf.format(date)));
+                break;
+            case 5:
+                this.st.setDouble(parametro, Double.parseDouble(valor));
+                break;
+        }
+    }
+    
+      public boolean registrar() {
+
+        boolean correcto = false;
+
+        try {
+            st.execute();
+            correcto = true;
+
+        } catch (SQLException e) {
+           e.getMessage();
+        }
+        return correcto;
     }
 
     // <editor-fold defaultstate="collapsed" desc="getters y setters propios ">

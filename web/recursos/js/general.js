@@ -1,4 +1,4 @@
-$(document).on("ready",function(){
+﻿$(document).on("ready",function(){
     $("#linkrecdocs").on("click",function(){//muestra la vista de recepcion de documentos (temporal)
         $('.seccionjumbo').remove();
         $('.contenidotemporal').remove();
@@ -14,6 +14,7 @@ $(document).on("ready",function(){
         $( ".nuevapagina" ).load( "modulos/Radicacion/radicacionConRips.jsp" );
         $('.navbar-brand').html("");
         $('.navbar-brand').html("RADICACIÓN DE DOCUMENTOS CON RIPS");
+
     });
     $("#linkradsinrips").on("click",function(){//muestra la vista de radicacion de documentos SR (temporal)
         $('.seccionjumbo').remove();
