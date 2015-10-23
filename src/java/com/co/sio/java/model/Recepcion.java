@@ -25,6 +25,7 @@ public class Recepcion {
     private String entregado_a;
     private String entregado_por;
     private int idusuario;
+    private String estado;
 
 
     public String getFecha_recibido() {
@@ -140,6 +141,20 @@ public class Recepcion {
      */
     public void setRadicacion(String radicacion) {
         this.radicacion = radicacion;
+    }
+
+    /**
+     * @return the estado
+     */
+    public String getEstado() {
+        return estado;
+    }
+
+    /**
+     * @param estado the estado to set
+     */
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
     
 }

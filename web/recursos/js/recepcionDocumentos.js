@@ -16,10 +16,10 @@ var myGrid = $("#jqGrid").jqGrid({
         datatype : "json",
         height : '400',
         page:1,
-        //multiselect:'true',
+        multiselect:'true',
         autowidth : true,
         colModel: [
-            { label: 'ID', name: 'id', key: true,hidden : true},                   
+            { label: 'ID', name: 'ID',hidden : true, editable:false, key:true},                   
             { label: 'Fecha Recibido',
                 name: 'FECHA_RECIBIDO',
                 width: 150,
@@ -93,10 +93,10 @@ var myGrid = $("#jqGrid").jqGrid({
                  edittype: "select",
                  editoptions: {
                      value: {
-                         0: "Glosas",
-                        1: "Devoluciones",
-                        2: "Guías de Correspondencia",
-                        3: "Otros Documentos"}
+                        1: "Glosas",
+                        2: "Devoluciones",
+                        3: "Guías de Correspondencia",
+                        4: "Otros Documentos"}
                  },
                  editrules: {edithidden:true}
              },
@@ -169,8 +169,9 @@ var myGrid = $("#jqGrid").jqGrid({
                 }
             }
         ],
+        
         viewrecords: true,
-        rowNum: 20,
+        rowNum: 10,
         pager: "#jqGridPager",
         caption : "<b>Matriz Recepción de Documentos</b>"
     });
@@ -182,9 +183,13 @@ var myGrid = $("#jqGrid").jqGrid({
             add : true,
             del : true,
             view: true,
-            search: true
+            search: true,
+            refresh: true,
+            beforeRefresh: refrescarGrilla 
             //position: "left"  
-	},{
+	},
+             
+            {
             height: 'auto',
             width: 620,
             recreateForm: true,
@@ -202,6 +207,7 @@ var myGrid = $("#jqGrid").jqGrid({
                     errorTextFormat: function (data) {
                         return 'Error: ' + data.responseText;
                     }
+                    
                 },
                 // options for the Delete Dailog
                 {
@@ -259,3 +265,30 @@ var myGrid = $("#jqGrid").jqGrid({
 
 	jQuery( ".ui-icon.ui-icon-seek-end" ).wrap( "" );
 	jQuery(".ui-icon.ui-icon-seek-end").removeClass().addClass("fa fa-fast-forward");
+        
+          $("#refresh_jqGrid").on("click",function(){
+              refrescarGrilla();
+          });
+          $('#add_jqGrid').on('click',function(){
+              $('#sData').on('click',function(){
+                  refrescarGrilla();
+            });
+          });
+         $('#edit_jqGrid').on('click',function(){
+                $('#sData').on('click',function(){
+                  refrescarGrilla();
+            });
+          });
+            function refrescarGrilla() {
+            myGrid.jqGrid('setGridParam', {
+                datatype: "json"
+            });
+            myGrid.trigger("reloadGrid");
+            return [true, ""];
+        }
+        
+        $('.FormGrid').on('submit',function(){
+            alert("done");
+            return true;
+        });
+   

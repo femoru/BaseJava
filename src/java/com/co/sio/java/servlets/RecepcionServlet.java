@@ -9,6 +9,8 @@ import com.co.sio.java.dao.RecepcionDao;
 import com.co.sio.java.model.Recepcion;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -74,7 +76,7 @@ public class RecepcionServlet extends HttpServlet {
             response.getWriter().close();
         }
         catch(Exception e){
-            
+           
         }
     }
 
@@ -95,6 +97,16 @@ public class RecepcionServlet extends HttpServlet {
         
 
         String operacion =  request.getParameter("oper");//VARIABLE QUE ENVIA JQGRID PARA OPERACIONES
+   
+        //boolean isSet = (request.getParameter("id") == null);
+       String id = request.getParameter("id");
+       
+        if(id.charAt(0)== '_'){
+            System.out.println("is empty");
+        }else{
+           recepcion.setId(Integer.parseInt(request.getParameter("id")));
+        }
+        
         recepcion.setFecha_recibido(request.getParameter("FECHA_RECIBIDO"));
         recepcion.setRadicacion(request.getParameter("RADICACION"));
         recepcion.setNit(request.getParameter("NIT"));
@@ -111,11 +123,19 @@ public class RecepcionServlet extends HttpServlet {
         //recepcion.setIdusuario(Integer.parseInt(request.getParameter("IDUSUARIO")));
       
         
-        if (operacion.charAt(0) == 'a') {//CONTROLADOR PARA LAS OPERACIONES ENVIADAS POR EL USUARIO
-           
+        if (operacion.charAt(0) == 'a') { //CONTROLADOR PARA LAS OPERACIONES ENVIADAS POR EL USUARIO
+            try {
+                recepciondao.insertar(recepcion);
+            } catch (Exception ex) {
+                Logger.getLogger(RecepcionServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if(operacion.charAt(0) == 'e'){
-            System.out.println("update");
+           try {
+                recepciondao.actualizar(recepcion);
+            } catch (Exception ex) {
+                Logger.getLogger(RecepcionServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if(operacion.charAt(0) == 'd'){
             System.out.println("delete");

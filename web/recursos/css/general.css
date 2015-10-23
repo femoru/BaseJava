@@ -123,3 +123,8 @@ footer{
 .mensajeserror{
     display:none;
 }
+.ui-jqgrid tr.jqgrow td {
+    overflow: hidden;
+    white-space: normal;
+    padding-right: 2px;
+}

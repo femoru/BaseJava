@@ -23,6 +23,7 @@ import java.util.logging.Logger;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
 import oracle.jdbc.pool.OracleDataSource;
 
 /**
@@ -38,6 +39,8 @@ public class DBControl {
     private ResultSet rs;
     private ResultSetMetaData rsmd;
     private CallableStatement st;
+    private boolean oldStateOfAutoCommit = false;
+    private final int oldStateOfTransactionIsolation = Connection.TRANSACTION_READ_COMMITTED;
 
     static {
         try {
@@ -86,8 +89,11 @@ public class DBControl {
      * @throws SQLException
      */
     public void desconectar() throws SQLException {
-        this.conn.close();
-        this.query.close();
+
+        if(this.query != null){
+            this.query.close();
+        }
+         this.conn.close();  
     }
 
     /**
@@ -119,8 +125,14 @@ public class DBControl {
         return lista;
     }
     
-     public void callableStatement(String Sql) throws SQLException {
-        this.st = this.conn.prepareCall(Sql);
+    public void callableStatement(String Sql) throws SQLException {
+        try {
+            //System.out.println(Sql);
+            this.st = this.conn.prepareCall(Sql);
+        } catch (SQLException e) {
+            throw e;
+        }
+        
     }
     
      public void AsignarParametro(int parametro, String valor, int tipo) throws SQLException, ParseException {
@@ -136,14 +148,14 @@ public class DBControl {
                 this.st.setInt(parametro, Integer.parseInt(valor));
                 break;
             case 3:
-                //sdf = new SimpleDateFormat("yyyy-MM-dd");
-                sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS'0'");
+                sdf = new SimpleDateFormat("yyyy-MM-dd");
+               // sdf = new SimpleDateFormat("yyyy/mm/dd hh24:mi");
                 date = sdf.parse(valor);
                 this.st.setDate(parametro, Date.valueOf(sdf.format(date)));
                 break;
             case 4:
-                //sdf = new SimpleDateFormat("dd/MM/yyyy");("yyyy-MM-dd HH:mm:ss.SSS'0'");
-                sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS'0'");
+                sdf = new SimpleDateFormat("dd/MM/yyyy");
+                //sdf = new SimpleDateFormat("yyyy/mm/dd hh24:mi");
                 date = sdf.parse(valor);
                 this.st.setDate(parametro, Date.valueOf(sdf.format(date)));
                 break;
@@ -153,19 +165,50 @@ public class DBControl {
         }
     }
     
-      public boolean registrar() {
+       public boolean registrar() {
 
         boolean correcto = false;
-
+            
         try {
             st.execute();
             correcto = true;
 
         } catch (SQLException e) {
-           e.getMessage();
+
+            System.out.println(e);
+           
         }
         return correcto;
     }
+       
+       public void exitoTransaccion() {
+
+        try {
+            this.conn.commit();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void end() {
+        try {
+            this.conn.setAutoCommit(this.oldStateOfAutoCommit);
+            this.conn.setTransactionIsolation(this.oldStateOfTransactionIsolation);
+            this.conn.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+    
+       public void fallaTransaccion() {
+
+        try {
+            this.conn.rollback();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
 
     // <editor-fold defaultstate="collapsed" desc="getters y setters propios ">
     /**

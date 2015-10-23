@@ -68,5 +68,6 @@
             //});
       
     });
+  
    //$.jgrid.defaults.width = 780;    
 });
