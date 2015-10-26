@@ -127,9 +127,9 @@ public class DBControl {
     
     public void callableStatement(String Sql) throws SQLException {
         try {
-            //System.out.println(Sql);
             this.st = this.conn.prepareCall(Sql);
         } catch (SQLException e) {
+            System.out.println(e);
             throw e;
         }
         

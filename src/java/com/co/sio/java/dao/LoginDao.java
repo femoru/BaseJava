@@ -31,19 +31,25 @@ import org.json.JSONArray;
         
         try {
             Usuarios usuarios  =  new Usuarios();
-            sql = "SELECT * FROM CUENTASMEDICAS.CMUSUARIOS WHERE usuario = ? and contrasena = ?";
+            sql = "SELECT IDUSUARIO,USUARIO,NOMBRES,APELLIDOS,CORREO,FECHANACIMIENTO,ESTADO"
+                    + " FROM CUENTASMEDICAS.CMUSUARIOS WHERE USUARIO = ? and CONTRASENA = ?";
             String[] params = {user,pass};
-            
+
             ArrayList<HashMap<String, Object>> consultar = db.consultar(sql, params);
 
             if (consultar.size()==0) {
                 usuarios.setMensajes("Usuario o Clave Invalida");
             }else{
+                String nombres = String.valueOf(consultar.get(0).get("NOMBRES"));
+                String apellidos = String.valueOf(consultar.get(0).get("APELLIDOS"));
+                usuarios.setNombres(nombres);
+                usuarios.setApellidos(apellidos);
                 JSONArray arr = new JSONArray(consultar);
             }
             return usuarios;
             
         } catch (SQLException ex) {
+            System.out.println(ex);
            throw new Exception(ex.getMessage());
         }
          

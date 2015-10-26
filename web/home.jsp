@@ -56,6 +56,20 @@
                             </a>
                         </div>
                     </div>
+                      <div class="accordion-group">
+                        <div class="accordion-heading" title="Radicación de Documentos">
+                            <a class="accordion-toggle" id="linkadmin" data-toggle="collapse" data-parent="#leftMenu" href="#collapseAdmin">
+                                <i class="fa fa-cogs"></i><span class="titulosmenus"> Administración</span>
+                            </a>
+                        </div>
+                        <div id="collapseAdmin" class="accordion-body collapse" style="height: 0px; ">
+                            <div class="accordion-inner">
+                                <ul>
+                                    <li><a href="#" id="linkregusua">Registro de Usuarios</a></li>
+                                </ul>                 
+                            </div>
+                         </div>
+                    </div>
                     <div class="accordion-group">
                         <div class="accordion-heading" title="Recepción de Documentos">
                             <a class="accordion-toggle" data-parent="#leftMenu" href="#" id="linkrecdocs">
@@ -103,7 +117,10 @@
                           <div class="collapse navbar-collapse menuperfil" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav navbar-right">
                               <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Usuario <span class="caret"></span></a>
+                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-user"> </i>
+                                    <span id="nombreusuario"><%= session.getAttribute("Nombres")%> <%= session.getAttribute("Apellidos")%></span> 
+                                    <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                   <li><a href="modulos/administracion/perfilUsuario.jsp">Mi Perfil</a></li>
                                   <li><a href="modulos/administracion/configuracionUsuario.jsp">Configuración</a></li>

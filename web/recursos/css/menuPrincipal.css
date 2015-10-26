@@ -56,7 +56,7 @@
 #cabeceramenu i{
    margin-left: 25px;
 }
-#collapseThree a{
+#collapseThree a , #collapseAdmin a{
     font-weight: normal;
      display: block;
     width: 100%;

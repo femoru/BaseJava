@@ -167,7 +167,15 @@ var myGrid = $("#jqGrid").jqGrid({
                         });
                     }
                 }
-            }
+            },
+            { label: 'USUARIO',
+                 name: 'USUARIO',
+                 width: 150,
+                 editable: false,
+                 hidden:true,
+                 edittype: "text",
+                 editrules: {edithidden:false}
+             }
         ],
         
         viewrecords: true,
@@ -291,4 +299,18 @@ var myGrid = $("#jqGrid").jqGrid({
             alert("done");
             return true;
         });
-   
+        
+        $("#del_jqGrid").click(function(){ 
+            var usuario = $("#nombreusuario").text();
+            var params = {};
+            params['usuario'] = usuario;
+            toDelete = myGrid.jqGrid('getGridParam','selrow');
+            myGrid.jqGrid(
+                'delGridRow',
+                toDelete,
+                  { url: '/CuentasMedicas/RecepcionServlet',
+                    // delData: params,
+                    reloadAfterSubmit:true
+                }
+            );
+        });

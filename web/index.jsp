@@ -22,7 +22,7 @@
         <script type="text/javascript" src="recursos/terceros/validetta/validetta-es.js"></script>
     </head>
     <body>
-        <% session.invalidate();%>
+        <% session.invalidate(); %>
         <header>
             <div class="page-header">
                 <img src="recursos/img/logo-header-1.png" id="logoheader" alt="Soluciones Integrales de Oficina" title="Soluciones Integrales de Oficina"/> 

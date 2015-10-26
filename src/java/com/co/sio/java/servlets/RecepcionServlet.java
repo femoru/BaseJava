@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -106,7 +107,7 @@ public class RecepcionServlet extends HttpServlet {
         }else{
            recepcion.setId(Integer.parseInt(request.getParameter("id")));
         }
-        
+       if (operacion.charAt(0) != 'd'){
         recepcion.setFecha_recibido(request.getParameter("FECHA_RECIBIDO"));
         recepcion.setRadicacion(request.getParameter("RADICACION"));
         recepcion.setNit(request.getParameter("NIT"));
@@ -121,6 +122,10 @@ public class RecepcionServlet extends HttpServlet {
         recepcion.setEntregado_a(request.getParameter("ENTREGADO_A"));
         recepcion.setEntregado_por(request.getParameter("ENTREGADO_POR"));
         //recepcion.setIdusuario(Integer.parseInt(request.getParameter("IDUSUARIO")));
+       }else{
+           HttpSession sesion = request.getSession();
+           recepcion.setIdusuario(Integer.parseInt(sesion.getAttribute("usuario").toString()));
+       }
       
         
         if (operacion.charAt(0) == 'a') { //CONTROLADOR PARA LAS OPERACIONES ENVIADAS POR EL USUARIO
@@ -138,7 +143,11 @@ public class RecepcionServlet extends HttpServlet {
             }
         }
         if(operacion.charAt(0) == 'd'){
-            System.out.println("delete");
+            try {
+                recepciondao.borrar(recepcion);
+            } catch (Exception ex) {
+                Logger.getLogger(RecepcionServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

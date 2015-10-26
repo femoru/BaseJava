@@ -1,4 +1,4 @@
-﻿$(document).on("ready",function(){
+$(document).on("ready",function(){
     $("#linkrecdocs").on("click",function(){//muestra la vista de recepcion de documentos (temporal)
         $('.seccionjumbo').remove();
         $('.contenidotemporal').remove();
@@ -23,6 +23,14 @@
         $('.navbar-brand').html("");
         $('.navbar-brand').html("RADICACIÓN DE DOCUMENTOS SIN RIPS");
         $( ".nuevapagina" ).load( "modulos/Radicacion/radicacionSinRips.jsp" );
+    });
+    $("#linkregusua").on("click",function(){//muestra la vista de radicacion de documentos SR (temporal)
+        $('.seccionjumbo').remove();
+        $('.contenidotemporal').remove();
+        $('.seccioninfo').remove();
+        $('.navbar-brand').html("");
+        $('.navbar-brand').html("REGISTRO DE USUARIOS");
+        $( ".nuevapagina" ).load( "modulos/administracion/registroUsuarios.jsp" );
     });
      $("#pruebas").on("click",function(){//muestra la vista de pruebas
         $('.seccionjumbo').remove();
@@ -51,6 +59,7 @@
         
        // $('#contentmenu #collapseThree ul').css('margin','0px');
         $('#contentmenu #collapseThree ul').css('padding-left','0px');//modifico el padding para los submenus
+        $('#contentmenu #collapseAdmin ul').css('padding-left','0px');
       }else{
         $('#contentmenu').removeClass('col-lg-1').removeClass('col-md-1');
         $('#contentmenu').addClass('col-lg-3').addClass('col-md-3');
@@ -60,6 +69,7 @@
         $('#leftMenu .fa').css("font-size","inherit");
         $('#leftMenu .fa').css("margin-left","0px");
          $('#contentmenu #collapseThree ul').css('padding-left','40px');
+          $('#contentmenu #collapseAdmin ul').css('padding-left','40px');
       }
       //$(window).bind('resize', function() {//se ajusta la grilla al nuevo tamaño de la pantalla+
   

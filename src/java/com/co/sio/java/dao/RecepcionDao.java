@@ -28,8 +28,8 @@ public class RecepcionDao {
     public String ListaRecepcion()throws Exception{
         try {
              sql = "SELECT  r.id, TO_CHAR(r.fecha_recibido,'yyyy/mm/dd hh24:mi') AS FECHA_RECIBIDO,r.radicacion,r.nit,r.prestador,\n" +
-                    "r.remitente,TO_CHAR(r.fecha_entrega,'yyyy/mm/dd hh24:mi'),r.tipo_documento,r.numero_guia,r.cd,r.usb,r.detalle,\n" +
-                    "r.entregado_a,r.entregado_por,(CONCAT(u.nombres,CONCAT(' ', u.apellidos ))) as usuario\n" +
+                    "r.remitente,TO_CHAR(r.fecha_entrega,'yyyy/mm/dd hh24:mi')AS FECHA_ENTREGA,r.tipo_documento,r.numero_guia,r.cd,r.usb,r.detalle,\n" +
+                    "r.entregado_a,r.entregado_por,(CONCAT(u.nombres,CONCAT(' ', u.apellidos ))) AS USUARIO\n" +
                     "FROM CMRECEPCION r INNER JOIN CMUSUARIOS u\n" +
                     "ON r.idusuario = u.idusuario\n" +
                     "WHERE r.estado = 1";
@@ -126,21 +126,15 @@ public class RecepcionDao {
     }
     public boolean borrar(Recepcion recepcion) throws Exception{
          try {
-            sql = "UPDATE CMRECEPCION SET ESTADO = ? WHERE ID = ?"; 
+            sql = "UPDATE CMRECEPCION SET ESTADO = 0 WHERE ID = ?"; 
             
             db.conectar();
             db.callableStatement(sql);
-             
-            String formato = "yyyy/mm/dd hh24:mi";
-            db.AsignarParametro(1, recepcion.getFecha_recibido(), 1);
-            db.AsignarParametro(17, Integer.toString(recepcion.getId()), 1);
-             
-             
-             //db.AsignarParametro(14,Integer.toString(recepcion.getIdusuario()), 1);
- 
+            
+            db.AsignarParametro(1, Integer.toString(recepcion.getId()), 1);
+
             return db.registrar();
-           
-              
+   
          } catch (SQLException e) {
             throw new Exception(e.getMessage());
         }finally{
