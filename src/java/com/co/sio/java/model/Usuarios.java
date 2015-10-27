@@ -21,6 +21,7 @@ public class Usuarios {
     private String fechacreacion;
     private String ultimoacceso;
     private int estado;
+    private int idrol;
     private String mensajes;
 
     
@@ -118,5 +119,23 @@ public class Usuarios {
 
     public void setMensajes(String mesajes) {
         this.mensajes = mesajes;
+    }
+
+    /**
+     * @return the idrol
+     */
+    public int getIdrol() {
+        return idrol;
+    }
+
+    /**
+     * @param idrol the idrol to set
+     */
+    public void setIdrol(int idrol) {
+        this.idrol = idrol;
+    }
+
+    public void setIdusuario(String idgrilla) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

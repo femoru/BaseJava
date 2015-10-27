@@ -5,13 +5,18 @@
  */
 package com.co.sio.java.servlets;
 
+import com.co.sio.java.dao.UsuariosDao;
+import com.co.sio.java.model.Usuarios;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -58,6 +63,22 @@ public class UsuariosServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        try{
+            
+            UsuariosDao usuarios =  new UsuariosDao();//INSTANCIA DEL MODELO
+            String json = usuarios.ListaUsuarios(); //METODO PARA LISTAR DATOS
+            
+            response.setContentType("application/json");
+            response.setCharacterEncoding("utf-8");
+            response.setHeader("Pragma", "no-cache");
+            response.setHeader("Cache-Control", "no-cache,must-revalidate");
+            response.setHeader("Pragma", "no-cache");
+            response.getWriter().print(json);
+            response.getWriter().close();
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
     }
 
     /**
@@ -71,6 +92,69 @@ public class UsuariosServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+         UsuariosDao usuariosdao =  new UsuariosDao();
+         Usuarios usuarios =  new Usuarios();
+         String operacion =  request.getParameter("oper");
+         
+        
+           HttpSession sesion = request.getSession();
+        
+        Integer userid = Integer.parseInt(sesion.getAttribute("idusuario").toString());
+        
+        if (operacion.charAt(0)!='d') {
+             usuarios.setUsuario(request.getParameter("USUARIO"));
+             usuarios.setNombres(request.getParameter("NOMBRES"));
+             usuarios.setApellidos(request.getParameter("APELLIDOS"));
+             usuarios.setContrasena(request.getParameter("CONTRASENA"));
+             usuarios.setCorreo(request.getParameter("CORREO"));
+             usuarios.setFechanacimiento(request.getParameter("FECHANACIMIENTO"));
+             usuarios.setIdrol(Integer.parseInt(request.getParameter("ROL")));
+             usuarios.setFechacreacion(request.getParameter("FECHACREACION"));
+             usuarios.setEstado(Integer.parseInt(request.getParameter("ESTADO")));
+             usuarios.setIdusuario(userid);
+        }
+        
+        
+        if (operacion.charAt(0)=='a') {
+             try {
+                usuariosdao.Insertar(usuarios);
+            } catch (Exception ex) {
+                Logger.getLogger(RecepcionServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (operacion.charAt(0)=='e') {
+            try {
+                int idgrilla = 0;
+                boolean idusuario = (request.getParameter("IDUSUARIO")==null);
+                boolean idgrid = (request.getParameter("id")==null);
+
+                if(!idgrid){
+                   idgrilla = Integer.parseInt(request.getParameter("id")); 
+                }
+               if(!idusuario){
+                  idgrilla = Integer.parseInt(request.getParameter("IDUSUARIO"));                 
+               }
+                usuarios.setIdusuario(idgrilla);
+                usuariosdao.Actualizar(usuarios);
+            } catch (Exception ex) {
+                Logger.getLogger(RecepcionServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        if (operacion.charAt(0)=='d') {
+             try {
+                 int idgrilla;
+                 idgrilla = Integer.parseInt(request.getParameter("id")); 
+                 usuarios.setIdusuario(idgrilla);
+                usuariosdao.Borrar(usuarios);
+            } catch (Exception ex) {
+                Logger.getLogger(RecepcionServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        
+        
     }
 
     /**

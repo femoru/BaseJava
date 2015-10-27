@@ -50,18 +50,16 @@
                              <i class="fa fa-lock"></i>
                              <input type="password" class="form-control" name="contrasena" data-validetta="required"/>
                          </div>
-                         
-                         <div class="form-group">
-                             <label for="sel1">Seleccione el Rol:</label>
-                             <select class="form-control" id="selectroles" data-validetta="required">
-                             </select>
-                        </div>
-
                          <label for="confirmar">Confirmar Contraseña</label>
                          <div class="inner-addon left-addon">
                              <i class="fa fa-keyboard-o"></i>
                              <input type="password" class="form-control" name="confirmar" data-validetta="required,equalTo[contrasena]" />
                          </div>
+                         <div class="form-group">
+                             <label for="sel1">Seleccione el Rol:</label>
+                             <select class="form-control" id="selectroles" data-validetta="required">
+                             </select>
+                        </div>
                          <br/><button type="submit" class="btn btn-primary col-lg-4 col-md-4 col-sm-12 col-xs-12 botonesfrm" id="btnregistrar">Registrar</button>
                      </div>
                  </form>

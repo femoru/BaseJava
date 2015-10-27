@@ -32,7 +32,7 @@ import org.json.JSONArray;
         try {
             Usuarios usuarios  =  new Usuarios();
             sql = "SELECT IDUSUARIO,USUARIO,NOMBRES,APELLIDOS,CORREO,FECHANACIMIENTO,ESTADO"
-                    + " FROM CUENTASMEDICAS.CMUSUARIOS WHERE USUARIO = ? and CONTRASENA = ?";
+                    + " FROM CUENTASMEDICAS.CMUSUARIOS WHERE USUARIO = ? and CONTRASENA = ? and ESTADO = 1";
             String[] params = {user,pass};
 
             ArrayList<HashMap<String, Object>> consultar = db.consultar(sql, params);
@@ -40,8 +40,12 @@ import org.json.JSONArray;
             if (consultar.size()==0) {
                 usuarios.setMensajes("Usuario o Clave Invalida");
             }else{
+                String idusuario = String.valueOf(consultar.get(0).get("IDUSUARIO"));
                 String nombres = String.valueOf(consultar.get(0).get("NOMBRES"));
                 String apellidos = String.valueOf(consultar.get(0).get("APELLIDOS"));
+
+                usuarios.setIdusuario(Integer.parseInt(idusuario));
+                
                 usuarios.setNombres(nombres);
                 usuarios.setApellidos(apellidos);
                 JSONArray arr = new JSONArray(consultar);

@@ -5,7 +5,7 @@ $(document).on("ready",function(){
         $('.seccioninfo').remove();
         $( ".nuevapagina" ).load( "modulos/Recepcion/recepcionDocumentos.jsp" );
         $('.navbar-brand').html("");
-        $('.navbar-brand').html("RECEPCIÓN DE DOCUMENTOS");
+        $('.navbar-brand').text("RECEPCIÓN DE DOCUMENTOS");
     });
     $("#linkradconrips").on("click",function(){//muestra la vista de radicacion de documentos CR(temporal)
         $('.seccionjumbo').remove();
@@ -24,13 +24,21 @@ $(document).on("ready",function(){
         $('.navbar-brand').html("RADICACIÓN DE DOCUMENTOS SIN RIPS");
         $( ".nuevapagina" ).load( "modulos/Radicacion/radicacionSinRips.jsp" );
     });
-    $("#linkregusua").on("click",function(){//muestra la vista de radicacion de documentos SR (temporal)
+    $("#linkregusua").on("click",function(){
         $('.seccionjumbo').remove();
         $('.contenidotemporal').remove();
         $('.seccioninfo').remove();
         $('.navbar-brand').html("");
         $('.navbar-brand').html("REGISTRO DE USUARIOS");
         $( ".nuevapagina" ).load( "modulos/administracion/registroUsuarios.jsp" );
+    });
+    $("#linkusua").on("click",function(){
+        $('.seccionjumbo').remove();
+        $('.contenidotemporal').remove();
+        $('.seccioninfo').remove();
+        $('.navbar-brand').html("");
+        $('.navbar-brand').html("USUARIOS");
+        $( ".nuevapagina" ).load( "modulos/administracion/Usuarios.jsp" );
     });
      $("#pruebas").on("click",function(){//muestra la vista de pruebas
         $('.seccionjumbo').remove();

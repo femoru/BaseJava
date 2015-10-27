@@ -65,7 +65,8 @@
                         <div id="collapseAdmin" class="accordion-body collapse" style="height: 0px; ">
                             <div class="accordion-inner">
                                 <ul>
-                                    <li><a href="#" id="linkregusua">Registro de Usuarios</a></li>
+                                    <!--<li><a href="#" id="linkregusua">Registro de Usuarios</a></li>-->
+                                    <li><a href="#" id="linkusua">Usuarios</a></li>
                                 </ul>                 
                             </div>
                          </div>

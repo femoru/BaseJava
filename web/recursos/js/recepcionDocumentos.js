@@ -1,4 +1,4 @@
-var lastSel;
+﻿var lastSel;
 var cerrar = {text: "Cancelar", click: function() {
         $(this).dialog("close");
     },
@@ -181,7 +181,8 @@ var myGrid = $("#jqGrid").jqGrid({
         viewrecords: true,
         rowNum: 10,
         pager: "#jqGridPager",
-        caption : "<b>Matriz Recepción de Documentos</b>"
+        caption : "<b>Matriz Recepción de Documentos</b>",
+        
     });
 
         $(".ui-jqgrid-caption").append("<button title='Exportar PDF' class='btn btn-danger iconsexport' id='exportpdf'><i class='fa fa-file-pdf-o '></i></button>");  
