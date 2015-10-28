@@ -3,7 +3,9 @@
     Created on : 23/09/2015, 09:13:09 AM
     Author     : bmunoz
 --%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="es"><!--Temporal mientras se define el layout-->
     <head>
@@ -37,36 +39,53 @@
                         <h2 class="titulosviews">Mi Perfil</h2>
                         <form  id="frmperfiluser" role="form">
                             <div class="form-group">
-                                <label for="idusuario">Identificación</label>
+                                <!--<label for="idusuario">Identificación</label>
                                 <div class="inner-addon left-addon">
                                     <i class="fa fa-credit-card"></i>
                                     <input type="text" class="form-control" name="idusuario" placeholder="Identificación" data-validetta="required,number"/>
-                                </div>
+                                </div>-->
 
                                 <label for="usuario">Usuario</label>
                                 <div class="inner-addon left-addon">
                                     <i class="fa fa-user"></i>
-                                    <input type="text" class="form-control" name="usuario" placeholder="Usuario" data-validetta="required"/>
+                                    <input type="text" class="form-control" name="usuario" data-validetta="required" value="<%= session.getAttribute("usuario")%>"/>
+                                </div>
+                                
+                                <label for="nombres">Nombres</label>
+                                <div class="inner-addon left-addon">
+                                    <i class="fa fa-user"></i>
+                                    <input type="text" class="form-control" name="nombres" data-validetta="required" value="<%= session.getAttribute("Nombres")%>"/>
+                                </div>
+                                <label for="apellidos">Apellidos</label>
+                                <div class="inner-addon left-addon">
+                                    <i class="fa fa-user"></i>
+                                    <input type="text" class="form-control" name="apellidos" data-validetta="required" value="<%= session.getAttribute("Apellidos")%>"/>
                                 </div>
 
                                 <label for="correo">Correo</label>
                                 <div class="inner-addon left-addon">
                                     <i class="fa fa-envelope-o"></i>
-                                    <input type="text" class="form-control" name="correo" placeholder="Correo" data-validetta="required,email"/>
+                                    <input type="text" class="form-control" name="correo" data-validetta="required,email" value="<%= session.getAttribute("Correo")%>"/>
+                                </div>
+                                
+                                <label for="fechanacimiento">Fecha Nacimiento</label>
+                                <div class="inner-addon left-addon">
+                                    <i class="fa fa-user"></i>
+                                    <input type="text" class="form-control" name="fechanacimiento" data-validetta="required" value="<%= session.getAttribute("FechaNacimiento")%>"/>
                                 </div>
 
                                 <label for="contrasena">Contraseña</label>
                                 <div class="inner-addon left-addon">
                                     <i class="fa fa-lock"></i>
-                                    <input type="password" class="form-control" name="contrasena" placeholder="Contraseña" data-validetta="required"/>
+                                    <input type="password" class="form-control" name="contrasena" data-validetta="required" value=""/>
                                 </div>
 
                                 <label for="confirmar">Confirmar Contraseña</label>
                                 <div class="inner-addon left-addon">
                                     <i class="fa fa-keyboard-o"></i>
-                                    <input type="password" class="form-control" name="confirmar" placeholder="Confirmar" data-validetta="required,equalTo[contrasena]"/>
+                                    <input type="password" class="form-control" name="confirmar" data-validetta="required,equalTo[contrasena]" value=""/>
                                 </div>
-                                <br/><button type="submit" class="btn btn-primary col-lg-4 col-md-4 botonesfrm" id="btnregistrar">Registrar</button>
+                                <br/><button type="submit" class="btn btn-primary col-lg-4 col-md-4 botonesfrm" id="btnregistrar">Actualizar</button>
                             </div>
                         </form>
                     </div>

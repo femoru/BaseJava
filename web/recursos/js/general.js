@@ -1,7 +1,7 @@
-$(document).on("ready",function(){
+﻿$(document).on("ready",function(){
     $("#linkrecdocs").on("click",function(){//muestra la vista de recepcion de documentos (temporal)
         $('.seccionjumbo').remove();
-        $('.contenidotemporal').remove();
+        $('.contenidotemporal').remove(); 
         $('.seccioninfo').remove();
         $( ".nuevapagina" ).load( "modulos/Recepcion/recepcionDocumentos.jsp" );
         $('.navbar-brand').html("");

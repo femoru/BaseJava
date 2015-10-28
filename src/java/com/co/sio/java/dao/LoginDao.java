@@ -10,6 +10,7 @@ package com.co.sio.java.dao;
  */
 import com.co.sio.java.db.DBControl;
 import com.co.sio.java.model.Usuarios;
+import com.co.sio.java.utils.SeguridadUtils;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -31,9 +32,9 @@ import org.json.JSONArray;
         
         try {
             Usuarios usuarios  =  new Usuarios();
-            sql = "SELECT IDUSUARIO,USUARIO,NOMBRES,APELLIDOS,CORREO,FECHANACIMIENTO,ESTADO"
+            sql = "SELECT IDUSUARIO,USUARIO,NOMBRES,APELLIDOS,CORREO,FECHANACIMIENTO,ESTADO,IDROL"
                     + " FROM CUENTASMEDICAS.CMUSUARIOS WHERE USUARIO = ? and CONTRASENA = ? and ESTADO = 1";
-            String[] params = {user,pass};
+            String[] params = {user,SeguridadUtils.encripta(pass)};
 
             ArrayList<HashMap<String, Object>> consultar = db.consultar(sql, params);
 
@@ -41,13 +42,23 @@ import org.json.JSONArray;
                 usuarios.setMensajes("Usuario o Clave Invalida");
             }else{
                 String idusuario = String.valueOf(consultar.get(0).get("IDUSUARIO"));
+                String usuario = String.valueOf(consultar.get(0).get("USUARIO"));
                 String nombres = String.valueOf(consultar.get(0).get("NOMBRES"));
                 String apellidos = String.valueOf(consultar.get(0).get("APELLIDOS"));
-
+                String correo = String.valueOf(consultar.get(0).get("CORREO"));
+                String fechanacimiento = String.valueOf(consultar.get(0).get("FECHANACIMIENTO"));
+                String estado = String.valueOf(consultar.get(0).get("ESTADO"));
+                String idrol = String.valueOf(consultar.get(0).get("IDROL"));
+              
                 usuarios.setIdusuario(Integer.parseInt(idusuario));
-                
+                usuarios.setUsuario(usuario);
                 usuarios.setNombres(nombres);
                 usuarios.setApellidos(apellidos);
+                usuarios.setCorreo(correo);
+                usuarios.setFechanacimiento(fechanacimiento);
+                usuarios.setEstado(Integer.parseInt(estado));
+                usuarios.setIdrol(Integer.parseInt(idrol));
+
                 JSONArray arr = new JSONArray(consultar);
             }
             return usuarios;

@@ -7,6 +7,7 @@ package com.co.sio.java.dao;
 
 import com.co.sio.java.db.DBControl;
 import com.co.sio.java.model.Usuarios;
+import com.co.sio.java.utils.SeguridadUtils;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -59,7 +60,7 @@ public class UsuariosDao {
             db.AsignarParametro(1, usuarios.getUsuario(), 1);
             db.AsignarParametro(2, usuarios.getNombres(), 1);
             db.AsignarParametro(3, usuarios.getApellidos(), 1);
-            db.AsignarParametro(4, usuarios.getContrasena(), 1);
+            db.AsignarParametro(4, SeguridadUtils.encripta(usuarios.getContrasena()), 1);
             db.AsignarParametro(5, usuarios.getCorreo(), 1);
             db.AsignarParametro(6, usuarios.getFechanacimiento(), 1);
             db.AsignarParametro(7, formato, 1);
@@ -87,7 +88,7 @@ public class UsuariosDao {
             db.AsignarParametro(1, usuarios.getUsuario(), 1);
             db.AsignarParametro(2, usuarios.getNombres(), 1);
             db.AsignarParametro(3, usuarios.getApellidos(), 1);
-            db.AsignarParametro(4, usuarios.getContrasena(), 1);
+            db.AsignarParametro(4, SeguridadUtils.encripta(usuarios.getContrasena()), 1);
             db.AsignarParametro(5, usuarios.getCorreo(), 1);
             db.AsignarParametro(6, usuarios.getFechanacimiento(), 1);
             db.AsignarParametro(7, formato, 1);

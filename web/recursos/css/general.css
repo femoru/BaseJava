@@ -135,3 +135,6 @@ footer{
 #selectroles{
     text-align: center;
 }
+#jqGrid{
+   // word-break: break-all;
+}

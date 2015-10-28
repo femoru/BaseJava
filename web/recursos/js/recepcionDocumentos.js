@@ -1,4 +1,4 @@
-﻿var lastSel;
+var lastSel;
 var cerrar = {text: "Cancelar", click: function() {
         $(this).dialog("close");
     },
@@ -16,7 +16,7 @@ var myGrid = $("#jqGrid").jqGrid({
         datatype : "json",
         height : '400',
         page:1,
-        multiselect:'true',
+        //multiselect:'true',
         autowidth : true,
         colModel: [
             { label: 'ID', name: 'ID',hidden : true, editable:false, key:true},                   
@@ -43,7 +43,8 @@ var myGrid = $("#jqGrid").jqGrid({
                   width: 150,
                  editable: true,
                  edittype: "text",
-                 editrules: {edithidden:true}
+                 editrules: {edithidden:true,required:true}
+                 
              },
              { label: 'NIT',
                  name: 'NIT',
@@ -51,7 +52,7 @@ var myGrid = $("#jqGrid").jqGrid({
                  hidden:true,
                  editable: true,
                  edittype: "text",
-                 editrules: {edithidden:true},
+                 editrules: {edithidden:true,required:true},
                  searchoptions: {searchhidden: true}
              },
              { label: 'Prestador',
@@ -59,14 +60,14 @@ var myGrid = $("#jqGrid").jqGrid({
                  width: 150,
                  editable: true,
                  edittype: "text",
-                 editrules: {edithidden:true}
+                 editrules: {edithidden:true,required:true}
              },
              { label: 'Remitente',
                  name: 'REMITENTE',
                  width: 150,
                  editable: true,
                  edittype: "text",
-                 editrules: {edithidden:true}
+                 editrules: {edithidden:true,required:true}
              },
              { label: 'Fecha Entrega',
                 name: 'FECHA_ENTREGA',
@@ -82,7 +83,7 @@ var myGrid = $("#jqGrid").jqGrid({
                             defaultDate:dateNow
                         });
                     }
-                }
+                }, editrules: {edithidden:true,required:true}
             },
             { label: 'Tipo Documento',
                  name: 'TIPO_DOCUMENTO',
@@ -98,7 +99,7 @@ var myGrid = $("#jqGrid").jqGrid({
                         3: "Guías de Correspondencia",
                         4: "Otros Documentos"}
                  },
-                 editrules: {edithidden:true}
+                 editrules: {edithidden:true,required:true}
              },
              { label: 'N# Guía',
                  name: 'NUMERO_GUIA',
@@ -106,7 +107,7 @@ var myGrid = $("#jqGrid").jqGrid({
                  hidden:true,
                  editable: true,
                  edittype: "text",
-                 editrules: {edithidden:true},
+                 editrules: {edithidden:true,required:true},
                  searchoptions: {searchhidden: true}
              },
             { label: 'CD',
@@ -145,7 +146,7 @@ var myGrid = $("#jqGrid").jqGrid({
                  width: 150,
                  editable: true,
                  edittype: "text",
-                 editrules: {edithidden:true}
+                 editrules: {edithidden:true,required:true}
              },
             { label: 'Entregado por',
                  name: 'ENTREGADO_POR',
@@ -158,7 +159,7 @@ var myGrid = $("#jqGrid").jqGrid({
                             appendTo : "body",
                             source: function(query, proxy) {
                                $.ajax({
-                                   url: 'http://trirand.com/blog/phpjqgrid/examples/jsonp/autocompletepbs.php?callback=?&acelem=ShipName',
+                                   url: "/CuentasMedicas/RecepcionServlet",
                                    dataType: "jsonp",
                                    data: {term: query},
                                    success : proxy
@@ -166,7 +167,7 @@ var myGrid = $("#jqGrid").jqGrid({
                             }
                         });
                     }
-                }
+                }, editrules: {edithidden:true,required:true}
             },
             { label: 'USUARIO',
                  name: 'USUARIO',
@@ -174,14 +175,14 @@ var myGrid = $("#jqGrid").jqGrid({
                  editable: false,
                  hidden:true,
                  edittype: "text",
-                 editrules: {edithidden:false}
+                 editrules: {edithidden:false,required:true}
              }
         ],
-        
         viewrecords: true,
         rowNum: 10,
+        //onSelectRow: editRow, 
         pager: "#jqGridPager",
-        caption : "<b>Matriz Recepción de Documentos</b>",
+        caption : "<b>Matriz Recepción de Documentos</b>"
         
     });
 
@@ -220,6 +221,7 @@ var myGrid = $("#jqGrid").jqGrid({
                 },
                 // options for the Delete Dailog
                 {
+                     width: 300,
                     errorTextFormat: function (data) {
                         return 'Error: ' + data.responseText;
                     }
@@ -274,6 +276,10 @@ var myGrid = $("#jqGrid").jqGrid({
 
 	jQuery( ".ui-icon.ui-icon-seek-end" ).wrap( "" );
 	jQuery(".ui-icon.ui-icon-seek-end").removeClass().addClass("fa fa-fast-forward");
+        
+        function editRow(id) {
+                $('#edit_jqGrid').click();
+            }
         
           $("#refresh_jqGrid").on("click",function(){
               refrescarGrilla();

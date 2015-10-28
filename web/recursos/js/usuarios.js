@@ -18,35 +18,49 @@ var mygrid = $("#jqGrid");
                         label: 'Usuario',
                         name: 'USUARIO',
                         editable: true,
-                        edittype:"text"
+                        edittype:"text",
+                        editrules:{
+                           required:true
+                        }
                     },
                      {
                         label: 'Nombres',
                          name: 'NOMBRES',
                          editable: true,
-                         edittype: "text"
+                         edittype: "text",
+                         editrules:{
+                           required:true
+                        }
                      },
                     {
                         label: 'Apellidos',
                         name: 'APELLIDOS',
                         editable: true,
-                        edittype: "text"
+                        edittype: "text",
+                        editrules:{
+                           required:true
+                        }
                     },
                     {
                         label: 'Contraseña',
                         name: 'CONTRASENA',
                         formatter:'password',
                         edittype:'password',
-                        editrules: {edithidden:true},
+                        editrules: {edithidden:true,required:true},
                         editable: true,
-                        hidden:false
+                        hidden:true
                         
                     },
                     {
 			label: 'Correo',
                         name: 'CORREO',
                         editable: true,
-                        edittype: "text"
+                        width:280,
+                        edittype: "text",
+                        editrules:{
+                            required:true,
+                            email:true
+                        }
                     },
                     {
                         label: 'Fecha de Nacimiento',
@@ -62,16 +76,24 @@ var mygrid = $("#jqGrid");
                                     defaultDate:dateNow
                                 });
                             }
+                        },
+                        editrules:{
+                            required:true
+                            //date:true
                         }
                      },
                      {
                         label: 'Rol',
                          name: 'ROL',
                          editable: true,
+                        // formatter: "select",
                         edittype: "select",
                            editoptions: {
                              dataUrl: "/CuentasMedicas/recursos/GET/getRoles.jsp?grid=true"
-                         }
+                         },
+                         editrules:{
+                            required:true
+                        }
                      },
                      {
                         label: 'Creado por',
@@ -96,23 +118,26 @@ var mygrid = $("#jqGrid");
                          name: 'ESTADO',
                          editable: true,
                         formatter: "select",
+                        width:100,
                         edittype: "select",
                         editoptions: {
                             value: {
                                1: "Activo",
                                2: "Inactivo"
                            }
+                        },editrules:{
+                            required:true
                         }
                      }
                 ],
-                onSelectRow: editRow, // the javascript function to call on row click. will ues to to put the row in edit mode
+                onSelectRow: editRow, 
                 viewrecords: true,
                 rowNum: 10,
                 rowList : [10, 20, 30 ,50 ,100 ,500,1000],
                 autowidth: true,
                 pager: "#jqGridPager",
-                caption : "<b>Administración de Usuarios</b>",
-               
+                caption : "<b>Administración de Usuarios</b>"
+
             });
              $(".ui-jqgrid-caption").append("<button title='Exportar PDF' class='btn btn-danger iconsexport' id='exportpdf'><i class='fa fa-file-pdf-o '></i></button>");  
               $(".ui-jqgrid-caption").append("<button title='Exportar Excel' class='btn btn-success iconsexport' id='exportexcel'><i class='fa fa-file-excel-o '></i></button>");
@@ -128,23 +153,38 @@ var mygrid = $("#jqGrid");
              
             {
             height: 'auto',
-            width: 620,
+            width: 400,
             recreateForm: true,
             closeAfterEdit: true,
+            afterSubmit: function(){
+                mygrid.jqGrid('setGridParam', {
+                datatype: "json"
+                });
+                mygrid.trigger("reloadGrid");
+                return [true, ""];
+            },
             errorTextFormat: function (data) {
                 return 'Error oshe: ' + data.responseText;
             }
+            
         },
-                {
-                    height: 'auto',
-                    width: 620,
-                    closeAfterAdd: true,
-                    recreateForm: true,
-                    errorTextFormat: function (data) {
-                        return 'Error: ' + data.responseText;
-                    }
-                    
-                },
+        {
+            height: 'auto',
+            width: 400,
+            closeAfterAdd: true,
+            recreateForm: true,
+            afterSubmit: function(){
+                mygrid.jqGrid('setGridParam', {
+                datatype: "json"
+                });
+                mygrid.trigger("reloadGrid");
+                return [true, ""];
+            },
+            errorTextFormat: function (data) {
+                return 'Error: ' + data.responseText;
+            }
+
+        },
                 {
                     errorTextFormat: function (data) {
                         return 'Error: ' + data.responseText;
@@ -153,48 +193,15 @@ var mygrid = $("#jqGrid");
             var lastSelection;
 
             function editRow(id) {
-                if (id && id !== lastSelection) {
+                /*if (id && id !== lastSelection) {
                     var grid = $("#jqGrid");
                     grid.jqGrid('restoreRow',lastSelection);
                     grid.jqGrid('editRow',id, {keys:true, focusField: 4});
                     lastSelection = id;
-                }
+                }*/
+                $('#edit_jqGrid').click();
             }
 
-            function createFreightEditElement(value, editOptions) {
-                var div =$("<div style='margin-top:5px'></div>");
-                var label = $("<label class='radio-inline'></label>");
-                var radio = $("<input>", { type: "radio", value: "0", name: "freight", id: "zero", checked: (value != 25 && value != 50 && value != 100) });
-				label.append(radio).append("0");
-                var label1 = $("<label class='radio-inline'></label>");
-                var radio1 = $("<input>", { type: "radio", value: "25", name: "freight", id: "twentyfive", checked: value == 25 });
-				label1.append(radio1).append("25");
-                var label2 = $("<label class='radio-inline'></label>");
-                var radio2 = $("<input>", { type: "radio", value: "50", name: "freight", id: "fifty", checked: value == 50 });
-				label2.append(radio2).append("50");
-                //var label3 = $("<label class='radio-inline'></label>");
-                //var radio3 = $("<input>", { type: "radio", value: "100", name: "freight", id: "hundred", checked: value == 100 });
-				//label3.append(radio3).append("100");
-                div.append(label).append(label1).append(label2);//.append(label3);
-
-                return div;
-            }
-
-            // The javascript executed specified by JQGridColumn.EditTypeCustomGetValue when EditType = EditType.Custom
-            // One parameter passed - the custom element created in JQGridColumn.EditTypeCustomCreateElement
-            function getFreightElementValue(elem, oper, value) {
-                if (oper === "set") {
-                    var radioButton = $(elem).find("input:radio[value='" + value + "']");
-                    if (radioButton.length > 0) {
-                        radioButton.prop("checked", true);
-                    }
-                }
-
-                if (oper === "get") {
-                    return $(elem).find("input:radio:checked").val();
-                }
-            }
-            
         jQuery(".ui-jqGrid").removeClass("ui-widget ui-widget-content");
 	jQuery(".ui-jqGrid-view").children().removeClass("ui-widget-header ui-state-default");
 	jQuery(".ui-jqGrid-labels, .ui-search-toolbar").children().removeClass("ui-state-default ui-th-column ui-th-ltr");
@@ -230,8 +237,3 @@ var mygrid = $("#jqGrid");
             mygrid.trigger("reloadGrid");
             return [true, ""];
         }
-
-
-
-
-

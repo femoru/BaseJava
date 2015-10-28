@@ -65,8 +65,9 @@ public class UsuariosServlet extends HttpServlet {
             throws ServletException, IOException {
         try{
             
-            UsuariosDao usuarios =  new UsuariosDao();//INSTANCIA DEL MODELO
-            String json = usuarios.ListaUsuarios(); //METODO PARA LISTAR DATOS
+            UsuariosDao usuariosdao =  new UsuariosDao();//INSTANCIA DEL MODELO
+            Usuarios usuarios = new Usuarios();
+            String json = usuariosdao.ListaUsuarios(); //METODO PARA LISTAR DATOS
             
             response.setContentType("application/json");
             response.setCharacterEncoding("utf-8");
