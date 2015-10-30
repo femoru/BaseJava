@@ -11,102 +11,68 @@
     <head>
         <title>SIO Cuentas Médicas</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../recursos/terceros/bootstrap/css/bootstrap.css" />
-        <link rel="stylesheet" href="../../recursos/terceros/fontAwesome/css/font-awesome.min.css" />
-        <link rel="stylesheet" href="../../recursos/terceros/validetta/validetta.css" />
-        <link rel="stylesheet" href="../../recursos/css/general.css" />
-         
-        <script type="text/javascript" src="../../recursos/terceros/jquery/js/jquery.min.js"></script>
-        <script type="text/javascript" src="../../recursos/terceros/bootstrap/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="../../recursos/js/general.js"></script>
-         <script type="text/javascript" src="../../recursos/terceros/validetta/validetta.js"></script>
-        <script type="text/javascript" src="../../recursos/terceros/validetta/validetta-es.js"></script>
+        <link rel="stylesheet" href="recursos/terceros/validetta/validetta.css" />
+        <link rel="stylesheet" href="recursos/terceros/bootstrap_datepicker/css/bootstrap-datetimepicker.css" />
+        <link rel="stylesheet" href="recursos/terceros/sweetalert/sweetalert.css" />
+
+         <script type="text/javascript" src="recursos/terceros/validetta/validetta.js"></script>
+        <script type="text/javascript" src="recursos/terceros/validetta/validetta-es.js"></script>
+        <script type="text/javascript" src="recursos/terceros/momentjs/momentjs.min.js"></script>
+        <script type="text/javascript" src="recursos/terceros/bootstrap_datepicker/js/bootstrap-datetimepicker.js"></script>
+        <script type="text/javascript" src="recursos/terceros/sweetalert/sweetalert.min.js"></script>
+        <script type="text/javascript" src="recursos/js/perfilUsuario.js"></script>
         
     </head>
     <body>
-        <header>
-            <div class="page-header">
-                <img src="../../recursos/img/logo-header-1.png" id="logoheader" alt="Soluciones Integrales de Oficina" title="Soluciones Integrales de Oficina"/> 
-                <span id="tituloheader">CUENTAS MÉDICAS</span>
-            </div>
-        </header><!-- --------------------------------------------- -->
-        <section>
-            <img class="img-responsive" src="../../recursos/img/logo-sio.png" id="logo" alt=""/>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-4 col-md-4 hidden-sm hidden-xs"></div>
-                    <div class="col-md-4">
-                        <h2 class="titulosviews">Mi Perfil</h2>
-                        <form  id="frmperfiluser" role="form">
-                            <div class="form-group">
-                                <!--<label for="idusuario">Identificación</label>
-                                <div class="inner-addon left-addon">
-                                    <i class="fa fa-credit-card"></i>
-                                    <input type="text" class="form-control" name="idusuario" placeholder="Identificación" data-validetta="required,number"/>
-                                </div>-->
-
-                                <label for="usuario">Usuario</label>
-                                <div class="inner-addon left-addon">
-                                    <i class="fa fa-user"></i>
-                                    <input type="text" class="form-control" name="usuario" data-validetta="required" value="<%= session.getAttribute("usuario")%>"/>
-                                </div>
-                                
-                                <label for="nombres">Nombres</label>
-                                <div class="inner-addon left-addon">
-                                    <i class="fa fa-user"></i>
-                                    <input type="text" class="form-control" name="nombres" data-validetta="required" value="<%= session.getAttribute("Nombres")%>"/>
-                                </div>
-                                <label for="apellidos">Apellidos</label>
-                                <div class="inner-addon left-addon">
-                                    <i class="fa fa-user"></i>
-                                    <input type="text" class="form-control" name="apellidos" data-validetta="required" value="<%= session.getAttribute("Apellidos")%>"/>
-                                </div>
-
-                                <label for="correo">Correo</label>
-                                <div class="inner-addon left-addon">
-                                    <i class="fa fa-envelope-o"></i>
-                                    <input type="text" class="form-control" name="correo" data-validetta="required,email" value="<%= session.getAttribute("Correo")%>"/>
-                                </div>
-                                
-                                <label for="fechanacimiento">Fecha Nacimiento</label>
-                                <div class="inner-addon left-addon">
-                                    <i class="fa fa-user"></i>
-                                    <input type="text" class="form-control" name="fechanacimiento" data-validetta="required" value="<%= session.getAttribute("FechaNacimiento")%>"/>
-                                </div>
-
-                                <label for="contrasena">Contraseña</label>
-                                <div class="inner-addon left-addon">
-                                    <i class="fa fa-lock"></i>
-                                    <input type="password" class="form-control" name="contrasena" data-validetta="required" value=""/>
-                                </div>
-
-                                <label for="confirmar">Confirmar Contraseña</label>
-                                <div class="inner-addon left-addon">
-                                    <i class="fa fa-keyboard-o"></i>
-                                    <input type="password" class="form-control" name="confirmar" data-validetta="required,equalTo[contrasena]" value=""/>
-                                </div>
-                                <br/><button type="submit" class="btn btn-primary col-lg-4 col-md-4 botonesfrm" id="btnregistrar">Actualizar</button>
-                            </div>
-                        </form>
+        <div class="col-lg-2 col-md-2 hidden-sm hidden-xs"></div>
+        <div class="col-md-6">
+            <form  id="frmperfiluser" role="form" method="POST" action="/CuentasMedicas/PerfiilServlet">
+                <div class="form-group">
+                    <label for="usuario">Usuario</label>
+                    <div class="inner-addon left-addon">
+                        <i class="fa fa-user"></i>
+                        <input type="text" class="form-control" name="usuario" data-validetta="required" value="<%= session.getAttribute("usuario")%>"/>
                     </div>
-                    <div class="col-lg-4 col-md-4 hidden-sm hidden-xs"></div>
+
+                    <label for="nombres">Nombres</label>
+                    <div class="inner-addon left-addon">
+                        <i class="fa fa-italic"></i>
+                        <input type="text" class="form-control" name="nombres" data-validetta="required" value="<%= session.getAttribute("Nombres")%>"/>
+                    </div>
+                    <label for="apellidos">Apellidos</label>
+                    <div class="inner-addon left-addon">
+                        <i class="fa fa-font"></i>
+                        <input type="text" class="form-control" name="apellidos" data-validetta="required" value="<%= session.getAttribute("Apellidos")%>"/>
+                    </div>
+
+                    <label for="correo">Correo</label>
+                    <div class="inner-addon left-addon">
+                        <i class="fa fa-envelope-o"></i>
+                        <input type="text" class="form-control" name="correo" data-validetta="required,email" value="<%= session.getAttribute("Correo")%>"/>
+                    </div>
+
+                    <label for="fechanacimiento">Fecha Nacimiento</label>
+                    <div class="inner-addon left-addon">
+                        <i class="fa fa-calendar-check-o"></i>
+                        <input type="text" class="form-control datetimepicker1" name="fechanacimiento" data-validetta="required" value="<%= session.getAttribute("FechaNacimiento")%>"/>
+                    </div>
+
+                   <!-- <label for="contrasena">Contraseña</label>
+                    <div class="inner-addon left-addon">
+                        <i class="fa fa-lock"></i>
+                        <input type="password" class="form-control" name="contrasena" data-validetta="required" value=""/>
+                    </div>
+
+                    <label for="confirmar">Confirmar Contraseña</label>
+                    <div class="inner-addon left-addon">
+                        <i class="fa fa-keyboard-o"></i>
+                        <input type="password" class="form-control" name="confirmar" data-validetta="required,equalTo[contrasena]" value=""/>
+                    </div>-->
+                    <br/><button type="button" class="btn btn-primary col-lg-4 col-md-4 botonesfrm" id="btnregistrar">Actualizar</button>
                 </div>
-            </div>
-        </section>
-        <div class="corte col-lg-12 col-md-12"></div><!--Temporal mientras se define el layout-->
-        <footer class="col-lg-12 col-md-12">
-            <div id="footer">
-                <p class="copyright">SIO S.A. | Cali: Cra 100 # 14 - 96 Barrio Ciudad Jardín PBX: (57 2) 485 5757 - (572) 485 5758 </p>
-                <p class="copyright1">Colombia</p>
-            </div>
-        </footer><!-- --------------------------------------------- -->
-          <script>
-             $(document).on('ready',function(){
-                $('#frmperfiluser').validetta({
-                    realTime : true
-                });
-            });
-         </script>
+            </form>
+        </div>
+        <div class="col-lg-4 col-md-4 hidden-sm hidden-xs"></div>
     </body>
 </html>
 

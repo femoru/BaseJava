@@ -16,8 +16,40 @@
 .contenttablas  div{
     max-width: 100% ;
 }
+#TblGrid_jqGrid input , select{
+    //border: 1px solid red;
+    width :203px;
+}
+#TIPO_DOCUMENTO{
+ //border: 1px solid red;
+    width :205px;
+}
+#TblGrid_jqGrid{
+   // border: 1px solid red;
+   // margin-bottom: 70px;
+}
 
+.ui-jqdialog-content .FormGrid {
+    overflow: inherit;
 
+}.bootstrap-datimepicker-widget{
+    border: 10px solid red !important;
+}
+.ui-jqdialog-content .form-view-data {
+    white-space: inherit;
+}
+
+#DETALLE{
+    width: 100%;
+}
+#tr_DETALLE .DataTD:nth-child(4) {
+    border: 1px solid red;
+     display:none;
+}
+#tr_DETALLE .CaptionTD:nth-child(3) {
+    border: 1px solid red;
+    display:none;
+}
 /*@media(min-width: 992px){
 #contentmenu{
     width: 24%;

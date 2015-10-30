@@ -64,9 +64,6 @@ public class PerfilServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-           HttpSession sesion = request.getSession();
-          String usuario = sesion.getAttribute("usuario").toString();
-          System.out.println(usuario);
     }
 
     /**
@@ -80,6 +77,37 @@ public class PerfilServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        PerfilDao perfildao = new PerfilDao();
+        Perfil perfil = new Perfil();
+        HttpSession sesion = request.getSession();
+        Integer userid = Integer.parseInt(sesion.getAttribute("idusuario").toString());
+        
+        perfil.setUsuario(request.getParameter("usuario"));
+        perfil.setNombres(request.getParameter("nombres"));
+        perfil.setApellidos(request.getParameter("apellidos"));
+        perfil.setCorreo(request.getParameter("correo"));
+        perfil.setFechanacimiento(request.getParameter("fechanacimiento"));
+        perfil.setIdusuario(userid);
+        
+        try {
+          
+            perfildao.Actualizar(perfil);
+                sesion.setAttribute("idusuario", perfil.getIdusuario());
+                sesion.setAttribute("usuario", perfil.getUsuario());
+                sesion.setAttribute("Nombres", perfil.getNombres());
+                sesion.setAttribute("Apellidos", perfil.getApellidos());
+                sesion.setAttribute("Correo", perfil.getCorreo());
+                sesion.setAttribute("FechaNacimiento", perfil.getFechanacimiento());
+                sesion.setAttribute("Idrol", perfil.getIdrol());
+
+                
+                response.sendRedirect("home.jsp");
+                
+                
+        } catch (Exception ex) {
+            Logger.getLogger(PerfilServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 

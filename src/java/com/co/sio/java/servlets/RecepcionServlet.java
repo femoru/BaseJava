@@ -107,7 +107,7 @@ public class RecepcionServlet extends HttpServlet {
         }else{
            recepcion.setId(Integer.parseInt(request.getParameter("id")));
         }
-       if (operacion.charAt(0) != 'd'){
+       if (operacion.charAt(0) != 'd' && operacion.charAt(0) != 'b'){
         recepcion.setFecha_recibido(request.getParameter("FECHA_RECIBIDO"));
         recepcion.setRadicacion(request.getParameter("RADICACION"));
         recepcion.setNit(request.getParameter("NIT"));
@@ -147,6 +147,23 @@ public class RecepcionServlet extends HttpServlet {
                 recepciondao.borrar(recepcion);
             } catch (Exception ex) {
                 Logger.getLogger(RecepcionServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if(operacion.charAt(0) == 'b'){
+            try{
+                System.out.println(operacion);
+                RecepcionDao pruebas =  new RecepcionDao();//INSTANCIA DEL MODELO
+                String json = pruebas.Prueba(); //METODO PARA LISTAR DATOS
+
+                response.setContentType("application/json");
+                response.setCharacterEncoding("utf-8");
+                response.setHeader("Pragma", "no-cache");
+                response.setHeader("Cache-Control", "no-cache,must-revalidate");
+                response.setHeader("Pragma", "no-cache");
+                response.getWriter().print(json);
+                response.getWriter().close();
+            }catch(Exception e){
+                System.out.println(e);
             }
         }
     }

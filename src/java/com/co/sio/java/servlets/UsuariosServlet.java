@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.json.JSONArray;
 
 /**
  *
@@ -97,13 +98,12 @@ public class UsuariosServlet extends HttpServlet {
          UsuariosDao usuariosdao =  new UsuariosDao();
          Usuarios usuarios =  new Usuarios();
          String operacion =  request.getParameter("oper");
-         
-        
+
            HttpSession sesion = request.getSession();
         
         Integer userid = Integer.parseInt(sesion.getAttribute("idusuario").toString());
-        
-        if (operacion.charAt(0)!='d') {
+        /*captura y seteo de variables*/
+        if (operacion.charAt(0)!='d' && operacion.charAt(0)!='p' && operacion.charAt(0)!='n' ) {
              usuarios.setUsuario(request.getParameter("USUARIO"));
              usuarios.setNombres(request.getParameter("NOMBRES"));
              usuarios.setApellidos(request.getParameter("APELLIDOS"));
@@ -116,14 +116,14 @@ public class UsuariosServlet extends HttpServlet {
              usuarios.setIdusuario(userid);
         }
         
-        
+        /*insercion de nuevos registros*/
         if (operacion.charAt(0)=='a') {
              try {
                 usuariosdao.Insertar(usuarios);
             } catch (Exception ex) {
                 Logger.getLogger(RecepcionServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        }/*actualizacion de registros*/
         if (operacion.charAt(0)=='e') {
             try {
                 int idgrilla = 0;
@@ -142,7 +142,7 @@ public class UsuariosServlet extends HttpServlet {
                 Logger.getLogger(RecepcionServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             
-        }
+        }/*borrado de datos*/
         if (operacion.charAt(0)=='d') {
              try {
                  int idgrilla;
@@ -153,6 +153,43 @@ public class UsuariosServlet extends HttpServlet {
                 Logger.getLogger(RecepcionServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
+        /*cambio de contraseña*/
+        if (operacion.charAt(0)=='p') {
+            try {
+               String contrasena = request.getParameter("contrasena");
+               String json = usuariosdao.VerificarContrasena(sesion.getAttribute("idusuario").toString(), contrasena);
+                response.setContentType("application/json");
+                response.setCharacterEncoding("utf-8");
+                response.setHeader("Pragma", "no-cache");
+                response.setHeader("Cache-Control", "no-cache,must-revalidate");
+                response.setHeader("Pragma", "no-cache");
+                response.getWriter().print(json);
+                response.getWriter().close();
+                
+            } catch (Exception ex) {
+                Logger.getLogger(RecepcionServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+         if (operacion.charAt(0)=='n') {
+             try {
+                 String contrasenanueva = request.getParameter("confirmar");
+                usuariosdao.CambioContrasena(sesion.getAttribute("idusuario").toString(), contrasenanueva);
+                
+                 String [] verdadero = {"true"};
+                 JSONArray json = new JSONArray(verdadero);
+                 
+                response.setContentType("application/json");
+                response.setCharacterEncoding("utf-8");
+                response.setHeader("Pragma", "no-cache");
+                response.setHeader("Cache-Control", "no-cache,must-revalidate");
+                response.setHeader("Pragma", "no-cache");
+                response.getWriter().print(json);
+                response.getWriter().close();
+             } catch (Exception ex) {
+                  Logger.getLogger(RecepcionServlet.class.getName()).log(Level.SEVERE, null, ex);
+             }
+         }
 
         
         

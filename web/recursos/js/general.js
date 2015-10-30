@@ -1,46 +1,35 @@
 ﻿$(document).on("ready",function(){
-    $("#linkrecdocs").on("click",function(){//muestra la vista de recepcion de documentos (temporal)
+    $("#linkrecdocs, #linkradconrips , #linkradsinrips, #linkperfil, #linkusua, #linkconfiguracion").on("click",function(){
         $('.seccionjumbo').remove();
         $('.contenidotemporal').remove(); 
         $('.seccioninfo').remove();
+        $('.navbar-brand').html("");
+    });
+    $("#linkrecdocs").on("click",function(){
+        $('.navbar-brand').html("RECEPCIÓN DE DOCUMENTOS");
         $( ".nuevapagina" ).load( "modulos/Recepcion/recepcionDocumentos.jsp" );
-        $('.navbar-brand').html("");
-        $('.navbar-brand').text("RECEPCIÓN DE DOCUMENTOS");
     });
-    $("#linkradconrips").on("click",function(){//muestra la vista de radicacion de documentos CR(temporal)
-        $('.seccionjumbo').remove();
-        $('.contenidotemporal').remove();
-        $('.seccioninfo').remove();
+    $("#linkradconrips").on("click",function(){
+         $('.navbar-brand').html("RADICACIÓN DE DOCUMENTOS CON RIPS");
         $( ".nuevapagina" ).load( "modulos/Radicacion/radicacionConRips.jsp" );
-        $('.navbar-brand').html("");
-        $('.navbar-brand').html("RADICACIÓN DE DOCUMENTOS CON RIPS");
-
     });
-    $("#linkradsinrips").on("click",function(){//muestra la vista de radicacion de documentos SR (temporal)
-        $('.seccionjumbo').remove();
-        $('.contenidotemporal').remove();
-        $('.seccioninfo').remove();
-        $('.navbar-brand').html("");
+    $("#linkradsinrips").on("click",function(){
         $('.navbar-brand').html("RADICACIÓN DE DOCUMENTOS SIN RIPS");
         $( ".nuevapagina" ).load( "modulos/Radicacion/radicacionSinRips.jsp" );
     });
-    $("#linkregusua").on("click",function(){
-        $('.seccionjumbo').remove();
-        $('.contenidotemporal').remove();
-        $('.seccioninfo').remove();
-        $('.navbar-brand').html("");
-        $('.navbar-brand').html("REGISTRO DE USUARIOS");
-        $( ".nuevapagina" ).load( "modulos/administracion/registroUsuarios.jsp" );
-    });
     $("#linkusua").on("click",function(){
-        $('.seccionjumbo').remove();
-        $('.contenidotemporal').remove();
-        $('.seccioninfo').remove();
-        $('.navbar-brand').html("");
-        $('.navbar-brand').html("USUARIOS");
+        $('.navbar-brand').html("REGISTRO DE USUARIOS");
         $( ".nuevapagina" ).load( "modulos/administracion/Usuarios.jsp" );
     });
-     $("#pruebas").on("click",function(){//muestra la vista de pruebas
+    $("#linkperfil").on("click",function(){
+        $('.navbar-brand').html("EDICIÓN DE PERFIL");
+        $( ".nuevapagina" ).load( "modulos/administracion/perfilUsuario.jsp" );
+    });
+     $("#linkconfiguracion").on("click",function(){
+        $('.navbar-brand').html("CONFIGURACIÓN");
+        $( ".nuevapagina" ).load( "modulos/administracion/configuracionUsuario.jsp" );
+    });
+     $("#pruebas").on("click",function(){
         $('.seccionjumbo').remove();
         $('.contenidotemporal').remove();
         $('.seccioninfo').remove();
@@ -83,9 +72,5 @@
   
         $("#jqGrid").jqGrid('setGridWidth',$("#contentsectionp").width(),true);
          $("#jqGrid2").jqGrid('setGridWidth',$("#contentsectionp").width(),true);       
-            //});
-      
-    });
-  
-   //$.jgrid.defaults.width = 780;    
+    });   
 });

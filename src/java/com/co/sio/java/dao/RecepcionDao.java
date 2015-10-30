@@ -142,4 +142,16 @@ public class RecepcionDao {
         }
 
     }
+    public String Prueba()throws Exception{
+        try {
+            sql = "SELECT PRESTADOR FROM CMRECEPCION";
+            ArrayList<HashMap<String, Object>> consultar = db.consultar(sql,null);
+            JSONArray arr = new JSONArray(consultar);
+            
+          return arr.toString();
+              
+        } catch (SQLException ex) {
+           throw new Exception(ex.getMessage());
+        }
+    }
 }

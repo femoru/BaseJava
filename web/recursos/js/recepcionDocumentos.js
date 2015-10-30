@@ -6,6 +6,8 @@ var cerrar = {text: "Cancelar", click: function() {
         primary: "ui-icon-close"
     }
 };
+
+$("#editmodjqGrid #tr_DETALLE .DataTD").attr('colspan',3);
 var fecha_entrega = $("#fecha_entrega");
 
 var myGrid = $("#jqGrid").jqGrid({
@@ -36,14 +38,17 @@ var myGrid = $("#jqGrid").jqGrid({
                     }
                 },editrules:{
                     required: true
-                }
+                },
+                formoptions:{rowpos: 1, colpos: 1} 
+
             },
              { label: 'Radicación',
                  name: 'RADICACION',
                   width: 150,
                  editable: true,
                  edittype: "text",
-                 editrules: {edithidden:true,required:true}
+                 editrules: {edithidden:true,required:true},
+                 formoptions:{rowpos: 1, colpos: 2} 
                  
              },
              { label: 'NIT',
@@ -53,21 +58,25 @@ var myGrid = $("#jqGrid").jqGrid({
                  editable: true,
                  edittype: "text",
                  editrules: {edithidden:true,required:true},
-                 searchoptions: {searchhidden: true}
+                 searchoptions: {searchhidden: true},
+                 formoptions:{rowpos: 2, colpos: 1} 
+                 
              },
              { label: 'Prestador',
                  name: 'PRESTADOR',
                  width: 150,
                  editable: true,
                  edittype: "text",
-                 editrules: {edithidden:true,required:true}
+                 editrules: {edithidden:true,required:true},
+                 formoptions:{rowpos: 2, colpos: 2} 
              },
              { label: 'Remitente',
                  name: 'REMITENTE',
                  width: 150,
                  editable: true,
                  edittype: "text",
-                 editrules: {edithidden:true,required:true}
+                 editrules: {edithidden:true,required:true},
+                 formoptions:{rowpos: 3, colpos: 2} 
              },
              { label: 'Fecha Entrega',
                 name: 'FECHA_ENTREGA',
@@ -83,7 +92,8 @@ var myGrid = $("#jqGrid").jqGrid({
                             defaultDate:dateNow
                         });
                     }
-                }, editrules: {edithidden:true,required:true}
+                }, editrules: {edithidden:true,required:true},
+                formoptions:{rowpos: 3, colpos: 1} 
             },
             { label: 'Tipo Documento',
                  name: 'TIPO_DOCUMENTO',
@@ -99,7 +109,8 @@ var myGrid = $("#jqGrid").jqGrid({
                         3: "Guías de Correspondencia",
                         4: "Otros Documentos"}
                  },
-                 editrules: {edithidden:true,required:true}
+                 editrules: {edithidden:true,required:true},
+                 formoptions:{rowpos: 4, colpos: 1} 
              },
              { label: 'N# Guía',
                  name: 'NUMERO_GUIA',
@@ -107,8 +118,9 @@ var myGrid = $("#jqGrid").jqGrid({
                  hidden:true,
                  editable: true,
                  edittype: "text",
-                 editrules: {edithidden:true,required:true},
-                 searchoptions: {searchhidden: true}
+                 editrules: {edithidden:true},
+                 searchoptions: {searchhidden: true},
+                 formoptions:{rowpos: 4, colpos: 2} 
              },
             { label: 'CD',
                  name: 'CD',
@@ -118,7 +130,8 @@ var myGrid = $("#jqGrid").jqGrid({
                  formatter: "checkbox",
                  edittype: "checkbox", editoptions: { value: "1:0", defaultValue: "0" },
                  formatoptions: {disabled : false},
-                 editrules: {edithidden:true}
+                 editrules: {edithidden:true},
+                 formoptions:{rowpos: 5, colpos: 1} 
              },
              
              { label: 'USB',
@@ -129,7 +142,8 @@ var myGrid = $("#jqGrid").jqGrid({
                  formatter: "checkbox",
                  edittype: "checkbox", editoptions: { value: "1:0", defaultValue: "0" },
                  formatoptions: {disabled : false},
-                 editrules: {edithidden:true}
+                 editrules: {edithidden:true},
+                 formoptions:{rowpos: 5, colpos: 2} 
              },
             { label: 'Detalle',
                  name: 'DETALLE',
@@ -138,15 +152,16 @@ var myGrid = $("#jqGrid").jqGrid({
                  editable: true,
                  edittype: "textarea",
                  editrules: {edithidden:true},
-                 editoptions: {rows:"2",cols:"43"},
-                 searchoptions: {searchhidden: true}
+                 editoptions: {rows:"5"},
+                 searchoptions: {searchhidden: true},
              },
              { label: 'Entregado a',
                  name: 'ENTREGADO_A',
                  width: 150,
                  editable: true,
                  edittype: "text",
-                 editrules: {edithidden:true,required:true}
+                 editrules: {edithidden:true,required:true},
+                 formoptions:{rowpos: 6, colpos: 1} 
              },
             { label: 'Entregado por',
                  name: 'ENTREGADO_POR',
@@ -155,19 +170,25 @@ var myGrid = $("#jqGrid").jqGrid({
                  edittype: "text",
                 editoptions: {
                     dataInit: function (element) {
+                        
                         $(element).attr("autocomplete","off").typeahead({ 
                             appendTo : "body",
                             source: function(query, proxy) {
+                                var buscar = "buscar";
                                $.ajax({
                                    url: "/CuentasMedicas/RecepcionServlet",
-                                   dataType: "jsonp",
-                                   data: {term: query},
-                                   success : proxy
+                                   type:"POST",
+                                   data: {term: query,oper : buscar,id:0},
+                                   dataType: 'json',
+                                    success: proxy
                                });
+                            },autoSelect: true,
+                            displayText: function (item) {
+                                return item.PRESTADOR;
                             }
                         });
                     }
-                }, editrules: {edithidden:true,required:true}
+                }, editrules: {edithidden:true,required:true},formoptions:{rowpos: 6, colpos: 2} 
             },
             { label: 'USUARIO',
                  name: 'USUARIO',
@@ -201,9 +222,16 @@ var myGrid = $("#jqGrid").jqGrid({
              
             {
             height: 'auto',
-            width: 620,
+            width: 'auto',
             recreateForm: true,
             closeAfterEdit: true,
+             afterSubmit: function(){
+                myGrid.jqGrid('setGridParam', {
+                datatype: "json"
+                });
+                myGrid.trigger("reloadGrid");
+                return [true, ""];
+            },
             errorTextFormat: function (data) {
                 return 'Error oshe: ' + data.responseText;
             }
@@ -211,8 +239,15 @@ var myGrid = $("#jqGrid").jqGrid({
                 // options for the Add Dialog
                 {
                     height: 'auto',
-                    width: 620,
+                    width: 'auto',
                     closeAfterAdd: true,
+                            afterSubmit: function(){
+                       myGrid.jqGrid('setGridParam', {
+                       datatype: "json"
+                       });
+                       myGrid.trigger("reloadGrid");
+                       return [true, ""];
+                   },
                     recreateForm: true,
                     errorTextFormat: function (data) {
                         return 'Error: ' + data.responseText;
@@ -285,11 +320,13 @@ var myGrid = $("#jqGrid").jqGrid({
               refrescarGrilla();
           });
           $('#add_jqGrid').on('click',function(){
+              $("#editmodjqGrid #tr_DETALLE .DataTD").attr('colspan',3);
               $('#sData').on('click',function(){
                   refrescarGrilla();
             });
           });
          $('#edit_jqGrid').on('click',function(){
+             $("#editmodjqGrid #tr_DETALLE .DataTD").attr('colspan',3);
                 $('#sData').on('click',function(){
                   refrescarGrilla();
             });

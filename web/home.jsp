@@ -51,7 +51,7 @@
                 <div class="accordion" id="leftMenu">
                     <div class="accordion-group">
                         <div class="accordion-heading" title="Inicio">
-                            <a class="accordion-toggle linkhome" data-parent="#leftMenu" href="home.jsp">
+                            <a class="accordion-toggle linkhome activo" data-parent="#leftMenu" href="home.jsp">
                                 <i class="fa fa-home"></i> <span class="titulosmenus">Inicio</span>
                             </a>
                         </div>
@@ -89,7 +89,7 @@
                                 <ul>
                                     <li><a href="#" id="linkradconrips">Radicación con RIPS</a></li>
                                     <li><a href="#" id="linkradsinrips">Radicación sin RIPS</a></li>
-                                    <li><a href="#" id="pruebas">Pruebas</a></li>
+                                    <!--<li><a href="#" id="pruebas">Pruebas</a></li>-->
                                 </ul>                 
                             </div>
                          </div>
@@ -123,8 +123,8 @@
                                     <span id="nombreusuario"><%= session.getAttribute("Nombres")%> <%= session.getAttribute("Apellidos")%></span> 
                                     <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                  <li><a href="modulos/administracion/perfilUsuario.jsp">Mi Perfil</a></li>
-                                  <li><a href="modulos/administracion/configuracionUsuario.jsp">Configuración</a></li>
+                                    <li id="linkperfil"><a href="#">Mi Perfil</a></li>
+                                    <li id="linkconfiguracion"><a href="#">Configuración</a></li>
                                   <li><a href="index.jsp">Cerrar Sesión</a></li>
                                 </ul>
                               </li>

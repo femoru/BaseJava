@@ -22,17 +22,19 @@ import org.json.JSONArray;
 public class PerfilDao {
      DBControl db = new DBControl();
      String sql;
+     String sql2;
      ResultSet datoSql;
     
     public PerfilDao(){}
     
-     public Perfil ListarPerfil(String usuario) throws Exception {
+     /*public Perfil ListarPerfil(String usuario) throws Exception {
          Perfil perfil = new Perfil();
         HttpSession sesion = null;
           usuario = sesion.getAttribute("USUARIO").toString();
           System.out.println(usuario);
          try {
-            sql = "SELECT IDUSUARIO,USUARIO,NOMBRES,APELLIDOS,CORREO,FECHANACIMIENTO,ESTADO,IDROL"
+            sql = "SELECT IDUSUARIO,USUARIO,NOMBRES,APELLIDOS,CORREO,TO_CHAR(FECHANACIMIENTO,'YYYY-MM-DD')"
+                    + " AS FECHANACIMIENTO,ESTADO,IDROL"
                     + " FROM CUENTASMEDICAS.CMUSUARIOS WHERE USUARIO = ?";
                 String[] params = {usuario};
                 ArrayList<HashMap<String, Object>> consultar = db.consultar(sql, params);
@@ -45,6 +47,7 @@ public class PerfilDao {
                 String fechanacimiento = String.valueOf(consultar.get(0).get("FECHANACIMIENTO"));
                 String estado = String.valueOf(consultar.get(0).get("ESTADO"));
                 String idrol = String.valueOf(consultar.get(0).get("IDROL"));
+                System.out.println(fechanacimiento);
               
                 perfil.setIdusuario(Integer.parseInt(idusuario));
                 perfil.setUsuario(codusuario);
@@ -62,5 +65,32 @@ public class PerfilDao {
             System.out.println(ex);
            throw new Exception(ex.getMessage());
         }
-     }
+     }*/
+    
+    public boolean Actualizar(Perfil perfil)throws Exception{
+        try {
+            sql="UPDATE CMUSUARIOS SET USUARIO = ?, NOMBRES = ?, APELLIDOS = ?, "
+                    + "CORREO = ?, FECHANACIMIENTO = TO_DATE(?,?) WHERE IDUSUARIO = ?";
+            db.conectar();
+            db.callableStatement(sql);
+            String formato = "YYYY/MM/DD";
+            
+            db.AsignarParametro(1, perfil.getUsuario(), 1);
+            db.AsignarParametro(2, perfil.getNombres(), 1);
+            db.AsignarParametro(3, perfil.getApellidos(), 1);
+            db.AsignarParametro(4, perfil.getCorreo(), 1);
+            db.AsignarParametro(5, perfil.getFechanacimiento(), 1);
+            db.AsignarParametro(6, formato, 1);
+            db.AsignarParametro(7, Integer.toString(perfil.getIdusuario()), 2);
+            
+            
+            return db.registrar();
+        } catch (SQLException e) {
+            System.out.println(e);
+            throw new Exception(e.getMessage());
+        }finally{
+            db.desconectar();
+        }
+    }
+    
 }

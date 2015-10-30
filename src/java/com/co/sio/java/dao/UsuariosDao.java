@@ -116,5 +116,37 @@ public class UsuariosDao {
             db.desconectar();
         }
     }
+    public String VerificarContrasena(String id, String pass)throws Exception{
+        try {
+            sql="SELECT CONTRASENA FROM CMUSUARIOS WHERE IDUSUARIO = ? AND CONTRASENA = ?";
+            String[] params = {id,SeguridadUtils.encripta(pass)};
+                
+            ArrayList<HashMap<String, Object>> consultar = db.consultar(sql,params);
+             JSONArray arr = new JSONArray(consultar);
+             return  arr.toString();
+       } catch (SQLException ex) {
+            System.out.println(ex);
+           throw new Exception(ex.getMessage());
+        }
+
+    }
+    public boolean CambioContrasena(String id, String pass)throws Exception{
+        try {
+            sql="UPDATE CMUSUARIOS SET CONTRASENA = ? WHERE IDUSUARIO = ?";
+            db.conectar();
+            db.callableStatement(sql);
+            db.AsignarParametro(1, SeguridadUtils.encripta(pass), 1);
+            db.AsignarParametro(2, id, 2);
+            
+            return db.registrar();
+
+       } catch (SQLException ex) {
+            System.out.println(ex);
+           throw new Exception(ex.getMessage());
+        }finally{
+            db.desconectar();
+        }
+
+    }
 
 }

@@ -24,3 +24,6 @@ and open the template in the editor.
 .contenttablas  div{
     max-width: 100% ;
 }
+#Act_Buttons .navButton {
+    display: none;
+}

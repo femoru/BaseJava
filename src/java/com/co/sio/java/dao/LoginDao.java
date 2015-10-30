@@ -32,7 +32,8 @@ import org.json.JSONArray;
         
         try {
             Usuarios usuarios  =  new Usuarios();
-            sql = "SELECT IDUSUARIO,USUARIO,NOMBRES,APELLIDOS,CORREO,FECHANACIMIENTO,ESTADO,IDROL"
+            sql = "SELECT IDUSUARIO,USUARIO,NOMBRES,APELLIDOS,CORREO,TO_CHAR(FECHANACIMIENTO,'YYYY-MM-DD')AS FECHANACIMIENTO,"
+                    + "ESTADO,IDROL"
                     + " FROM CUENTASMEDICAS.CMUSUARIOS WHERE USUARIO = ? and CONTRASENA = ? and ESTADO = 1";
             String[] params = {user,SeguridadUtils.encripta(pass)};
 

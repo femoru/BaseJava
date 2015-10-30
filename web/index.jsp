@@ -31,7 +31,7 @@
         </header><!-- --------------------------------------------- -->
         <section>
             <img class="img-responsive" src="recursos/img/logo-sio.png" id="logo" alt=""/>
-            <div class="container">
+            <br/><div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-4 hidden-sm hidden-xs"></div>
                     <div id="formlogin" class="col-md-4">
@@ -74,7 +74,7 @@
            </div>
         </section>
         <div class="corte col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>
-        
+        <div class="corte col-lg-12 col-md-12 col-sm-12 col-xs-12"></div>
         <footer class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div id="footer">
                 <p class="copyright">SIO S.A. | Cali: Cra 100 # 14 - 96 Barrio Ciudad Jardín PBX: (57 2) 485 5757 - (572) 485 5758 </p>
