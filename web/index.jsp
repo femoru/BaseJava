@@ -57,11 +57,11 @@
                                </div>
                             </div>
                             
-                            <div class="checkbox">
+                           <!--<div class="checkbox">
                                 <label>
-                                  <input type="checkbox">Recordarme
+                                    <input type="checkbox" name="recordarme">Recordarme
                                 </label>
-                            </div>
+                            </div>-->
                             
                             <button type="submit" class="btn btn-primary col-lg-4 col-md-4 col-sm-12 col-xs-12 botonesfrm">Ingresar</button>
                             <div id="forgetpassword"><a href="modulos/administracion/recuperarContrasena.jsp">Olvidaste tu contraseña?</a></div>

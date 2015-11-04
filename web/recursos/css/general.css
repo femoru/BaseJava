@@ -138,3 +138,6 @@ footer{
 #jqGrid{
    // word-break: break-all;
 }
+#contentmenu #collapselinkadmin a, #contentmenu #collapselinkradfac a{
+    font-weight: inherit;
+}

@@ -3,6 +3,9 @@
     Created on : 16/10/2015, 10:13:59 AM
     Author     : bmunoz
 --%>
+<%@page import="org.json.JSONObject"%>
+<%@page import="org.json.JSONArray"%>
+<%@page import="com.co.sio.java.dao.MenuDao"%>
 <!DOCTYPE html>
 <html lang="es"><!--Temporal mientras se define el layout-->
     <head>
@@ -56,44 +59,45 @@
                             </a>
                         </div>
                     </div>
-                      <div class="accordion-group">
-                        <div class="accordion-heading" title="Radicación de Documentos">
-                            <a class="accordion-toggle" id="linkadmin" data-toggle="collapse" data-parent="#leftMenu" href="#collapseAdmin">
-                                <i class="fa fa-cogs"></i><span class="titulosmenus"> Administración</span>
-                            </a>
-                        </div>
-                        <div id="collapseAdmin" class="accordion-body collapse" style="height: 0px; ">
-                            <div class="accordion-inner">
-                                <ul>
-                                    <!--<li><a href="#" id="linkregusua">Registro de Usuarios</a></li>-->
-                                    <li><a href="#" id="linkusua">Usuarios</a></li>
-                                </ul>                 
-                            </div>
-                         </div>
-                    </div>
-                    <div class="accordion-group">
-                        <div class="accordion-heading" title="Recepción de Documentos">
-                            <a class="accordion-toggle" data-parent="#leftMenu" href="#" id="linkrecdocs">
-                                <i class="fa fa-file-text"></i> <span class="titulosmenus">Recepción de Documentos</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="accordion-group">
-                        <div class="accordion-heading" title="Radicación de Documentos">
-                            <a class="accordion-toggle" id="linkradfac" data-toggle="collapse" data-parent="#leftMenu" href="#collapseThree">
-                                <i class="fa fa-newspaper-o"></i><span class="titulosmenus"> Radicación de Facturas</span>
-                            </a>
-                        </div>
-                        <div id="collapseThree" class="accordion-body collapse" style="height: 0px; ">
-                            <div class="accordion-inner">
-                                <ul>
-                                    <li><a href="#" id="linkradconrips">Radicación con RIPS</a></li>
-                                    <li><a href="#" id="linkradsinrips">Radicación sin RIPS</a></li>
-                                    <!--<li><a href="#" id="pruebas">Pruebas</a></li>-->
-                                </ul>                 
-                            </div>
-                         </div>
-                    </div>
+
+              
+                    <% 
+                       MenuDao menudao =new MenuDao();
+                       String usuario = session.getAttribute("usuario").toString();
+                       JSONArray json = new JSONArray(menudao.Crearmenu(usuario));
+                       
+                       String Idrol =  session.getAttribute("Idrol").toString();
+
+                       for (int i = 0; i < json.length(); i++) {
+                                JSONObject row = json.getJSONObject(i);
+                                int id = row.getInt("ID");
+                                String menu = row.getString("MENU");
+                                String identificador = row.getString("IDENTIFICADOR");
+                                String icono = row.getString("ICONO");
+                                
+                                out.println("<div class='accordion-group'>");
+                                    out.println("<div class='accordion-heading' title='"+menu+"'>");
+                                        out.println("<a class='accordion-toggle' id="+identificador+" data-toggle='collapse' data-parent='#leftMenu' href='#collapse"+identificador+"'>");
+                                            out.println("<i class='"+icono+"'></i><span class='titulosmenus'>&nbsp;" +menu+"</span>");
+                                        out.println("</a>");
+                                    out.println("</div>");
+                                    out.println("<div id='collapse"+identificador+"' class='accordion-body collapse' style='height: 0px; '>");
+                                        out.println("<div class='accordion-inner'>");
+                                             out.println("<ul>");
+                                             
+                                        JSONArray jsonchild = new JSONArray(menudao.Crearmenuhijos(Integer.toString(id),Idrol));
+                                        for (int j = 0; j < jsonchild.length(); j++) {
+                                            JSONObject row2 = jsonchild.getJSONObject(j);
+                                            String menuchild = row2.getString("HIJO");
+                                            String childid = row2.getString("IDENTIFICADOR");
+                                            out.println("<li><a href='#' id='"+childid+"'>"+menuchild+"</a></li>");
+                                        }
+                                            out.println("</ul>");
+                                        out.println("</div>");
+                                    out.println("</div>");
+                                out.println("</div>");
+                            }
+                    %>
                 </div>
             </aside>
         </div>

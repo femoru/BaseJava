@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+          <div class="accordion-group">
+                        <div class="accordion-heading" title="Administración">
+                            <a class="accordion-toggle" id="linkadmin" data-toggle="collapse" data-parent="#leftMenu" href="#collapseAdmin">
+                                <i class="fa fa-cogs"></i><span class="titulosmenus"> Administración</span>
+                            </a>
+                        </div>
+                        <div id="collapseAdmin" class="accordion-body collapse" style="height: 0px; ">
+                            <div class="accordion-inner">
+                                <ul>
+                                   <li><a href="#" id="linkregusua">Registro de Usuarios</a></li>
+                                    <li><a href="#" id="linkusua">Usuarios</a></li>
+                                </ul>                 
+                            </div>
+                         </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading" title="Recepción de Documentos">
+                            <a class="accordion-toggle" data-parent="#leftMenu" href="#" id="linkrecdocs">
+                                <i class="fa fa-file-text"></i> <span class="titulosmenus">Recepción de Documentos</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="accordion-group">
+                        <div class="accordion-heading" title="Radicación de Documentos">
+                            <a class="accordion-toggle" id="linkradfac" data-toggle="collapse" data-parent="#leftMenu" href="#collapseThree">
+                                <i class="fa fa-newspaper-o"></i><span class="titulosmenus"> Radicación de Facturas</span>
+                            </a>
+                        </div>
+                        <div id="collapseThree" class="accordion-body collapse" style="height: 0px; ">
+                            <div class="accordion-inner">
+                                <ul>
+                                    <li><a href="#" id="linkradconrips">Radicación con RIPS</a></li>
+                                    <li><a href="#" id="linkradsinrips">Radicación sin RIPS</a></li>
+                                    <li><a href="#" id="pruebas">Pruebas</a></li>
+                                </ul>                 
+                            </div>
+                         </div>
+                    </div>
+    </body>
+</html>

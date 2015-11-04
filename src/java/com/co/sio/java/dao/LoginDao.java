@@ -32,15 +32,31 @@ import org.json.JSONArray;
         
         try {
             Usuarios usuarios  =  new Usuarios();
+           
+             //(cambiar)
+            String sqlstate = "SELECT USUARIO FROM CMUSUARIOS WHERE USUARIO = ?"; //sentencia para validar si el usuario ingresado es correcto
+            String[] paramstate = {user};
+            ArrayList<HashMap<String, Object>> consultarstate = db.consultar(sqlstate, paramstate);
+            //(cambiar)
+            String sqlstate2 = "SELECT ESTADO FROM CMUSUARIOS WHERE CONTRASENA = ?";//sentencia para validar si la contraseña ingresada es correcta
+            String[] paramstate2 = {SeguridadUtils.encripta(pass)};
+            ArrayList<HashMap<String, Object>> consultarstate2 = db.consultar(sqlstate2, paramstate2);
+            
             sql = "SELECT IDUSUARIO,USUARIO,NOMBRES,APELLIDOS,CORREO,TO_CHAR(FECHANACIMIENTO,'YYYY-MM-DD')AS FECHANACIMIENTO,"
                     + "ESTADO,IDROL"
-                    + " FROM CUENTASMEDICAS.CMUSUARIOS WHERE USUARIO = ? and CONTRASENA = ? and ESTADO = 1";
+                    + " FROM CMUSUARIOS WHERE USUARIO = ? and CONTRASENA = ? and ESTADO = 1";
             String[] params = {user,SeguridadUtils.encripta(pass)};
-
             ArrayList<HashMap<String, Object>> consultar = db.consultar(sql, params);
-
-            if (consultar.size()==0) {
-                usuarios.setMensajes("Usuario o Clave Invalida");
+            
+            if (consultarstate.size()==0) {
+                usuarios.setMensajes("Usuario inválido");
+            }
+            else if (consultarstate2.size()==0) {
+                usuarios.setMensajes("Contraseña Incorrecta");
+            }
+            else if (consultar.size()==0) {
+                usuarios.setMensajes("Usuario Inactivo");
+                
             }else{
                 String idusuario = String.valueOf(consultar.get(0).get("IDUSUARIO"));
                 String usuario = String.valueOf(consultar.get(0).get("USUARIO"));
@@ -50,7 +66,6 @@ import org.json.JSONArray;
                 String fechanacimiento = String.valueOf(consultar.get(0).get("FECHANACIMIENTO"));
                 String estado = String.valueOf(consultar.get(0).get("ESTADO"));
                 String idrol = String.valueOf(consultar.get(0).get("IDROL"));
-              
                 usuarios.setIdusuario(Integer.parseInt(idusuario));
                 usuarios.setUsuario(usuario);
                 usuarios.setNombres(nombres);

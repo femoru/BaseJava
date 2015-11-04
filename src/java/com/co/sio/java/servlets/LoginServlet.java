@@ -6,14 +6,18 @@
 package com.co.sio.java.servlets;
 
 import com.co.sio.java.dao.LoginDao;
+import com.co.sio.java.dao.MenuDao;;
 import com.co.sio.java.model.Usuarios;
 import java.io.IOException;
+import static java.lang.System.out;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  *
@@ -50,6 +54,8 @@ public class LoginServlet extends HttpServlet {
        // processRequest(request, response);
         try {
             Usuarios usuarios =  new Usuarios();
+           // MenuDao menudao = new MenuDao();
+           // Menu menu = new Menu();
             usuarios.setUsuario(request.getParameter("usuario"));
             usuarios.setContrasena(request.getParameter("contrasena"));
             LoginDao login = new LoginDao();
@@ -70,6 +76,18 @@ public class LoginServlet extends HttpServlet {
                 sesion.setAttribute("Correo", usuarios.getCorreo());
                 sesion.setAttribute("FechaNacimiento", usuarios.getFechanacimiento());
                 sesion.setAttribute("Idrol", usuarios.getIdrol());
+                /*Object  data = "hello world";
+                 request.setAttribute("data", data);*
+                
+                MenuDao menudao =new MenuDao();
+                String usuario = sesion.getAttribute("usuario").toString();
+                JSONArray json = new JSONArray(menudao.Crearmenu(usuario));
+                String Idrol =  sesion.getAttribute("Idrol").toString();
+                
+               Object data = "";
+                request.setAttribute("data", data);
+                 
+                 request.getRequestDispatcher("home.jsp").forward(request, response);*/
 
                 response.sendRedirect("home.jsp");
             } 
