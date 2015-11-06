@@ -201,6 +201,7 @@ var myGrid = $("#jqGrid").jqGrid({
         ],
         viewrecords: true,
         rowNum: 10,
+        ondblClickRow: editRow,
         //onSelectRow: editRow, 
         pager: "#jqGridPager",
         caption : "<b>Matriz Recepción de Documentos</b>"

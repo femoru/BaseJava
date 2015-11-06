@@ -54,11 +54,11 @@
                     <div class="control-group">
                         <div class="row contentinforow1">
                             <div class="col-lg-4 col-md-4 ">
-                                <input type="checkbox" name="ipsadscrita"  class="infocheckbox" checked/>
+                                <input type="checkbox" name="ipsadscrita" id="ips_adscrita" class="infocheckbox" />
                                 <label for="ipsadscrita">IPS Adscrita</label>
                             </div>
                             <div class="col-lg-4 col-md-4 ">
-                                <input type="checkbox" name="consultorio" class="infocheckbox"/>
+                                <input type="checkbox" name="consultorio" id="consultorio_medico" class="infocheckbox"/>
                                 <label for="consultorio">Consultorio Médico</label>
                              </div>
                             <div class="col-lg-4 col-md-4 ">
@@ -68,8 +68,9 @@
                                             <label for="codinterno">Código Interno</label>
                                         </div>
                                         <div class="col-lg-6 col-md-6 ">
-                                            <input type="text" class="inputsradconrips form-control" name="codinterno" value="00106"/>
+                                            <input type="text" class="inputsradconrips form-control" id="codigo_interno" name="codinterno" value=""/>
                                         </div>
+                                        <p id="datos"></p>
                                     </div>
                                 </div>
                             </div>
@@ -82,19 +83,16 @@
                                         <select class="form-control" name="tipoidentificacion">
                                             <option value="1">NIT</option>
                                             <option value="2">Cédula</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
                                          </select>
                                     </div>
                                     <div class="col-lg-6 col-md-6 ">
-                                        <input type="text" class="inputsradconrips form-control" name="numidentificacion" value="890324177"/>
+                                        <input type="text" class="inputsradconrips form-control" name="numidentificacion" value="" id="identificacion"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 ">
                                 <label for="nombreprestador">Nombre</label>
-                                <input type="text" class=" inputsradconrips form-control" id="inputrnombre" name="nombreprestador" value="Fundación Clinica Valle del Lili"/>
+                                <input type="text" class=" inputsradconrips form-control typeahead" id="nombreprestador" name="nombreprestador" value="" autocomplete="off" />
                             </div>
                         </div>
                     </div>
@@ -115,7 +113,7 @@
                                     <label for="numerolote">Número de Lote</label>
                                 </div>
                                 <div class="col-lg-6 col-md-6 ">
-                                    <input type="text" class=" inputsradconrips form-control" id="inputrnombre" name="numerolote" value="1585558"/>
+                                    <input type="text" class=" inputsradconrips form-control" id="numerolote" name="numerolote" value="1585558"/>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +123,7 @@
                                      <label for="estadolote">Estado del Lote</label>
                                  </div>
                                  <div class="col-lg-6 col-md-6 ">
-                                     <input type="text" class=" inputsradconrips form-control" id="inputrnombre" name="estadolote" value="Parcial"/>
+                                     <input type="text" class=" inputsradconrips form-control" id="estadolote" name="estadolote" value="Parcial"/>
                                  </div>
                             </div>
                         </div>
@@ -141,10 +139,10 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 ">
                             <div class="row">
-                                <div class="col-lg-6 col-md-6 ">
+                                <div class="col-lg-4 col-md-4 ">
                                     <label for="plan">Plan</label>
                                 </div>
-                                <div class="col-lg-6 col-md-6 ">
+                                <div class="col-lg-8 col-md-8 ">
                                     <select class="form-control" name="plan">
                                             <option value="1">POS</option>
                                             <option value="2">FAMILIAR</option>
@@ -158,10 +156,10 @@
                         </div>
                         <div class="col-lg-6 col-md-6 ">
                             <div class="row">
-                                <div class="col-lg-6 col-md-6 ">
+                                <div class="col-lg-4 col-md-4 ">
                                      <label for="tipocuenta">Tipo de Cuenta</label>
                                 </div>
-                                <div class="col-lg-6 col-md-6 ">
+                                <div class="col-lg-8 col-md-8 ">
                                     <select class="form-control" name="tipocuenta">
                                             <option value="1">MEDICAMENTOS DE USO AMBULATORIO</option>
                                             <option value="2">URGENCIAS</option>

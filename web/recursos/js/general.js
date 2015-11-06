@@ -4,7 +4,14 @@
     if(n != -1){
        $('.linkhome').css("background","#cecece", "!important");
     }
-   
+alert = function(msg){
+    $.jgrid.info_dialog(
+                    $.jgrid.regional["es"].errors.errcap,
+                    '<div class="ui-state-error"> '+ msg +'</div>',
+                    $.jgrid.regional["es"].edit.bClose,
+                    {buttonalign: 'right', styleUI: 'Bootstrap', zIndex: 1234, top: 800, left: 400}
+            );
+}
     $("#linkrecdocs, #linkradconrips , #linkradsinrips, #linkperfil, #linkusua, #linkconfiguracion").on("click",function(){
         $('.seccionjumbo').remove();
         $('.contenidotemporal').remove(); 

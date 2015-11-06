@@ -67,6 +67,7 @@
                             </div>
                         </div>
                     </div>
+                    <p id="datos"></p>
                     <div class="contenttablas">
                         <table id="jqGrid" class="tablasdatos"></table>
                     </div>
