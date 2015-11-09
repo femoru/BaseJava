@@ -6,6 +6,7 @@
 package com.co.sio.java.dao;
 
 import com.co.sio.java.db.DBControl;
+import com.co.sio.java.model.Radicacion;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,9 +19,12 @@ import org.json.JSONArray;
 public class RadicacionDao {
     DBControl db = new DBControl();
     String sql;
+    String sql2;
     ResultSet datosql;
     
-    public RadicacionDao(){}
+    public RadicacionDao(){
+       Radicacion radicacion = new Radicacion();
+    }
     
     public String PrestadorCodigo(String codigo_interno)throws Exception{
         try {
@@ -71,5 +75,34 @@ public class RadicacionDao {
             System.out.println(e); 
             throw new Exception(e.getMessage());
         }
-    } 
+    }
+   public boolean Insertar(Radicacion radicacion)throws Exception{
+        try {
+            sql="SELECT ID FROM CMRADICACION WHERE ID = ?";
+            String [] params = {Integer.toString(radicacion.getIdradicacion())};
+            ArrayList<HashMap<String,Object>> consultar = db.consultar(sql,params);
+            
+            if (consultar.size()>1){
+                System.out.println("uno");
+            }else{
+                System.out.println("cero");
+            }
+           /*sql2="INSERT INTO CMRADICACION(FECHA_RADICACION,OFICINA,PREFIJO_FACTURA,SUFIJO_FACTURA,NUMERO_FACTURA,\n" +
+                "FECHA_FACTURA,VALOR_FACTURA,MOTIVO_ESTADO,ESTADO_FACTURA,TIPO_RADICACION,IDPRESTADOR)"
+                 + "VALUES(TO_DATE(?,?),?,?,?,?,TO_DATE(?,?),?,?,?,?,?)";
+            db.conectar();
+            db.callableStatement(sql);
+            
+            //db.AsignarParametro(1, radicacion.getFecha_factura(), 1);
+            String formato = "yyyy/mm/dd hh24:mi";*/
+            
+            return true;
+            
+        }catch (Exception e) {
+            System.out.println(e); 
+            throw new Exception(e.getMessage());
+        }finally{
+            db.desconectar();
+        }
+    }
 }

@@ -12,10 +12,11 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/bmunoz/Desktop/backup%20bryan/NetBeansProjects/SIOCuentasMedicas/web/modulos/Radicacion/radicacionSinRips.jsp</file>
+            <file>file:/C:/Users/bmunoz/Desktop/backup%20bryan/NetBeansProjects/SIOCuentasMedicas/src/java/com/co/sio/java/dao/RecepcionDao.java</file>
             <file>file:/C:/Users/bmunoz/Desktop/backup%20bryan/NetBeansProjects/SIOCuentasMedicas/src/java/com/co/sio/java/dao/RadicacionDao.java</file>
+            <file>file:/C:/Users/bmunoz/Desktop/backup%20bryan/NetBeansProjects/SIOCuentasMedicas/src/java/com/co/sio/java/model/Radicacion.java</file>
             <file>file:/C:/Users/bmunoz/Desktop/backup%20bryan/NetBeansProjects/SIOCuentasMedicas/web/recursos/js/radicacionSinRips.js</file>
-            <file>file:/C:/Users/bmunoz/Desktop/backup%20bryan/NetBeansProjects/SIOCuentasMedicas/web/recursos/js/recepcionDocumentos.js</file>
+            <file>file:/C:/Users/bmunoz/Desktop/backup%20bryan/NetBeansProjects/SIOCuentasMedicas/src/java/com/co/sio/java/servlets/RadicacionServlet.java</file>
         </group>
     </open-files>
 </project-private>

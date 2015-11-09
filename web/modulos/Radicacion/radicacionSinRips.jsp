@@ -80,6 +80,7 @@
                                 <label for="tipoidentificacion">Identificación</label>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 ">
+                                        <!--<input type="text" id="idprestador" value="">-->
                                         <select class="form-control" name="tipoidentificacion">
                                             <option value="1">NIT</option>
                                             <option value="2">Cédula</option>
