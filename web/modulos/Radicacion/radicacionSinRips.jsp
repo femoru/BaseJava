@@ -30,7 +30,7 @@
                                     <label for="fecharadicacion">Fecha Radicación</label>
                                 </div>
                                 <div class="col-lg-6 col-md-6 ">
-                                    <input type="text" class="inputsradconrips form-control" name="fecharadicacion" readonly placeholder="2015/08/30 03:31:00"/>
+                                    <input type="text" class="inputsradconrips form-control" name="fecharadicacion" disabled placeholder="2015/08/30 03:31:00"/>
                                 </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                                      <label for="corte">Periodo de Corte</label>
                                  </div>
                                  <div class="col-lg-6 col-md-6 ">
-                                     <input type="text" class="inputsradconrips form-control" name="corte" readonly placeholder="JUL 26 2015 - AGO 30 2015"/>
+                                     <input type="text" class="inputsradconrips form-control" name="corte" disabled placeholder="JUL 26 2015 - AGO 30 2015"/>
                                  </div>
                             </div>
                         </div>
@@ -88,6 +88,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6 ">
                                         <input type="text" class="inputsradconrips form-control" name="numidentificacion" value="" id="identificacion"/>
+                                        <input type="hidden"  name="idprestador" value="" id="idprestador"/>
                                     </div>
                                 </div>
                             </div>
@@ -97,8 +98,26 @@
                             </div>
                         </div>
                     </div>
-                    <div class="contenttablas">
+                    <!--<div class="contenttablas">
                         <table id="jqGrid" class="tablasdatos"></table>
+                    </div>-->
+                    <div class="contenttablas">
+                        <table class="table table-bordered table-condensed table-hover table-striped">
+                            <thead>
+                                <th><b>Sucursal</b></th>
+                                <th><b>Ciudad</b></th>
+                                <th><b>Dirección</b></th>
+                                <th><b>Teléfono</b></th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" id="inputsucursal" class="form-control" value="" disabled/></td>
+                                    <td><input type="text" id="inputciudad" class="form-control" value="" disabled/></span></td>
+                                    <td><input type="text" id="inputdireccion" class="form-control" value="" disabled/></span></td>
+                                    <td><input type="text" id="inputtelefono" class="form-control" value="" disabled/></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </fieldset>
         </form>
