@@ -25,7 +25,7 @@ public class Radicacion {
     private String sufijo_factura;
     private String numero_factura;
     private String fecha_factura;
-    private String valor_factura;
+    private int valor_factura;
     private String motivo_estado;
     private String estado_factura;
     private String tipo_radicacion;
@@ -216,14 +216,14 @@ public class Radicacion {
     /**
      * @return the valor_factura
      */
-    public String getValor_factura() {
+    public int getValor_factura() {
         return valor_factura;
     }
 
     /**
      * @param valor_factura the valor_factura to set
      */
-    public void setValor_factura(String valor_factura) {
+    public void setValor_factura(int valor_factura) {
         this.valor_factura = valor_factura;
     }
 

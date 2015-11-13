@@ -84,13 +84,15 @@ public class RadicacionServlet extends HttpServlet {
                 String codigo_interno  = request.getParameter("codigo_interno");
 
                 try {
+                    System.out.println(codigo_interno);
                     String json = radicaciondao.PrestadorCodigo(codigo_interno);
+                    String json2 = radicaciondao.RadicacionCodigo(codigo_interno);
                     response.setContentType("application/json");
                     response.setCharacterEncoding("utf-8");
                     response.setHeader("Pragma", "no-cache");
                     response.setHeader("Cache-Control", "no-cache,must-revalidate");
                     response.setHeader("Pragma", "no-cache");
-                    response.getWriter().print(json);
+                    response.getWriter().print("["+json+","+json2+"]");
                     response.getWriter().close();
                 
                 } catch (Exception ex) {
@@ -106,12 +108,13 @@ public class RadicacionServlet extends HttpServlet {
 
                 try {
                     String json = radicaciondao.PrestadorIdentificacion(identificacion);
+                    String json2 = radicaciondao.RadicacionIdentificacion(identificacion);
                     response.setContentType("application/json");
                     response.setCharacterEncoding("utf-8");
                     response.setHeader("Pragma", "no-cache");
                     response.setHeader("Cache-Control", "no-cache,must-revalidate");
                     response.setHeader("Pragma", "no-cache");
-                    response.getWriter().print(json);
+                    response.getWriter().print("["+json+","+json2+"]");
                     response.getWriter().close();
                 
                 } catch (Exception ex) {
@@ -134,24 +137,51 @@ public class RadicacionServlet extends HttpServlet {
                     Logger.getLogger(RadicacionServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
              }
+             boolean isset4 = (request.getParameter("cadena2")==null);
+             if (!isset4) {
+                 String cadena2  = request.getParameter("cadena2");
+                 String codigo_interno  = request.getParameter("codigointerno");
+
+                 try {
+                    String json = radicaciondao.RadicacionNombre(cadena2,codigo_interno);
+                    response.setContentType("application/json");
+                    response.setCharacterEncoding("utf-8");
+                    response.setHeader("Pragma", "no-cache");
+                    response.setHeader("Cache-Control", "no-cache,must-revalidate");
+                    response.setHeader("Pragma", "no-cache");
+                    response.getWriter().print("["+json+","+json+"]");
+                     //System.out.println(json);
+                    response.getWriter().close();
+                 }  catch (Exception ex) {
+                    Logger.getLogger(RadicacionServlet.class.getName()).log(Level.SEVERE, null, ex);
+                }
+             }
              boolean edicion = (request.getParameter("id")==null);
                if (!edicion) {
                 try {
                     String idgrilla = request.getParameter("id");
-                    if(idgrilla.charAt(0)=='j') {
+                    if(idgrilla==""){
+                        radicacion.setIdradicacion(0);
+                    }
+                    else if(idgrilla.charAt(0)=='j') {
                         radicacion.setIdradicacion(Integer.parseInt(idgrilla.substring(3)));
                     }else{
                         radicacion.setIdradicacion(Integer.parseInt(idgrilla));
                     }
+                    String valor_factura = request.getParameter("valorfactura");
+                    valor_factura = valor_factura.replaceAll("\\.",""); 
+                    valor_factura = valor_factura.replaceAll("\\,","");
                     radicacion.setFecha_radicacion(request.getParameter("fecharadicacion"));
                     radicacion.setOficina(request.getParameter("oficina"));
                     radicacion.setPrefijo_factura(request.getParameter("prefijofactura"));
                     radicacion.setSufijo_factura(request.getParameter("sufijofactura"));
                     radicacion.setNumero_factura(request.getParameter("numerofactura"));
                     radicacion.setFecha_factura(request.getParameter("fechafactura"));
-                    radicacion.setValor_factura(request.getParameter("valorfactura"));
+                    radicacion.setValor_factura(Integer.parseInt(valor_factura));
                     radicacion.setMotivo_estado("PROCESO");
                     radicacion.setEstado_factura("PROCESO");
+                    radicacion.setTipo_radicacion(request.getParameter("tiporadicacion"));
+                    radicacion.setIdprestador(Integer.parseInt(request.getParameter("idprestador")));
                     
                     radicaciondao.Insertar(radicacion);
                 } catch (Exception ex) {

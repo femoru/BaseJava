@@ -50,6 +50,9 @@
     border: 1px solid red;
     display:none;
 }
+#jqGrid {
+    font-size: 12px;
+}
 /*@media(min-width: 992px){
 #contentmenu{
     width: 24%;

@@ -6,12 +6,12 @@
     }
 alert = function(msg){
     $.jgrid.info_dialog(
-                    $.jgrid.regional["es"].errors.errcap,
-                    '<div class="ui-state-error"> '+ msg +'</div>',
-                    $.jgrid.regional["es"].edit.bClose,
-                    {buttonalign: 'right', styleUI: 'Bootstrap', zIndex: 1234, top: 800, left: 400}
-            );
-}
+        $.jgrid.regional["es"].errors.errcap,
+        '<div class="ui-state-error"> '+ msg +'</div>',
+        $.jgrid.regional["es"].edit.bClose,
+        {buttonalign: 'right', styleUI: 'Bootstrap', zIndex: 1234, top: 800, left: 400}
+    );
+};
     $("#linkrecdocs, #linkradconrips , #linkradsinrips, #linkperfil, #linkusua, #linkconfiguracion").on("click",function(){
         $('.seccionjumbo').remove();
         $('.contenidotemporal').remove(); 
@@ -31,6 +31,7 @@ alert = function(msg){
     });
     $("#linkradsinrips").on("click",function(){
         $('.navbar-brand').html("RADICACIÓN DE DOCUMENTOS SIN RIPS");
+        $( ".nuevapagina" ).load( "modulos/Radicacion/radicacionSinRips.jsp" );
         $( ".nuevapagina" ).load( "modulos/Radicacion/radicacionSinRips.jsp" );
         $('#linkradsinrips').css("background","#cecece");
     });

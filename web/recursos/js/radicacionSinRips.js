@@ -1,23 +1,22 @@
 ﻿ $(function () {
     $('[data-toggle="tooltip"]').tooltip();
 });
-var jqgrid_data = [{}];
+var jqgrid_data = new Array();
 var lastSel;
 var selICol;
 var selIRow;
-creargrilla();
+var cabecera;
+var filas;
+var cabecera;
+var filas;
+var data = [{}];
+var item = 0;   
+var indGrilla = 0;
 
 $('#nombreprestador').typeahead({
-    
     source: function (query, proxy) {
-        cleardata();
-        creargrilla(jqgrid_data);
+        recargardatos();
         $('#identificacion').val("");
-        $('#inputsucursal').val("");
-        $('#inputciudad').val("");
-        $('#inputdireccion').val("");
-        $('#inputtelefono').val("");
-        $('#idprestador').val("");
         $('#codigo_interno').val("");
         $.ajax({
             url: "/CuentasMedicas/RadicacionServlet",
@@ -38,26 +37,22 @@ $('#nombreprestador').typeahead({
          $.ajax({
             url: "/CuentasMedicas/RadicacionServlet",
             type: "POST",
-            data: {cadena2: $('#nombreprestador').val(),codigointerno : item.CODIGO_INTERNO },
+            data: {cadena2: $('#nombreprestador').val(),codigointerno : item.CODIGO_INTERNO},
             dataType: 'json'
         }).done(function (data) {
-          for (var i = 0; i < data.length; i++) {
-             
-            jqgrid_data = [{
-               id: data[i].IDRADICACION,
-                fecharadicacion: data[i].FECHA_RADICACION,
-                oficina: data[i].OFICINA,
-                prefijofactura: data[i].PREFIJO_FACTURA,
-                sufijofactura: data[i].SUFIJO_FACTURA,
-                numerofactura: data[i].NUMERO_FACTURA,
-                fechafactura: data[i].FECHA_FACTURA,
-                valorfactura: data[i].VALOR_FACTURA,
-                motivoestado: data[i].MOTIVO_ESTADO,
-                estadofactura: data[i].ESTADO_FACTURA,
-                tiporadicacion: data[i].TIPO_RADICACION
-            }];
-            creargrilla(jqgrid_data);
-           }
+             for(item in data){
+            if(item ==="0"){
+                cabecera = data[item][0];
+                if(cabecera !== undefined){
+                }
+            }else{
+                for(indGrilla in data[item]){
+                    llenargrilla(data,indGrilla,item);
+                    jqgrid_data.push(filas);
+                }
+            }
+        }
+        creargrilla(jqgrid_data);
         });   
         return item;
     }, 
@@ -69,106 +64,68 @@ $('#nombreprestador').typeahead({
 });
 
 /*-------------------------------------------------------------------------------------------------------------------*/
+
 $('#codigo_interno').on("keyup", function () {
-    creargrilla(jqgrid_data);
-    $('#identificacion').val("");
+    recargardatos();
+    $('#identficacion').val("");
     $('#nombreprestador').val("");
-    $('#inputsucursal').val("");
-    $('#inputciudad').val("");
-    $('#inputdireccion').val("");
-    $('#inputtelefono').val("");
-    $('#idprestador').val("");
+    limpiarcampos();
     var codigo_interno = $(this).val();
     $.ajax({
         type: "POST",
         url: "/CuentasMedicas/RadicacionServlet",
-        data: "codigo_interno=" + codigo_interno
+        data: {codigo_interno : + codigo_interno}
     }).done(function (data) {
-
-        for (var i = 0; i < data.length; i++) {
-            cleardata();
-            if (data[i][i] != undefined) {
-                $('#identificacion').val(data[i][i].IDENTIFICACION);
-                $('#nombreprestador').val(data[i][i].NOMBREPRESTADOR);
-                $('#inputsucursal').val(data[i][i].NOMBRESUCURSAL);
-                $('#inputciudad').val(data[i][i].CIUDAD);
-                $('#inputdireccion').val(data[i][i].DIRECCION);
-                $('#inputtelefono').val(data[i][i].TELEFONO);
-                $('#idprestador').val(data[i][i].IDPRESTADOR);
-                if (data[1][i] != undefined) {
-                    jqgrid_data = [{
-                            id: data[1][i].IDRADICACION,
-                            fecharadicacion: data[1][i].FECHA_RADICACION,
-                            oficina: data[1][i].OFICINA,
-                            prefijofactura: data[1][i].PREFIJO_FACTURA,
-                            sufijofactura: data[1][i].SUFIJO_FACTURA,
-                            numerofactura: data[1][i].NUMERO_FACTURA,
-                            fechafactura: data[1][i].FECHA_FACTURA,
-                            valorfactura: data[1][i].VALOR_FACTURA,
-                            motivoestado: data[1][i].MOTIVO_ESTADO,
-                            estadofactura: data[1][i].ESTADO_FACTURA,
-                            tiporadicacion: data[1][i].TIPO_RADICACION
-                        }];
+        for(item in data){
+            if(item ==="0"){
+                cabecera = data[item][0];
+                if(cabecera !== undefined){
+                    $('#identificacion').val(cabecera.IDENTIFICACION);  
+                    llenarcampos();
                 }
-                creargrilla(jqgrid_data);
+            }else{
+                for(indGrilla in data[item]){
+                    llenargrilla(data,indGrilla,item);
+                    jqgrid_data.push(filas);
+                }
             }
         }
+        creargrilla(jqgrid_data);
     });
 });
+
 /*-------------------------------------------------------------------------------------------------------------------*/
 $('#identificacion').on("keyup", function () {
-    cleardata();
-    creargrilla(jqgrid_data);
+    recargardatos();
     $('#codigo_interno').val("");
     $('#nombreprestador').val("");
-    $('#inputsucursal').val("");
-    $('#inputciudad').val("");
-    $('#inputdireccion').val("");
-    $('#inputtelefono').val("");
-    $('#idprestador').val("");
+    limpiarcampos();
     var identificacion = $(this).val();
     $.ajax({
         type: "POST",
         url: "/CuentasMedicas/RadicacionServlet",
         data: "identificacion=" + identificacion
     }).done(function (data) {
-        for (var i = 0; i < data.length; i++) {
-            if (data[i][i] != undefined) {
-                $('#codigo_interno').val(data[i][i].CODIGO_INTERNO);
-                $('#nombreprestador').val(data[i][i].NOMBREPRESTADOR);
-                $('#inputsucursal').val(data[i][i].NOMBRESUCURSAL);
-                $('#inputciudad').val(data[i][i].CIUDAD);
-                $('#inputdireccion').val(data[i][i].DIRECCION);
-                $('#inputtelefono').val(data[i][i].TELEFONO);
-            if (data[1][i] != undefined) {
-                    jqgrid_data = [{
-                            id: data[1][i].IDRADICACION,
-                            fecharadicacion: data[1][i].FECHA_RADICACION,
-                            oficina: data[1][i].OFICINA,
-                            prefijofactura: data[1][i].PREFIJO_FACTURA,
-                            sufijofactura: data[1][i].SUFIJO_FACTURA,
-                            numerofactura: data[1][i].NUMERO_FACTURA,
-                            fechafactura: data[1][i].FECHA_FACTURA,
-                            valorfactura: data[1][i].VALOR_FACTURA,
-                            motivoestado: data[1][i].MOTIVO_ESTADO,
-                            estadofactura: data[1][i].ESTADO_FACTURA,
-                            tiporadicacion: data[1][i].TIPO_RADICACION,
-                        }];
+        for(item in data){
+            if(item ==="0"){
+                cabecera = data[item][0];
+                if(cabecera !== undefined){
+                    $('#codigo_interno').val(cabecera.CODIGO_INTERNO);  
+                    llenarcampos();
                 }
-             creargrilla(jqgrid_data);
+            }else{
+                for(indGrilla in data[item]){
+                    llenargrilla(data,indGrilla,item);
+                    jqgrid_data.push(filas);
+                }
             }
         }
+        creargrilla(jqgrid_data);
     });
 });
+
 /*-------------------------------------------------------------------------------------------------------------------*/
 
-function cleardata(){
-      jqgrid_data = [{
-        id: "", fecharadicacion: "", oficina: "", prefijofactura: "", sufijofactura: "",
-        numerofactura: "", fechafactura: "", valorfactura: "", motivoestado: "",
-        estadofactura: "", tiporadicacion: "", idprestador: ""
-    }];
-}
 var gridArr = $("#jqGrid2").getDataIDs();
 var selrow = $("#jqGrid2").getGridParam("selrow");
 var curr_index = 0;
@@ -177,6 +134,42 @@ for (var i = 0; i < gridArr.length; i++) {
         curr_index = i;
     }
 };
+function recargardatos(){
+    jqgrid_data = new Array();
+    jQuery("#jqGrid2").clearGridData(true).trigger("reloadGrid");
+}
+
+function limpiarcampos(){
+    $('#inputsucursal').val("");
+    $('#inputciudad').val("");
+    $('#inputdireccion').val("");
+    $('#inputtelefono').val("");
+    $('#idprestador').val("");
+}
+function llenarcampos(){
+    $('#nombreprestador').val(cabecera.NOMBREPRESTADOR);
+    $('#inputsucursal').val(cabecera.NOMBRESUCURSAL);
+    $('#inputciudad').val(cabecera.CIUDAD);
+    $('#inputdireccion').val(cabecera.DIRECCION);
+    $('#inputtelefono').val(cabecera.TELEFONO);
+    $('#idprestador').val(cabecera.IDPRESTADOR);
+}
+function llenargrilla(data,indGrilla,item){
+    filas = {
+        id: data[item][indGrilla].IDRADICACION,
+        fecharadicacion: data[item][indGrilla].FECHA_RADICACION,
+        oficina: data[item][indGrilla].OFICINA,
+        prefijofactura: data[item][indGrilla].PREFIJO_FACTURA,
+        sufijofactura: data[item][indGrilla].SUFIJO_FACTURA,
+        numerofactura: data[item][indGrilla].NUMERO_FACTURA,
+        fechafactura: data[item][indGrilla].FECHA_FACTURA,
+        valorfactura: data[item][indGrilla].VALOR_FACTURA,
+        motivoestado: data[item][indGrilla].MOTIVO_ESTADO,
+        estadofactura: data[item][indGrilla].ESTADO_FACTURA,
+        tiporadicacion: data[item][indGrilla].TIPO_RADICACION
+    };
+}
+creargrilla(jqgrid_data);
 function creargrilla(jqgrid_data) {
     jQuery("#jqGrid2").jqGrid({
         data: jqgrid_data,
@@ -185,10 +178,10 @@ function creargrilla(jqgrid_data) {
         height: '400',
         editurl: '/CuentasMedicas/RadicacionServlet',
         colNames: ['id', 'Fecha Radicación', 'Oficina', 'Prefijo Factura', 'Sufijo Factura', 'N# Factura', 'Fecha Factura',
-            'Valor Factura', 'Motivo Estado', 'Estado Factura', 'Tipo Radicación', 'idprestador'/*,'Opciones'*/],
+                    'Valor Factura', 'Motivo Estado', 'Estado Factura', 'Tipo Radicación', 'idprestador'/*,'Opciones'*/],
         colModel: [
             {name: 'id', index: 'id', editable: false, hidden: true},
-            {name: 'fecharadicacion', index: 'fecharadicacion', editable: true, sorttype: "date", editoptions: {
+            {name: 'fecharadicacion', index: 'fecharadicacion', editable: true, sorttype: "date", sortable:false, editoptions: {
                     dataInit: function (element) {
                         var dateNow = new Date();
                         $(element).datetimepicker({
@@ -199,7 +192,7 @@ function creargrilla(jqgrid_data) {
                     }
                 },
                 editrules: {required: true}, align: "left", width: 140},
-            {name: 'oficina', index: 'oficina', editable: true, width: 110, editrules: {required: true},
+            {name: 'oficina', index: 'oficina', editable: true, width: 110, sortable:false,  editrules: {required: true},
                 editoptions: {
                     dataEvents: [{
                         type: 'keydown',
@@ -214,7 +207,7 @@ function creargrilla(jqgrid_data) {
                     }]
                 }
             },
-            {name: 'prefijofactura', index: 'prefijofactura', editable: true, width: 130, align: "center", editrules: {required: true},
+            {name: 'prefijofactura', index: 'prefijofactura', editable: true, sortable:false,  width: 130, align: "center", editrules: {required: true},
                 editoptions: {
                     dataEvents: [{
                         type: 'keydown',
@@ -229,7 +222,7 @@ function creargrilla(jqgrid_data) {
                     }]
                 }
             },
-            {name: 'sufijofactura', index: 'sufijofactura', editable: true, width: 120, editrules: {required: true},
+            {name: 'sufijofactura', index: 'sufijofactura', editable: true, sortable:false,  width: 120, editrules: {required: true},
                 editoptions: {
                     dataEvents: [{
                         type: 'keydown',
@@ -245,7 +238,7 @@ function creargrilla(jqgrid_data) {
                     }]
                 }
             },
-            {name: 'numerofactura', index: 'numerofactura', editable: true, width: 90, editrules: {required: true},
+            {name: 'numerofactura', index: 'numerofactura', editable: true, sortable:false,  width: 90, editrules: {required: true},
                 editoptions: {
                     dataEvents: [{
                         type: 'keydown',
@@ -260,7 +253,7 @@ function creargrilla(jqgrid_data) {
                     }]
                 }
             },
-            {name: 'fechafactura', index: 'fechafactura', editable: true, sorttype: "date", editoptions: {
+            {name: 'fechafactura', index: 'fechafactura', editable: true, sortable:false, sorttype: "date", editoptions: {
                     dataInit: function (element) {
                         var dateNow = new Date();
                         $(element).datetimepicker({
@@ -280,16 +273,15 @@ function creargrilla(jqgrid_data) {
                             }
                         }]
                 }, editrules: {required: true}, align: "left", width: 140},
-            {name: 'valorfactura', index: 'valorfactura', editable: true, width: 110, classes: 'valorfacturaclass',
-                editrules: {required: true
+            {name: 'valorfactura', index: 'valorfactura', editable: true, sortable:false, width: 110, classes: 'valorfacturaclass',
+                editrules: { custom:true, custom_func: validarvalor
                 }, editoptions: {
                     dataEvents: [{
                             type: 'keydown',
                             fn: function (e) {
                                 var key = e.charCode || e.keyCode;
                                 var valorfactura = $('input[name="valorfactura"]');
-
-                                if (key == 9 || key == 13) {
+                                if (key === 9 || key === 13) {
                                     var gridArr = $("#jqGrid2").getDataIDs();
                                     var selrow = $("#jqGrid2").getGridParam("selrow");
                                     var curr_index = 0;
@@ -298,18 +290,20 @@ function creargrilla(jqgrid_data) {
                                         if (gridArr[i] == selrow) {
                                             curr_index = i;
                                         }
-                                    }
-                                    if (valorfactura.val() == "") {
-                                        alert("Valor Factura: Campo Obligatorio");
+                                   }
+                                    $('.inputidprestador input[name="idprestador"]').val($("#idprestador").val());
+                                    $('.inputtiporadicacion input[name="tiporadicacion"]').val("2");
+                                   if (valorfactura.val() === "") {
+                                        alert("Valor Factura: Campo Obligatorio!");
+                                        $("#jqGrid2").setSelection(gridArr[curr_index], true);
+                                        jQuery("#jqGrid2").editRow(gridArr[curr_index], true);
                                         valorfactura.focus();
-                                    }
-                                    else if (result === false) {
+                                    }else if (result === false) {
                                         alert("Valor Factura: Campo de tipo númerico!");
                                         $("#jqGrid2").setSelection(gridArr[curr_index], true);
                                         jQuery("#jqGrid2").editRow(gridArr[curr_index], true);
                                         valorfactura.focus();
-                                    }
-                                    else {
+                                    }else {
                                         jQuery("#jqGrid2").saveRow(gridArr[curr_index]);
                                         $("#jqGrid2").setSelection(gridArr[curr_index + 1], true);
                                         jQuery("#jqGrid2").editRow(gridArr[curr_index + 1], true);
@@ -319,8 +313,8 @@ function creargrilla(jqgrid_data) {
                         }]
                 }
             },
-            {name: 'motivoestado', index: 'motivoestado', editable: false, align: "left", width: 140},
-            {name: 'estadofactura', index: 'estadofactura', editable: false, width: 130},
+            {name: 'motivoestado', index: 'motivoestado', editable: false, align: "left", sortable:false,  width: 140},
+            {name: 'estadofactura', index: 'estadofactura', editable: false, sortable:false, width: 130},
             {name: 'tiporadicacion', index: 'tiporadicacion', editable: true, align: "left", width: 140, hidden: true, classes: 'inputtiporadicacion'},
             {name: 'idprestador', index: 'idprestador', editable: true, width: 130, hidden: true, classes: 'inputidprestador'}
         ],
@@ -356,20 +350,27 @@ function creargrilla(jqgrid_data) {
                 lastSel = id;
             }
             jQuery("#jqGrid2").editRow(id, true,
-                    function () {
-                        $('.inputidprestador input[name="idprestador"]').val($("#idprestador").val());
-                        $('.inputtiporadicacion input[name="tiporadicacion"]').val("2");
-                    }, null, null, {arg1: ''}
+                function () {
+                    var codint = $('#codigo_interno').val();
+                    var ident = $('#identificacion').val();
+                    var nompre = $('#nombreprestador').val();
+                    if(codint === "" || ident === "" || nompre ===""){
+                        alert("Faltan los datos del prestador");
+                        jQuery('#jqGrid2').jqGrid('restoreRow',lastSel);   
+                    }
+                    $('.inputidprestador input[name="idprestador"]').val($("#idprestador").val());
+                    $('.inputtiporadicacion input[name="tiporadicacion"]').val("2");
+                }, null, null, {arg1: ''}
             );
         },
         loadError: function (xhr, status, err) {
             try {
                 jQuery.jgrid.info_dialog(jQuery.jgrid.errors.errcap,
-                        '<div class="ui-state-error">' + xhr.responseText + err + '</div>',
-                        jQuery.jgrid.edit.bClose,
-                        {
-                            buttonalign: 'right'
-                        });
+                    '<div class="ui-state-error">' + xhr.responseText + err + '</div>',
+                    jQuery.jgrid.edit.bClose,
+                    {
+                        buttonalign: 'right'
+                    });
             } catch (e) {
                 alert(xhr.responseText);
             }
@@ -405,13 +406,14 @@ function creargrilla(jqgrid_data) {
     jQuery("#jqGrid2").trigger("reloadGrid");
 }
 function validacioncampos(nombre, valor) {
-    if (valor.val() == "") {
+    if (valor.val() === "") {
         alert(nombre + ": Campo obligatorio!");
         $("#jqGrid2").setSelection(gridArr[curr_index], true);
         jQuery("#jqGrid2").editRow(gridArr[curr_index], true);
         valor.focus();
+        return[false];
     } else {
-        valor.focus();
+        valor.focus();   
     }
 }
 function validacionnumericos(nombre, numero) {
@@ -422,8 +424,20 @@ function validacionnumericos(nombre, numero) {
         $("#jqGrid2").setSelection(gridArr[curr_index], true);
         jQuery("#jqGrid2").editRow(gridArr[curr_index], true);
         numero.focus();
+        return[false];
     }
     else {
         numero.focus();
     }
+}
+function validarvalor(value, colname) {
+     var result = /(^\d+([,.]\d+)?$)/.test(value) || /((^\d{1,3}(,\d{3})+(\.\d+)?)$)/.test(value) || /((^\d{1,3}(\.\d{3})+(,\d+)?)$)/.test(value);
+    if (value===""){
+       return [false,colname+": Campo obligatorio!"];
+   }
+    else if(result === false){
+        return [false,colname+": Campo de tipo númerico!"];
+   }
+    else
+       return [true,""];
 }
