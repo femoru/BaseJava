@@ -68,6 +68,7 @@ public class LoginServlet extends HttpServlet {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }else{
                 HttpSession sesion = request.getSession();
+                sesion.setMaxInactiveInterval(18000); //-1 la sesion nunca expira
                 usuarios.setUsuario(request.getParameter("usuario"));
                 sesion.setAttribute("idusuario", usuarios.getIdusuario());
                 sesion.setAttribute("usuario", usuarios.getUsuario());

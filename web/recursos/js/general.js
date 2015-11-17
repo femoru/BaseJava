@@ -4,6 +4,16 @@
     if(n != -1){
        $('.linkhome').css("background","#cecece", "!important");
     }
+   $('#linkadmin').on('click',function(){
+       if($("#collapselinkradfac").hasClass("in")){
+            $("#linkradfac").click();
+        }
+   });
+   $('#linkradfac').on('click',function(){
+       if($("#collapselinkadmin").hasClass("in")){
+           $("#linkadmin").click();
+        }
+   });
 alert = function(msg){
     $.jgrid.info_dialog(
         $.jgrid.regional["es"].errors.errcap,
