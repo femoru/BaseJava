@@ -359,3 +359,163 @@ var myGrid = $("#jqGrid").jqGrid({
                 }
             );
         });
+        
+        $("#exportexcel").on("click",function(){
+            exportGrid();
+        });
+        $("#exportpdf").on("click",function(){
+            demoFromHTML();
+        });
+        var html;
+function exportGrid(){
+    var filename;
+    mya = $("#jqGrid").getDataIDs();
+    var data = $("#jqGrid").getRowData(mya[0]);
+    var colNames = new Array();
+    var ii = 0;
+    for (var i in data) {
+        colNames[ii++] = i;
+    }
+    html = "<table border='1'><thead><tr style='background-color:#599BCC;color:white;'>";
+    for (var k = 0; k < colNames.length; k++) {
+        if (colNames[k] !== 'ID' && colNames[k] !== 'USUARIO'){
+           html = html + "<th>" + colNames[k] + "</th>";
+        }
+    }
+    html = html + "</tr></thead>";
+    for (i = 0; i < mya.length; i++) {
+        html = html + "<tbody><tr>";
+        data = $("#jqGrid").getRowData(mya[i]);
+        for (var j = 0; j < colNames.length; j++) {
+            data = $("#jqGrid").getRowData(mya[i]);
+            if (colNames[j] !== 'ID' && colNames[j] !== 'USUARIO'){
+                if( data.CD == 1){data.CD = "Si";}else{data.CD = "No";}
+                if( data.USB == 1){data.USB = "Si";}else{data.USB = "No";}
+                if(data.TIPO_DOCUMENTO == 1){data.TIPO_DOCUMENTO = "Glosas";}
+                if(data.TIPO_DOCUMENTO == 2){data.TIPO_DOCUMENTO = "Devoluciones";}
+                if(data.TIPO_DOCUMENTO == 3){data.TIPO_DOCUMENTO = "Guias de correspondencia";}
+                if(data.TIPO_DOCUMENTO == 4){data.TIPO_DOCUMENTO = "Otros documentos";}
+                html = html + "<td>" + data[colNames[j]] + "</td>";
+            }
+        }
+        html = html + "</tr>";
+    }
+    html = html + "</tbody></table>";
+    //html = html.replace(/'/g, '&apos;');
+    var a = document.createElement('a');
+    a.id = 'ExcelDL';
+    a.href = 'data:application/vnd.ms-excel,' + encodeURIComponent(html);
+    a.download = filename ? filename + ".xlsx" : 'Recepcion_de_Documentos.xlsx';
+    document.body.appendChild(a);
+    a.click();
+    document.getElementById('ExcelDL').remove();
+}
+function demoFromHTML() {
+    
+    var filename;
+    mya = $("#jqGrid").getDataIDs();
+    var data = $("#jqGrid").getRowData(mya[0]);
+    var colNames = new Array();
+    var ii = 0;
+    for (var i in data) {
+        colNames[ii++] = i;
+    }
+    html = "<table id='tableexport'><thead><tr>"; 
+    for (var k = 0; k < colNames.length; k++) {
+        if (colNames[k] !== 'ID' && colNames[k] !== 'USUARIO'){
+           html = html + "<th>" + colNames[k] + "</th>";
+        }
+    }
+    html = html + "</tr></thead>";
+    for (i = 0; i < mya.length; i++) {
+        html = html + "<tbody><tr>";
+        data = $("#jqGrid").getRowData(mya[i]);
+        for (var j = 0; j < colNames.length; j++) {
+            data = $("#jqGrid").getRowData(mya[i]);
+            if (colNames[j] !== 'ID' && colNames[j] !== 'USUARIO'){
+                if( data.CD == 1){data.CD = "Si";}else{data.CD = "No";}
+                if( data.USB == 1){data.USB = "Si";}else{data.USB = "No";}
+                if(data.TIPO_DOCUMENTO == 1){data.TIPO_DOCUMENTO = "Glosas";}
+                if(data.TIPO_DOCUMENTO == 2){data.TIPO_DOCUMENTO = "Devoluciones";}
+                if(data.TIPO_DOCUMENTO == 3){data.TIPO_DOCUMENTO = "Guias de correspondencia";}
+                if(data.TIPO_DOCUMENTO == 4){data.TIPO_DOCUMENTO = "Otros documentos";}
+                html = html + "<td>" + data[colNames[j]] + "</td>";
+            }
+        }
+        html = html + "</tr>";
+    }
+    html = html + "</tbody></table>";
+    $("#tabladatos").append(html);
+    
+//      var table = tableToJson($('#tableexport').get(0))
+//        var doc = new jsPDF('p','pt', 'a4', true);
+//        doc.cellInitialize();
+//        $.each(table, function (i, row){
+//            console.debug(row);
+//            $.each(row, function (j, cell){
+//                doc.setFontSize(7);
+//                doc.cell(10, 10, 40, 40, cell, i);  // 2nd parameter=top margin,1st=left margin 3rd=row cell width 4th=Row height
+//                 
+//            });
+//            });
+//           
+//                    doc.save('sample-file.pdf');
+//                     $("#tabladatos").html("");
+    
+	var pdf = new jsPDF('p','pt', 'a4', true)
+	, source = $("#tabladatos")[0]
+	, specialElementHandlers = {
+            '#bypassme': function(element, renderer){
+                    return true;
+            }
+	};
+	margins = {
+       top: 80,
+        bottom: 60,
+        left: 40,
+       width: 522
+    };
+    
+    pdf.fromHTML(
+    	source // HTML string or DOM elem ref.
+    	, margins.left // x coord
+    	, margins.top // y coord
+    	, {
+            'width': margins.width // max width of content on PDF
+            , 'elementHandlers': specialElementHandlers
+    	},
+    	function (dispose) {
+          pdf.save('Test.pdf');
+        },
+    	margins
+    );
+   // $("#tabladatos").css("display","none");
+}
+
+ function tableToJson(table) {
+    var data = [];
+
+    // first row needs to be headers
+    var headers = [];
+    for (var i=0; i<table.rows[0].cells.length; i++) {
+        headers[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi,'');
+    }
+
+
+    // go through cells
+    for (var i=0; i<table.rows.length; i++) {
+
+        var tableRow = table.rows[i];
+        var rowData = {};
+
+        for (var j=0; j<tableRow.cells.length; j++) {
+
+            rowData[ headers[j] ] = tableRow.cells[j].innerHTML;
+
+        }
+
+        data.push(rowData);
+    }       
+
+    return data;
+} 
