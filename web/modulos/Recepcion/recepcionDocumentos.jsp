@@ -12,14 +12,11 @@
         <meta charset="UTF-8" />
         <link rel="stylesheet" type="text/css" href="recursos/terceros/bootstrap_datepicker/css/bootstrap-datetimepicker.css" />
         <link rel="stylesheet" type="text/css" href="recursos/css/recepcionDocumentos.css" />
-
-
-        <script type="text/javascript" src="recursos/terceros/bootstrap-typeahead/bootstrap3-typeahead.js"></script>
+        <script type="text/javascript" src="recursos/terceros/base64/jquery.base64.js"></script>
         <script type="text/javascript" src="recursos/terceros/momentjs/momentjs.min.js"></script>
         <script type="text/javascript" src="recursos/terceros/bootstrap_datepicker/js/bootstrap-datetimepicker.js"></script>
-        <script type="text/javascript" src="recursos/terceros/jspdf/jspdf.debug.js"></script>
-        <!--<script type="text/javascript" src="recursos/terceros/jspdf/jspdf.min.js"></script>-->
-        <!--<script type="text/javascript" src="recursos/terceros/jspdf/basic.js"></script>-->
+        <script type="text/javascript" src="recursos/terceros/jspdf/jspdf.min_1.js"></script>
+        <script type="text/javascript" src="recursos/terceros/jspdf/jspdf.plugin.autotable.js"></script>
         <script type="text/javascript" src="recursos/js/recepcionDocumentos.js"></script>
     </head>
     <div class="contenttablas">
