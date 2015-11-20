@@ -6,19 +6,14 @@
 package com.co.sio.java.servlets;
 
 import com.co.sio.java.dao.LoginDao;
-import com.co.sio.java.dao.MenuDao;;
 import com.co.sio.java.model.Usuarios;
 import java.io.IOException;
-import static java.lang.System.out;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 /**
  *
  * @author bmunoz

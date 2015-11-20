@@ -7,14 +7,8 @@ package com.co.sio.java.dao;
 
 import com.co.sio.java.db.DBControl;
 import com.co.sio.java.model.Perfil;
-import com.co.sio.java.utils.SeguridadUtils;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import javax.servlet.http.HttpSession;
-import org.json.JSONArray;
-
 /**
  *
  * @author bmunoz

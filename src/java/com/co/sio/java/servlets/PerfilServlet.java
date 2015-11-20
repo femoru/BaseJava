@@ -89,6 +89,7 @@ public class PerfilServlet extends HttpServlet {
         perfil.setCorreo(request.getParameter("correo"));
         perfil.setFechanacimiento(request.getParameter("fechanacimiento"));
         perfil.setIdusuario(userid);
+        Integer idrol = Integer.parseInt(sesion.getAttribute("Idrol").toString());
         
         try {
           
@@ -99,9 +100,9 @@ public class PerfilServlet extends HttpServlet {
                 sesion.setAttribute("Apellidos", perfil.getApellidos());
                 sesion.setAttribute("Correo", perfil.getCorreo());
                 sesion.setAttribute("FechaNacimiento", perfil.getFechanacimiento());
-                sesion.setAttribute("Idrol", perfil.getIdrol());
-
+                sesion.setAttribute("Idrol", idrol);
                 
+                  System.out.println(sesion.getAttribute("Idrol"));
                 response.sendRedirect("home.jsp");
                 
                 

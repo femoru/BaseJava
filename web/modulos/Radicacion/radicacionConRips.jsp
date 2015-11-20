@@ -17,17 +17,17 @@
         <script type="text/javascript" src="recursos/js/radicacionConRips.js"></script>
     </head>
     <body>
-        <form id="frminfoprestador" role="form">
+         <form id="frminfoprestador" role="form">
             <fieldset class="scheduler-border">
                     <legend class="scheduler-border">Información del Prestador</legend>
                     <div class="control-group">
                         <div class="row contentinforow1">
                             <div class="col-lg-4 col-md-4 ">
-                                <input type="checkbox" name="ipsadscrita"  class="infocheckbox"/>
+                                <input type="checkbox" name="ipsadscrita" id="ips_adscrita" class="infocheckbox" />
                                 <label for="ipsadscrita">IPS Adscrita</label>
                             </div>
                             <div class="col-lg-4 col-md-4 ">
-                                <input type="checkbox" name="consultorio" class="infocheckbox"/>
+                                <input type="checkbox" name="consultorio" id="consultorio_medico" class="infocheckbox"/>
                                 <label for="consultorio">Consultorio Médico</label>
                              </div>
                             <div class="col-lg-4 col-md-4 ">
@@ -37,8 +37,9 @@
                                             <label for="codinterno">Código Interno</label>
                                         </div>
                                         <div class="col-lg-6 col-md-6 ">
-                                            <input type="text" class="inputsradconrips form-control" name="codinterno" />
+                                            <input type="text" class="inputsradconrips form-control" id="codigo_interno" name="codinterno" value=""/>
                                         </div>
+                                        <p id="datos"></p>
                                     </div>
                                 </div>
                             </div>
@@ -48,28 +49,44 @@
                                 <label for="tipoidentificacion">Identificación</label>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 ">
+                                        <!--<input type="text" id="idprestador" value="">-->
                                         <select class="form-control" name="tipoidentificacion">
                                             <option value="1">NIT</option>
                                             <option value="2">Cédula</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
                                          </select>
                                     </div>
                                     <div class="col-lg-6 col-md-6 ">
-                                        <input type="text" class="inputsradconrips form-control" name="numidentificacion" />
+                                        <input type="text" class="inputsradconrips form-control" name="numidentificacion" value="" id="identificacion"/>
+                                        <input type="hidden"  name="idprestador" value="" id="idprestador"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 ">
                                 <label for="nombreprestador">Nombre</label>
-                                <input type="text" class=" inputsradconrips form-control" id="inputrnombre" name="nombreprestador" />
+                                <input type="text" class=" inputsradconrips form-control typeahead" id="nombreprestador" name="nombreprestador" value="" autocomplete="off" />
                             </div>
                         </div>
                     </div>
-                    <p id="datos"></p>
-                    <div class="contenttablas">
+                    <!--<div class="contenttablas">
                         <table id="jqGrid" class="tablasdatos"></table>
+                    </div>-->
+                    <div class="contenttablas">
+                        <table class="table table-bordered table-condensed table-hover table-striped">
+                            <thead>
+                                <th><b>Sucursal</b></th>
+                                <th><b>Ciudad</b></th>
+                                <th><b>Dirección</b></th>
+                                <th><b>Teléfono</b></th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="text" id="inputsucursal" class="form-control" value="" disabled/></td>
+                                    <td><input type="text" id="inputciudad" class="form-control" value="" disabled/></span></td>
+                                    <td><input type="text" id="inputdireccion" class="form-control" value="" disabled/></span></td>
+                                    <td><input type="text" id="inputtelefono" class="form-control" value="" disabled/></span></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </fieldset>
         </form>

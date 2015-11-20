@@ -1,60 +1,181 @@
- $(function () {
+﻿ $(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+var jqgrid_data = new Array();
+var lastSel;
+var selICol;
+var selIRow;
+var cabecera;
+var filas;
+var cabecera;
+var filas;
+var data = [{}];
+var item = 0;   
+var indGrilla = 0;
+
+$('#nombreprestador').typeahead({
+    source: function (query, proxy) {
+        recargardatos();
+         limpiarcampos();
+        $('#identificacion').val("");
+        $('#codigo_interno').val("");
+        $.ajax({
+            url: "/CuentasMedicas/RadicacionServlet",
+            type: "POST",
+            data: {cadena: query},
+            dataType: 'json',
+            success: proxy
+        });
+    },
+    updater: function (item) {
+            $('#identificacion').val(item.IDENTIFICACION);
+            $('#codigo_interno').val(item.CODIGO_INTERNO);
+            $('#inputsucursal').val(item.NOMBRESUCURSAL);
+            $('#inputciudad').val(item.CIUDAD);
+            $('#inputdireccion').val(item.DIRECCION);
+            $('#inputtelefono').val(item.TELEFONO);
+            $('#idprestador').val(item.IDPRESTADOR);
+         $.ajax({
+            url: "/CuentasMedicas/RadicacionServlet",
+            type: "POST",
+            data: {cadena2: $('#nombreprestador').val(),codigointerno : item.CODIGO_INTERNO},
+            dataType: 'json'
+        }).done(function (data) {
+             for(item in data){
+            if(item ==="0"){
+                cabecera = data[item][0];
+                if(cabecera !== undefined){
+                }
+            }else{
+                for(indGrilla in data[item]){
+                    llenargrilla(data,indGrilla,item);
+                    jqgrid_data.push(filas);
+                }
+            }
+        }
+        creargrilla(jqgrid_data);
+        });   
+        return item;
+    }, 
+    autoSelect: true,
+    limit: 10,
+    displayText: function (item) {
+         return item.NOMBREPRESTADOR;
+    }
+});
+
+/*-------------------------------------------------------------------------------------------------------------------*/
+
+$('#codigo_interno').on("keyup", function () {
+    recargardatos();
+    $('#identficacion').val("");
+    $('#nombreprestador').val("");
+    limpiarcampos();
+    var codigo_interno = $(this).val();
+    $.ajax({
+        type: "POST",
+        url: "/CuentasMedicas/RadicacionServlet",
+        data: {codigo_interno : + codigo_interno}
+    }).done(function (data) {
+        for(item in data){
+            if(item ==="0"){
+                cabecera = data[item][0];
+                if(cabecera !== undefined){
+                    $('#identificacion').val(cabecera.IDENTIFICACION);  
+                    llenarcampos();
+                }
+            }else{
+                for(indGrilla in data[item]){
+                    llenargrilla(data,indGrilla,item);
+                    jqgrid_data.push(filas);
+                }
+            }
+        }
+        creargrilla(jqgrid_data);
+    });
+});
+
+/*-------------------------------------------------------------------------------------------------------------------*/
+$('#identificacion').on("keyup", function () {
+    recargardatos();
+    $('#codigo_interno').val("");
+    $('#nombreprestador').val("");
+    limpiarcampos();
+    var identificacion = $(this).val();
+    $.ajax({
+        type: "POST",
+        url: "/CuentasMedicas/RadicacionServlet",
+        data: "identificacion=" + identificacion
+    }).done(function (data) {
+        for(item in data){
+            if(item ==="0"){
+                cabecera = data[item][0];
+                if(cabecera !== undefined){
+                    $('#codigo_interno').val(cabecera.CODIGO_INTERNO);  
+                    llenarcampos();
+                }
+            }else{
+                for(indGrilla in data[item]){
+                    llenargrilla(data,indGrilla,item);
+                    jqgrid_data.push(filas);
+                }
+            }
+        }
+        creargrilla(jqgrid_data);
+    });
+});
+
+/*-------------------------------------------------------------------------------------------------------------------*/
+
+var gridArr = $("#jqGrid2").getDataIDs();
+var selrow = $("#jqGrid2").getGridParam("selrow");
+var curr_index = 0;
+for (var i = 0; i < gridArr.length; i++) {
+    if (gridArr[i] == selrow) {
+        curr_index = i;
+    }
+};
+function recargardatos(){
+    jqgrid_data = new Array();
+    jQuery("#jqGrid2").clearGridData(true).trigger("reloadGrid");
+}
+
+function limpiarcampos(){
+    $('#inputsucursal').val("");
+    $('#inputciudad').val("");
+    $('#inputdireccion').val("");
+    $('#inputtelefono').val("");
+    $('#idprestador').val("");
+}
+function llenarcampos(){
+    $('#nombreprestador').val(cabecera.NOMBREPRESTADOR);
+    $('#inputsucursal').val(cabecera.NOMBRESUCURSAL);
+    $('#inputciudad').val(cabecera.CIUDAD);
+    $('#inputdireccion').val(cabecera.DIRECCION);
+    $('#inputtelefono').val(cabecera.TELEFONO);
+    $('#idprestador').val(cabecera.IDPRESTADOR);
+}
+function llenargrilla(data,indGrilla,item){
+    filas = {
+        id: data[item][indGrilla].IDRADICACION,
+        fecharadicacion: data[item][indGrilla].FECHA_RADICACION,
+        oficina: data[item][indGrilla].OFICINA,
+        prefijofactura: data[item][indGrilla].PREFIJO_FACTURA,
+        sufijofactura: data[item][indGrilla].SUFIJO_FACTURA,
+        numerofactura: data[item][indGrilla].NUMERO_FACTURA,
+        fechafactura: data[item][indGrilla].FECHA_FACTURA,
+        valorfactura: data[item][indGrilla].VALOR_FACTURA,
+        motivoestado: data[item][indGrilla].MOTIVO_ESTADO,
+        estadofactura: data[item][indGrilla].ESTADO_FACTURA,
+        tiporadicacion: data[item][indGrilla].TIPO_RADICACION
+    };
+}
+
+$(function () {
         $('[data-toggle="tooltip"]').tooltip();   
  });
-var lastsel;
-var jqgrid_data = [{
-          id : "1",
-          sucursal : "Profamilia Palmira",
-          ciudad : "2014-10-01",
-          direccion : "Comfandi",
-          telefono : "890806490"
-  }];
-	jQuery("#jqGrid").jqGrid({
-		data : jqgrid_data,
-                styleUI : 'Bootstrap',
-		datatype : "local",
-		height : '30',
-		colNames : ['id', 'Sucursal', 'Ciudad', 'Dirección', 'Teléfono'],
-		colModel : [
-                    { name : 'id', index : 'id',editable : false, hidden:true }, 
-                    { name : 'sucursal', index : 'sucursal', editable : true, align : "left",width :100 }, 
-                    { name : 'ciudad', index : 'ciudad', editable : true, align : "left",width :100 }, 
-                    { name : 'direccion', index : 'direccion', editable : true, align : "left",width :100 },
-                    { name : 'telefono', index : 'telefono', editable : true, align : "left",width :100 }      
-                ],
-		sortname : 'id',
-		toolbarfilter: true,
-		viewrecords : true,
-		sortorder : "asc",
-		editurl : "dummy.html",
-		autowidth : true
-	});
-
-        var jqgrid_data = [{
-          id : "1",
-          numerofactura : "MS3500435",
-          fechafactura : "2014-10-01 12:00",
-          valorfactura : "135.000",
-          valoriva : "0",
-          tipoplan : "1",
-          tipocuenta: "1",
-          facturafisica : "1",
-          motivoestado : "",
-          fecharadicacion: "2014-10-01 12:00",
-          estadofactura: "En Proceso"
-        },{
-          id : "2",
-          numerofactura : "MS3500435",
-          fechafactura : "2014-10-01 12:00",
-          valorfactura : "135.000",
-          valoriva : "0",
-          tipoplan : "1",
-          tipocuenta: "0",
-          facturafisica : "1",
-          motivoestado : "",
-          fecharadicacion: "2014-10-01 12:00",
-          estadofactura: "En Proceso"
-      }];
+ creargrilla(jqgrid_data);
+ function creargrilla(){
 // ----------------------------------------------------------------------------------------------------
 	jQuery("#jqGrid2").jqGrid({
 		data : jqgrid_data,
@@ -143,8 +264,8 @@ var jqgrid_data = [{
 		multiselect : false,
 		autowidth : true
 	});			
-        $(".ui-jqgrid-caption").append("<button title='Exportar PDF' class='btn btn-danger iconsexport' id='exportpdf'><i class='fa fa-file-pdf-o '></i></button>");  
-        $(".ui-jqgrid-caption").append("<button title='Exportar Excel' class='btn btn-success iconsexport' id='exportexcel'><i class='fa fa-file-excel-o '></i></button>");
+        //$(".ui-jqgrid-caption").append("<button title='Exportar PDF' class='btn btn-danger iconsexport' id='exportpdf'><i class='fa fa-file-pdf-o '></i></button>");  
+        //$(".ui-jqgrid-caption").append("<button title='Exportar Excel' class='btn btn-success iconsexport' id='exportexcel'><i class='fa fa-file-excel-o '></i></button>");
 	jQuery("#jqGrid2").jqGrid('navGrid', "#jqGridPager", {
             edit : true,
             add : true,
@@ -228,3 +349,4 @@ var jqgrid_data = [{
 
 	jQuery( ".ui-icon.ui-icon-seek-end" ).wrap( "" );
 	jQuery(".ui-icon.ui-icon-seek-end").removeClass().addClass("fa fa-fast-forward");
+}

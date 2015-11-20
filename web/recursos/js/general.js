@@ -14,6 +14,14 @@
            $("#linkadmin").click();
         }
    });
+   $("#linkrecdocs").on('click',function(){
+       if($("#collapselinkadmin").hasClass("in")){
+           $("#linkadmin").click();
+        }
+        if($("#collapselinkradfac").hasClass("in")){
+            $("#linkradfac").click();
+        }
+   });
 alert = function(msg){
     $.jgrid.info_dialog(
         $.jgrid.regional["es"].errors.errcap,
@@ -36,6 +44,7 @@ alert = function(msg){
     });
     $("#linkradconrips").on("click",function(){
          $('.navbar-brand').html("RADICACIÓN DE DOCUMENTOS CON RIPS");
+        $( ".nuevapagina" ).load( "modulos/Radicacion/radicacionConRips.jsp" );
         $( ".nuevapagina" ).load( "modulos/Radicacion/radicacionConRips.jsp" );
         $('#linkradconrips').css("background","#cecece");
     });

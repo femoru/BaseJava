@@ -7,9 +7,14 @@
 background:none;
 color:none;
 }*/
+html{
+     position: relative !important;;
+    min-height: 100% !important;;
+}
 body{
-    margin: 0px;
+    //margin: 0px;
     padding: 0px;
+    margin: 0 0 100px !important;
 }
 header{
    background-color: #154295;
@@ -66,11 +71,18 @@ header{
     margin-top: 20px;
 }
 .corte{
-    height: 70px;
+    height: 100px;
 }
 footer{
     text-align: center;
     background-color: whitesmoke;
+    position: absolute !important;
+    left: 0;
+    bottom: 0;
+    //height: 100px;
+    width: 100%;
+
+    
 }
 .inner-addon { 
     position: relative; 

@@ -59,25 +59,18 @@
                             </a>
                         </div>
                     </div>
-
-              
                     <% 
-                       MenuDao menudao =new MenuDao();
-                       
+                       MenuDao menudao = new MenuDao();
                        if (session.getAttribute("usuario") != null){
-                          
                         String usuario = session.getAttribute("usuario").toString();
                         JSONArray json = new JSONArray(menudao.Crearmenu(usuario));
-
                         String Idrol =  session.getAttribute("Idrol").toString();
-
                         for (int i = 0; i < json.length(); i++) {
                              JSONObject row = json.getJSONObject(i);
                              int id = row.getInt("ID");
                              String menu = row.getString("MENU");
                              String identificador = row.getString("IDENTIFICADOR");
                              String icono = row.getString("ICONO");
-
                              out.println("<div class='accordion-group'>");
                                  out.println("<div class='accordion-heading' title='"+menu+"'>");
                                      out.println("<a class='accordion-toggle' id="+identificador+" data-toggle='collapse' data-parent='#leftMenu' href='#collapse"+identificador+"'>");
@@ -87,20 +80,19 @@
                                  out.println("<div id='collapse"+identificador+"' class='accordion-body collapse' style='height: 0px; '>");
                                      out.println("<div class='accordion-inner'>");
                                           out.println("<ul>");
-
-                                     JSONArray jsonchild = new JSONArray(menudao.Crearmenuhijos(Integer.toString(id),Idrol));
-                                     for (int j = 0; j < jsonchild.length(); j++) {
-                                         JSONObject row2 = jsonchild.getJSONObject(j);
-                                         String menuchild = row2.getString("HIJO");
-                                         String childid = row2.getString("IDENTIFICADOR");
-                                         out.println("<li><a href='#' id='"+childid+"'>"+menuchild+"</a></li>");
-                                     }
+                                            JSONArray jsonchild = new JSONArray(menudao.Crearmenuhijos(id,Idrol));
+                                            for (int j = 0; j < jsonchild.length(); j++) {
+                                                JSONObject row2 = jsonchild.getJSONObject(j);
+                                                String menuchild = row2.getString("HIJO");
+                                                String childid = row2.getString("IDENTIFICADOR");
+                                                out.println("<li><a href='#' id='"+childid+"'>"+menuchild+"</a></li>");
+                                            }
                                          out.println("</ul>");
-                                     out.println("</div>");
-                                 out.println("</div>");
-                             out.println("</div>");
-                         }
-                    }
+                                    out.println("</div>");
+                                out.println("</div>");
+                            out.println("</div>");
+                        }
+                    } 
                     %>
                 </div>
             </aside>

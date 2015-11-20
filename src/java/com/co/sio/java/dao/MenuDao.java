@@ -6,13 +6,11 @@
 package com.co.sio.java.dao;
 
 import com.co.sio.java.db.DBControl;
-import com.co.sio.java.model.Menu;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 /**
  *
@@ -48,7 +46,7 @@ public class MenuDao {
         }
        
      }
-     public String Crearmenuhijos(String menu, String rol)throws Exception{
+     public String Crearmenuhijos(int menu, String rol)throws Exception{
          try {
 
              /*sql="SELECT H.HIJO FROM CMMENUHIJOS H INNER JOIN(\n" +
@@ -74,7 +72,7 @@ public class MenuDao {
                 "ON M.ID = H.IDMENU\n" +
                 "WHERE R.ID = ?\n" +
                 "AND M.ID = ?";
-             String[] params = {rol,menu};
+             String[] params = {rol,Integer.toString(menu)};
              ArrayList<HashMap<String, Object>> consultar = db.consultar(sql, params);
              
              JSONArray arr = new JSONArray(consultar);
@@ -84,6 +82,5 @@ public class MenuDao {
             System.out.println(ex);
            throw new Exception(ex.getMessage());
         }
-       
      }
 }

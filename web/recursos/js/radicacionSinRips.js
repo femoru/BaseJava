@@ -16,6 +16,7 @@ var indGrilla = 0;
 $('#nombreprestador').typeahead({
     source: function (query, proxy) {
         recargardatos();
+         limpiarcampos();
         $('#identificacion').val("");
         $('#codigo_interno').val("");
         $.ajax({
@@ -169,7 +170,7 @@ function llenargrilla(data,indGrilla,item){
         tiporadicacion: data[item][indGrilla].TIPO_RADICACION
     };
 }
-creargrilla(jqgrid_data);
+
 function creargrilla(jqgrid_data) {
     jQuery("#jqGrid2").jqGrid({
         data: jqgrid_data,
@@ -441,3 +442,4 @@ function validarvalor(value, colname) {
     else
        return [true,""];
 }
+creargrilla(jqgrid_data);

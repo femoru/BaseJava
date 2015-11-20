@@ -149,31 +149,11 @@ var myGrid = $("#jqGrid").jqGrid({
                         return 'Error: ' + data.responseText;
                     }
                 });
-	//jQuery("#jqGrid").jqGrid('inlineNav', "#jqGridPager");
-	/* Add tooltips */
-	jQuery('.navtable .ui-pg-button').tooltip({
-		container : 'body'
-	});
-	// Get Selected ID's
-	jQuery("a.get_selected_ids").bind("click", function() {
-		s = jQuery("#jqGrid").jqGrid('getGridParam', 'selarrrow');
-		alert(s);
-	});
-	// Select/Unselect specific Row by id
-	jQuery("a.select_unselect_row").bind("click", function() {
-		jQuery("#jqGrid").jqGrid('setSelection', "13");
-	});
-	// Select/Unselect specific Row by id
-	jQuery("a.delete_row").bind("click", function() {
-		var su=jQuery("#jqGrid").jqGrid('delRowData',1);
-		if(su) alert("Succes. Write custom code to delete row from server"); else alert("Already deleted or not in list");
-	});
 	jQuery(".ui-jqGrid").removeClass("ui-widget ui-widget-content");
 	jQuery(".ui-jqGrid-view").children().removeClass("ui-widget-header ui-state-default");
 	jQuery(".ui-jqGrid-labels, .ui-search-toolbar").children().removeClass("ui-state-default ui-th-column ui-th-ltr");
 	jQuery(".ui-jqGrid-pager").removeClass("ui-state-default");
 	jQuery(".ui-jqGrid").removeClass("ui-widget-content");
-
 	jQuery(".ui-jqGrid-htable").addClass("table table-bordered table-hover");
 	jQuery(".ui-pg-div").removeClass().addClass("btn btn-sm btn-primary");
 	jQuery(".ui-icon.ui-icon-plus").removeClass().addClass("fa fa-plus");
@@ -183,20 +163,16 @@ var myGrid = $("#jqGrid").jqGrid({
 	jQuery(".ui-icon.ui-icon-refresh").removeClass().addClass("fa fa-refresh");
 	jQuery(".ui-icon.ui-icon-disk").removeClass().addClass("fa fa-save").parent(".btn-primary").removeClass("btn-primary").addClass("btn-success");
 	jQuery(".ui-icon.ui-icon-cancel").removeClass().addClass("fa fa-times").parent(".btn-primary").removeClass("btn-primary").addClass("btn-danger");
-
 	jQuery( ".ui-icon.ui-icon-seek-prev" ).wrap( "" );
 	jQuery(".ui-icon.ui-icon-seek-prev").removeClass().addClass("fa fa-backward");
-
 	jQuery( ".ui-icon.ui-icon-seek-first" ).wrap( "" );
 	jQuery(".ui-icon.ui-icon-seek-first").removeClass().addClass("fa fa-fast-backward");		  	
-
 	jQuery( ".ui-icon.ui-icon-seek-next" ).wrap( "" );
 	jQuery(".ui-icon.ui-icon-seek-next").removeClass().addClass("fa fa-forward");
-
 	jQuery( ".ui-icon.ui-icon-seek-end" ).wrap( "" );
 	jQuery(".ui-icon.ui-icon-seek-end").removeClass().addClass("fa fa-fast-forward");
         
-        function editRow(id) {
+        function editRow() {
             $('#edit_jqGrid').click();
         }
           $("#refresh_jqGrid").on("click",function(){
@@ -236,7 +212,6 @@ var myGrid = $("#jqGrid").jqGrid({
                 'delGridRow',
                 toDelete,
                   { url: '/CuentasMedicas/RecepcionServlet',
-                    // delData: params,
                     reloadAfterSubmit:true
                 }
             );
@@ -283,7 +258,6 @@ function exportGrid(){
         html = html + "</tr>";
     }
     html = html + "</tbody></table>";
-    //html = html.replace(/'/g, '&apos;');
     var a = document.createElement('a');
     a.id = 'ExcelDL';
     a.href = 'data:application/vnd.ms-excel;base64,' + $.base64.encode(html);
@@ -301,7 +275,7 @@ function generatepdf() {
         if( data.USB == 1){data.USB = "Si";}else{data.USB = "No";}
         if(data.TIPO_DOCUMENTO == 1){data.TIPO_DOCUMENTO = "Glosas";}
         if(data.TIPO_DOCUMENTO == 2){data.TIPO_DOCUMENTO = "Devoluciones";}
-        if(data.TIPO_DOCUMENTO == 3){data.TIPO_DOCUMENTO = "Guías";}
+        if(data.TIPO_DOCUMENTO == 3){data.TIPO_DOCUMENTO = "Guías de correspondencia";}
         if(data.TIPO_DOCUMENTO == 4){data.TIPO_DOCUMENTO = "Otros";}
         if(data.NUMERO_GUIA == ""){data.NUMERO_GUIA = "-------------";}
         var filas = [[[data.FECHA_RECIBIDO]],[[data.RADICACION]],[[data.NIT]],[[data.PRESTADOR]],
