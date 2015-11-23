@@ -45,13 +45,13 @@ alert = function(msg){
     $("#linkradconrips").on("click",function(){
          $('.navbar-brand').html("RADICACIÓN DE DOCUMENTOS CON RIPS");
         $( ".nuevapagina" ).load( "modulos/Radicacion/radicacionConRips.jsp" );
-        $( ".nuevapagina" ).load( "modulos/Radicacion/radicacionConRips.jsp" );
+        //$( ".nuevapagina" ).load( "modulos/Radicacion/radicacionConRips.jsp" );
         $('#linkradconrips').css("background","#cecece");
     });
     $("#linkradsinrips").on("click",function(){
         $('.navbar-brand').html("RADICACIÓN DE DOCUMENTOS SIN RIPS");
         $( ".nuevapagina" ).load( "modulos/Radicacion/radicacionSinRips.jsp" );
-        $( ".nuevapagina" ).load( "modulos/Radicacion/radicacionSinRips.jsp" );
+        //$( ".nuevapagina" ).load( "modulos/Radicacion/radicacionSinRips.jsp" );
         $('#linkradsinrips').css("background","#cecece");
     });
     $("#linkusua").on("click",function(){
@@ -67,13 +67,15 @@ alert = function(msg){
         $('.navbar-brand').html("CONFIGURACIÓN");
         $( ".nuevapagina" ).load( "modulos/administracion/configuracionUsuario.jsp" );
     });
-     $("#pruebas").on("click",function(){
+     $("#linkpruebas").on("click",function(){
         $('.seccionjumbo').remove();
         $('.contenidotemporal').remove();
         $('.seccioninfo').remove();
         $('.navbar-brand').html("");
         $('.navbar-brand').html("PRUEBAS");
         $( ".nuevapagina" ).load( "modulos/administracion/Pruebas.jsp" );
+        $('#linkpruebas').css("background","#cecece");
+        $('.linkhome').css("background","none","!important");
     });
     $(".linkhome").on("click",function(){
         location.reload();
@@ -106,12 +108,12 @@ alert = function(msg){
         
         $('#leftMenu .fa').css("font-size","inherit");
         $('#leftMenu .fa').css("margin-left","0px");
-         $('#contentmenu #collapselinkradfac ul').css('padding-left','40px');
-          $('#contentmenu #collapselinkadmin ul').css('padding-left','40px');
+        $('#contentmenu #collapselinkradfac ul').css('padding-left','40px');
+        $('#contentmenu #collapselinkadmin ul').css('padding-left','40px');
       }
       //$(window).bind('resize', function() {//se ajusta la grilla al nuevo tamaño de la pantalla+
   
         $("#jqGrid").jqGrid('setGridWidth',$("#contentsectionp").width(),true);
-         $("#jqGrid2").jqGrid('setGridWidth',$("#contentsectionp").width(),true);       
+        $("#jqGrid2").jqGrid('setGridWidth',$("#contentsectionp").width(),true);       
     });   
 });
