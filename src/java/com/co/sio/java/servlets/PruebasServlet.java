@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.co.sio.java.servlets.filtros;
+package com.co.sio.java.servlets;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,6 +22,7 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.json.JSONArray;
 
 
 
@@ -84,9 +85,9 @@ public class PruebasServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
            /*FileItemFactory es una interfaz para crear FileItem*/
+      
+       FileItemFactory file_factory = new DiskFileItemFactory();
        
-        
-        FileItemFactory file_factory = new DiskFileItemFactory();
  
         /*ServletFileUpload esta clase convierte los input file a FileItem*/
         ServletFileUpload servlet_up = new ServletFileUpload(file_factory);
@@ -107,13 +108,21 @@ public class PruebasServlet extends HttpServlet {
                 /*cual sera la ruta al archivo en el servidor*/
                 File archivo_server = new File("c:/subidos/"+item.getName());
                 try {
-                    /*y lo escribimos en el servido*/
+                    /*y lo escribimos en el servidor*/
+                    String[] ary = item.getString().split(",");
+                    JSONArray json = new JSONArray(ary);
                     item.write(archivo_server);
+                    response.setCharacterEncoding("utf-8");
+                    response.setHeader("Pragma", "no-cache");
+                    response.setHeader("Cache-Control", "no-cache,must-revalidate");
+                    response.setHeader("Pragma", "no-cache");
+                    response.getWriter().print(json);
+                    System.out.println(json);
+                    response.getWriter().close();
+
                 } catch (Exception ex) {
                     Logger.getLogger(PruebasServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                out.print(item.getString());
-
+                }  
             }
         }
         
