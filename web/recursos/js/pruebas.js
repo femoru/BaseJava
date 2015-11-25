@@ -195,23 +195,20 @@ function showRequest(formData, jqForm, options) {
 } 
 
 function showResponse(responseText, statusText, xhr, $form)  { 
-    var data =  new Array();
+    
+   // alert(responseText); 
+    //alert("done"+responseText);
+    /*var data =  new Array();
     var identificacion =  new Array();
-    var usuario =  new Array();
     for(var i = 0; i < responseText.length; i ++) {
-        //identificacion.push(responseText.slice(i, i + 14));
-        identificacion.push(responseText.slice(0,1));
-        usuario.push(responseText.slice(13,14)); 
+        var lineas = responseText[i];
+        lineas = lineas.split(',');
+        identificacion.push(lineas[0]);
     }
+    
     data = {id:identificacion};
-    $("#output").append(data);
-    console.log(data);
-   /* var tmp = [];
-    for(var i = 0; i < responseText.length; i += 14) {
-        tmp.push(responseText.slice(i, i + 14));
-    }
-    $("#output").append(tmp);
-    console.log(tmp);*/
+    console.log(data);*/
+    //return false;
 } 
 /*function processJson(data) { 
     alert(data.message); 
