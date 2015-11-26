@@ -14,6 +14,7 @@
         <script type="text/javascript" src="recursos/terceros/bootstrap-typeahead/bootstrap3-typeahead.js"></script>
         <script type="text/javascript" src="recursos/terceros/momentjs/momentjs.min.js"></script>
         <script type="text/javascript" src="recursos/terceros/bootstrap_datepicker/js/bootstrap-datetimepicker.js"></script>
+        <script type="text/javascript" src="recursos/terceros/jquery_form/jqueryform.js"></script>
         <script type="text/javascript" src="recursos/js/radicacionConRips.js"></script>
     </head>
     <body>
@@ -178,16 +179,19 @@
                     <table id="jqGrid2" class="tablasdatos"></table>
                     <div id="jqGridPager"></div>
                 </div>
-                <div class="iconosedicion">
-                    <i class="fa fa-list-alt"  data-toggle="tooltip" data-placement="top" title="Generar Reporte"></i>
-                    <i class="fa fa-qrcode"  data-toggle="tooltip" data-placement="top" title="Imprimir Stickers"></i>
-                    <i class="fa fa-upload" data-toggle="tooltip" data-placement="top" title="Cargar RIPS"></i>
-                    <i class="fa fa-briefcase" data-toggle="tooltip" data-placement="top" title="Guardar Parcial"></i>
-                    <i class="fa fa-floppy-o" data-toggle="tooltip" data-placement="top" title="Guardar Todo"></i>
-                    <i class="fa fa-undo" data-toggle="tooltip" data-placement="top" title="Deshacer"></i>
-                    <i class="fa fa-arrow-left" data-toggle="tooltip" data-placement="top" title="Página Anterior"></i>
-		</div>
+                </form>
+                 <form action="RadicacionCRServlet" id="jsonForm">
+                    <div class="iconosedicion">
+                        <i class="fa fa-list-alt"  data-toggle="tooltip" data-placement="top" title="Generar Reporte"></i>
+                        <i class="fa fa-qrcode"  data-toggle="tooltip" data-placement="top" title="Imprimir Stickers"></i>
+                        <i class="fa fa-upload" id="cargarrips" data-toggle="tooltip" data-placement="top" title="Cargar RIPS"></i>
+                            <input type="file" id="fileinput" name="file[]" multiple/>
+                        <i class="fa fa-briefcase" data-toggle="tooltip" data-placement="top" title="Guardar Parcial"></i>
+                        <i class="fa fa-floppy-o" data-toggle="tooltip" data-placement="top" title="Guardar Todo"></i>
+                        <i class="fa fa-undo" data-toggle="tooltip" data-placement="top" title="Deshacer"></i>
+                        <i class="fa fa-arrow-left" data-toggle="tooltip" data-placement="top" title="Página Anterior"></i>
+                    </div>
+                </form>
             </fieldset>
-        </form>
     </body>
 </html>

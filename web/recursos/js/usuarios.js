@@ -13,22 +13,23 @@ var mygrid = $("#jqGrid");
                     { label: 'Usuario',name: 'USUARIO', editable: true,edittype:"text",editrules:{required:true}},
                     {label: 'Nombres', name: 'NOMBRES',editable: true,edittype: "text",editrules:{required:true}},
                     {label: 'Apellidos',name: 'APELLIDOS',editable: true,edittype: "text",editrules:{required:true}},
-                    {label: 'Contraseña',name: 'CONTRASENA',formatter:'password',edittype:'password',
-                        editrules: {edithidden:true,required:true},editable: true,hidden:true},
-                    {label: 'Correo',name: 'CORREO',editable: true,width:280,edittype: "text",
-                        editrules:{required:true,email:true}},
                     {label: 'Fecha de Nacimiento', name: 'FECHANACIMIENTO',editable: true,edittype: "text",editoptions: {
                             dataInit: function (element) {
                                 var dateNow = new Date();
                                $(element).datetimepicker({
                                     locale: 'es',
-                                    format: 'YYYY/MM/DD HH:mm',
+                                    format: 'YYYY/MM/DD',
                                     defaultDate:dateNow
                                 });
                             }
                         },
                         editrules:{required:true}
                      },
+                    {label: 'Contraseña',name: 'CONTRASENA',formatter:'password',edittype:'password',
+                        editrules: {edithidden:true,required:true},editable: true,hidden:true},
+                    {label: 'Correo',name: 'CORREO',editable: true,width:280,edittype: "text",
+                        editrules:{required:true,email:true}},
+                    
                      {label: 'Rol',name: 'ROL',editable: true, // formatter: "select",
                         edittype: "select",editoptions: {dataUrl: "/CuentasMedicas/recursos/GET/getRoles.jsp?grid=true"},
                          editrules:{
@@ -71,7 +72,7 @@ var mygrid = $("#jqGrid");
             },
             {
                 height: 'auto',
-                width: 450,
+                width: 470,
                 recreateForm: true,
                 closeAfterEdit: true,
                 afterSubmit: function(){
@@ -88,7 +89,7 @@ var mygrid = $("#jqGrid");
             },
             {
                 height: 'auto',
-                width: 450,
+                width: 470,
                 closeAfterAdd: true,
                 recreateForm: true,
                 afterSubmit: function(){

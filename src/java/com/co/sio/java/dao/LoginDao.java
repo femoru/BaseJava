@@ -74,7 +74,13 @@ import org.json.JSONArray;
                 usuarios.setFechanacimiento(fechanacimiento);
                 usuarios.setEstado(Integer.parseInt(estado));
                 usuarios.setIdrol(Integer.parseInt(idrol));
-
+                
+                sql="UPDATE CMUSUARIOS SET ULTIMOACCESO = SYSDATE WHERE IDUSUARIO = ?";
+                db.conectar();
+                db.callableStatement(sql);
+                db.AsignarParametro(1, idusuario, 2);
+                db.registrar();
+                 
                 JSONArray arr = new JSONArray(consultar);
             }
             return usuarios;

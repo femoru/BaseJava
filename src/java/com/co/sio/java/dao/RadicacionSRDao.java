@@ -6,7 +6,7 @@
 package com.co.sio.java.dao;
 
 import com.co.sio.java.db.DBControl;
-import com.co.sio.java.model.Radicacion;
+import com.co.sio.java.model.RadicacionSR;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,14 +16,14 @@ import org.json.JSONArray;
  *
  * @author bmunoz
  */
-public class RadicacionDao {
+public class RadicacionSRDao {
     DBControl db = new DBControl();
     String sql;
     String sql2;
     ResultSet datosql;
     
-    public RadicacionDao(){
-       Radicacion radicacion = new Radicacion();
+    public RadicacionSRDao(){
+       RadicacionSR radicacion = new RadicacionSR();
     }
     
     public String PrestadorCodigo(String codigo_interno)throws Exception{
@@ -141,7 +141,7 @@ public class RadicacionDao {
         }
     }
 
-   public boolean Insertar(Radicacion radicacion)throws Exception{
+   public boolean Insertar(RadicacionSR radicacion)throws Exception{
         try {
             sql="SELECT R.ID FROM CMRADICACION R INNER JOIN CMPRESTADORES P\n" +
                     "ON R.IDPRESTADOR = P.ID\n" +

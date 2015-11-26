@@ -14,8 +14,14 @@
         <group>
             <file>file:/C:/Users/bmunoz/Desktop/backup%20bryan/NetBeansProjects/SIOCuentasMedicas/src/java/com/co/sio/java/dao/LoginDao.java</file>
             <file>file:/C:/Users/bmunoz/Desktop/backup%20bryan/NetBeansProjects/SIOCuentasMedicas/web/modulos/administracion/Pruebas.jsp</file>
-            <file>file:/C:/Users/bmunoz/Desktop/backup%20bryan/NetBeansProjects/SIOCuentasMedicas/web/recursos/terceros/jquery_form/jqueryform.js</file>
+            <file>file:/C:/Users/bmunoz/Desktop/backup%20bryan/NetBeansProjects/SIOCuentasMedicas/src/java/com/co/sio/java/servlets/RadicacionSRServlet.java</file>
+            <file>file:/C:/Users/bmunoz/Desktop/backup%20bryan/NetBeansProjects/SIOCuentasMedicas/web/recursos/css/usuarios.css</file>
+            <file>file:/C:/Users/bmunoz/Desktop/backup%20bryan/NetBeansProjects/SIOCuentasMedicas/web/recursos/js/usuarios.js</file>
+            <file>file:/C:/Users/bmunoz/Desktop/backup%20bryan/NetBeansProjects/SIOCuentasMedicas/src/java/com/co/sio/java/servlets/RadicacionCRServlet.java</file>
+            <file>file:/C:/Users/bmunoz/Desktop/backup%20bryan/NetBeansProjects/SIOCuentasMedicas/src/java/com/co/sio/java/dao/RadicacionSRDao.java</file>
             <file>file:/C:/Users/bmunoz/Desktop/backup%20bryan/NetBeansProjects/SIOCuentasMedicas/web/recursos/js/pruebas.js</file>
+            <file>file:/C:/Users/bmunoz/Desktop/backup%20bryan/NetBeansProjects/SIOCuentasMedicas/web/recursos/js/radicacionSinRips.js</file>
+            <file>file:/C:/Users/bmunoz/Desktop/backup%20bryan/NetBeansProjects/SIOCuentasMedicas/src/java/com/co/sio/java/servlets/RecepcionServlet.java</file>
             <file>file:/C:/Users/bmunoz/Desktop/backup%20bryan/NetBeansProjects/SIOCuentasMedicas/src/java/com/co/sio/java/servlets/PruebasServlet.java</file>
         </group>
     </open-files>

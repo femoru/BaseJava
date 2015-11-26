@@ -30,3 +30,20 @@ and open the template in the editor.
 #jqGrid {
     font-size: 12px;
 }
+.ui-jqdialog-content .FormGrid{
+    overflow: inherit; 
+}
+.ui-jqdialog-content label , input{
+    margin-bottom: 13%;
+}
+#TblGrid_jqGrid_2{
+    margin-top: 5%;
+}
+.bootstrap-datetimepicker-widget th{
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.bootstrap-datetimepicker-widget{
+    padding: 0 !important;
+    margin: 0 !important;
+}

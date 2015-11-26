@@ -5,8 +5,8 @@
  */
 package com.co.sio.java.servlets;
 
-import com.co.sio.java.dao.RadicacionDao;
-import com.co.sio.java.model.Radicacion;
+import com.co.sio.java.dao.RadicacionSRDao;
+import com.co.sio.java.model.RadicacionSR;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author bmunoz
  */
 @WebServlet(name = "RadicacionServlet", urlPatterns = {"/RadicacionServlet"})
-public class RadicacionServlet extends HttpServlet {
+public class RadicacionSRServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -75,8 +75,8 @@ public class RadicacionServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            Radicacion radicacion = new Radicacion();
-            RadicacionDao radicaciondao = new RadicacionDao();
+            RadicacionSR radicacion = new RadicacionSR();
+            RadicacionSRDao radicaciondao = new RadicacionSRDao();
             
             boolean isset = (request.getParameter("codigo_interno")==null);
             
@@ -96,7 +96,7 @@ public class RadicacionServlet extends HttpServlet {
                     response.getWriter().close();
                 
                 } catch (Exception ex) {
-                    Logger.getLogger(RadicacionServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(RadicacionSRServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
  
              }
@@ -118,7 +118,7 @@ public class RadicacionServlet extends HttpServlet {
                     response.getWriter().close();
                 
                 } catch (Exception ex) {
-                    Logger.getLogger(RadicacionServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(RadicacionSRServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
              }
             boolean isset3 = (request.getParameter("cadena")==null);
@@ -134,7 +134,7 @@ public class RadicacionServlet extends HttpServlet {
                     response.getWriter().print(json);
                     response.getWriter().close();
                  }  catch (Exception ex) {
-                    Logger.getLogger(RadicacionServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(RadicacionSRServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
              }
              boolean isset4 = (request.getParameter("cadena2")==null);
@@ -153,7 +153,7 @@ public class RadicacionServlet extends HttpServlet {
                      //System.out.println(json);
                     response.getWriter().close();
                  }  catch (Exception ex) {
-                    Logger.getLogger(RadicacionServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(RadicacionSRServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
              }
              boolean edicion = (request.getParameter("id")==null);
@@ -185,7 +185,7 @@ public class RadicacionServlet extends HttpServlet {
                     
                     radicaciondao.Insertar(radicacion);
                 } catch (Exception ex) {
-                    Logger.getLogger(RadicacionServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(RadicacionSRServlet.class.getName()).log(Level.SEVERE, null, ex);
                 }
              }
     }

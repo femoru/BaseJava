@@ -9,7 +9,7 @@ package com.co.sio.java.model;
  *
  * @author bmunoz
  */
-public class Radicacion {
+public class RadicacionSR {
     private int id;
     private String consultorio_medico;
     private String nombre;

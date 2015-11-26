@@ -26,15 +26,12 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.json.JSONArray;
-
-
-
 /**
  *
  * @author bmunoz
  */
-@WebServlet(name = "PruebasServlet", urlPatterns = {"/PruebasServlet"})
-public class PruebasServlet extends HttpServlet {
+@WebServlet(name = "RadicacionCRServlet", urlPatterns = {"/RadicacionCRServlet"})
+public class RadicacionCRServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -53,10 +50,10 @@ public class PruebasServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PruebasServlet</title>");            
+            out.println("<title>Servlet RadicacionCRServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet PruebasServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet RadicacionCRServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -74,6 +71,7 @@ public class PruebasServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+       // processRequest(request, response);
     }
 
     /**
@@ -87,22 +85,18 @@ public class PruebasServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-           /*FileItemFactory es una interfaz para crear FileItem*/
-        
-      
+       // processRequest(request, response);
         FileItemFactory file_factory = new DiskFileItemFactory();
-        
-        List<String> numero_factura = null;
-        List<String> fecha_factura = null;
-        List<String> valor_factura = null;
-        List<String> data = null;
-        
-       /* List<String> codigo_prestador = new ArrayList<>();
+        List<String> numero_factura = new ArrayList<>();  
+        List<String> fecha_factura = new ArrayList<>();  
+        List<String> valor_factura = new ArrayList<>();  
+        List<String> data = new ArrayList<>();  
+            
+        /*List<String> codigo_prestador = new ArrayList<>();
         List<String> fecha_remision = new ArrayList<>();            //DATOS ARCHIVO DE CONTROL
         List<String> codigo_archivo = new ArrayList<>();
         List<String> total_registros = new ArrayList<>();
-       
-        ArrayList<HashMap<String,Object>> consultar = null;
+
         List<String> identificacion = new ArrayList<>();
         List<String> numero_ident = new ArrayList<>();
         List<String> codigo_entidad = new ArrayList<>();
@@ -117,17 +111,17 @@ public class PruebasServlet extends HttpServlet {
         List<String> codigo_municipio = new ArrayList<>();
         List<String> zona_residencia = new ArrayList<>();
 
-        List<String> numero_factura_at = new ArrayList<>();
-        List<String> codigo_prestador_at = new ArrayList<>();
-        List<String> identificacion_at = new ArrayList<>();
-        List<String> numero_ident_at = new ArrayList<>();
-        List<String> numero_ident_usu_sist = new ArrayList<>();
-        List<String> numero_autorizacion = new ArrayList<>();
-        List<String> tipo_servicio = new ArrayList<>();             //DATOS DE ARCHIVO DE OTROS SERVICIOS
-        List<String> codigo_servicio = new ArrayList<>();
-        List<String> cantidad_at = new ArrayList<>();
-        List<String> valor_unitario_at = new ArrayList<>();
-        List<String> valor_total_at = new ArrayList<>();
+        List<String> codigo_prestador_af = new ArrayList<>();
+        List<String> razon_social = new ArrayList<>();
+        List<String> tipo_identificacion = new ArrayList<>();
+        List<String> numero_ident_af = new ArrayList<>();
+        List<String> fecha_expedicion = new ArrayList<>();
+        List<String> fecha_inicio = new ArrayList<>();
+        List<String> fecha_final = new ArrayList<>();             //DATOS DE ARCHIVO DE TRANSACCION
+        List<String> cod_ent_admin = new ArrayList<>();
+        List<String> nom_ent_admin = new ArrayList<>();
+        List<String> numero_contrato = new ArrayList<>();
+        List<String> plan_beneficios = new ArrayList<>();
 
         List<String> numero_factura_ad = new ArrayList<>();
         List<String> codigo_prestador_ad = new ArrayList<>();
@@ -156,7 +150,7 @@ public class PruebasServlet extends HttpServlet {
             /*FileItem representa un archivo en memoria que puede ser pasado al disco duro*/
             FileItem item = (FileItem) items.get(i);
             String archivo = item.getName();
-            System.out.println(item.getName());
+            
             for(int a= 0 ; a < archivo.length();a++){
                 if(archivo.charAt(0)=='U' && archivo.charAt(1)=='S'){
                     archivousuarios = true;
@@ -166,7 +160,6 @@ public class PruebasServlet extends HttpServlet {
                 }
                 if(archivo.charAt(0)=='A' && archivo.charAt(1)=='F'){
                     archivotransaccion = true;
-                    System.out.println("ok");
                 }
                 if(archivo.charAt(0)=='A' && archivo.charAt(1)=='D'){
                     archivodetalle = true;
@@ -195,12 +188,17 @@ public class PruebasServlet extends HttpServlet {
                 }
                 if(archivotransaccion){//RIPS DE TRANSACCION
                    for(int j = 0; j < ary.length; j ++) {
+                       //System.out.println(item.getName());
                         String lineas = ary[j];
                         String[] lines = lineas.split(",");
-                        numero_factura.add(lines[6]);
-                        fecha_factura.add(lines[7]);
-                        valor_factura.add(lines[18]);
-                        System.out.println(lines[18]);
+                       /* System.out.println(lines[1]);
+                        System.out.println(lines[6]);
+                        System.out.println(lines[16]);*/
+                        //System.out.println(lines[1]);
+                        numero_factura.add(lines[1]);
+                        fecha_factura.add(lines[6]);
+                        valor_factura.add(lines[16]);
+                        //System.out.println(lines[18]);
                     }
                     archivotransaccion = false;
                 }
@@ -213,6 +211,7 @@ public class PruebasServlet extends HttpServlet {
                 }        
             }
         }
+        //System.out.println(numero_factura.toString());
         data.add(numero_factura.toString());
         data.add(fecha_factura.toString());
         data.add(valor_factura.toString());
@@ -224,6 +223,7 @@ public class PruebasServlet extends HttpServlet {
         response.setHeader("Pragma", "no-cache");
         response.getWriter().print(json);
         response.getWriter().close();
+        
         
         
     }
