@@ -26,12 +26,15 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 /**
  *
  * @author bmunoz
  */
 @WebServlet(name = "RadicacionCRServlet", urlPatterns = {"/RadicacionCRServlet"})
 public class RadicacionCRServlet extends HttpServlet {
+    private Object JSONValue;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -90,7 +93,11 @@ public class RadicacionCRServlet extends HttpServlet {
         List<String> numero_factura = new ArrayList<>();  
         List<String> fecha_factura = new ArrayList<>();  
         List<String> valor_factura = new ArrayList<>();  
-        List<String> data = new ArrayList<>();  
+        ArrayList<HashMap<String, Object>> data = new ArrayList<>();  
+        List<String> data2 = new ArrayList<>(); 
+        List<String> data3 = new ArrayList<>();  
+        Map obj = new LinkedHashMap();
+        
             
         /*List<String> codigo_prestador = new ArrayList<>();
         List<String> fecha_remision = new ArrayList<>();            //DATOS ARCHIVO DE CONTROL
@@ -187,19 +194,23 @@ public class RadicacionCRServlet extends HttpServlet {
                     archivousuarios = false;
                 }
                 if(archivotransaccion){//RIPS DE TRANSACCION
+                    String nume_fact = null;
+                    String fec_fact = null;
+                    String val_fact = null;
+                    String jsonText = new JSONObject(obj).toString();
                    for(int j = 0; j < ary.length; j ++) {
-                       //System.out.println(item.getName());
                         String lineas = ary[j];
                         String[] lines = lineas.split(",");
-                       /* System.out.println(lines[1]);
-                        System.out.println(lines[6]);
-                        System.out.println(lines[16]);*/
-                        //System.out.println(lines[1]);
-                        numero_factura.add(lines[1]);
-                        fecha_factura.add(lines[6]);
-                        valor_factura.add(lines[16]);
-                        //System.out.println(lines[18]);
+                        //data.add(lines[4]);
+                        
+                        obj.put("numerofactura",lines[4]);
+                        obj.put("fechafactura",lines[6]);
+                         // jsonText = new JSONObject(obj).toString();
+                        //System.out.println(obj);
                     }
+                    //System.out.println(obj);
+                    
+                    //System.out.println(data);
                     archivotransaccion = false;
                 }
                 if(archivodetalle){//RIPS DE DETALLE
@@ -211,21 +222,30 @@ public class RadicacionCRServlet extends HttpServlet {
                 }        
             }
         }
+        //System.out.println(numero_factura);
         //System.out.println(numero_factura.toString());
-        data.add(numero_factura.toString());
-        data.add(fecha_factura.toString());
-        data.add(valor_factura.toString());
-        JSONArray json = new JSONArray(data);
+//        data.add(numero_factura.toString());
+//        data.add(fecha_factura.toString());
+//        data.add(valor_factura.toString());
+        
+       
+        //String jsonText;
+        
+       // String jsonText = new JSONObject(obj).toString();
+        //String jsonText = "654";
+       // jsonText = "["+jsonText+"]";
+        //jsonText = JSONValue.toJSONString(obj);
+       //System.out.println(obj);
 
-        response.setCharacterEncoding("utf-8");
-        response.setHeader("Pragma", "no-cache");
-        response.setHeader("Cache-Control", "no-cache,must-revalidate");
-        response.setHeader("Pragma", "no-cache");
-        response.getWriter().print(json);
-        response.getWriter().close();
-        
-        
-        
+            JSONArray json = new JSONArray(data);
+          // System.out.println(json);
+            response.setCharacterEncoding("utf-8");
+            response.setHeader("Pragma", "no-cache");
+            response.setHeader("Cache-Control", "no-cache,must-revalidate");
+            response.setHeader("Pragma", "no-cache");
+            response.getWriter().print(json);
+            response.getWriter().close();
+
     }
 
     /**
