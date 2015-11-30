@@ -5,13 +5,9 @@
  */
 package com.co.sio.java.servlets;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import com.co.sio.java.model.RadicacionCR;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import static java.lang.System.out;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +21,6 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 /**
@@ -88,15 +83,34 @@ public class RadicacionCRServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+       RadicacionCR radicacioncr = new RadicacionCR();
+        boolean isset  = (request.getParameter("id") == null);
+       if(!isset){
+           radicacioncr.setId(Integer.parseInt(request.getParameter("id")));
+           radicacioncr.setNumero_factura(request.getParameter("numerofactura"));
+           radicacioncr.setFecha_factura(request.getParameter("fechafactura"));
+           radicacioncr.setValor_factura(request.getParameter("valorfactura"));
+           radicacioncr.setValor_iva(request.getParameter("valoriva"));
+           radicacioncr.setTipo_plan(Integer.parseInt(request.getParameter("tipoplan")));
+           radicacioncr.setTipo_cuenta(Integer.parseInt(request.getParameter("tipocuenta")));
+           radicacioncr.setFactura_fisica(Integer.parseInt(request.getParameter("facturafisica")));
+           radicacioncr.setMotivo_estado(request.getParameter("motivoestado"));
+           radicacioncr.setFecha_radicacion(request.getParameter("fecharadicacion"));
+           radicacioncr.setEstado_factura(request.getParameter("estadofactura"));
+
+        }else{
        // processRequest(request, response);
         FileItemFactory file_factory = new DiskFileItemFactory();
         List<String> numero_factura = new ArrayList<>();  
         List<String> fecha_factura = new ArrayList<>();  
         List<String> valor_factura = new ArrayList<>();  
-        ArrayList<HashMap<String, Object>> data = new ArrayList<>();  
+        //ArrayList<HashMap<String, Object>> data = new ArrayList<>();  
         List<String> data2 = new ArrayList<>(); 
         List<String> data3 = new ArrayList<>();  
-        Map obj = new LinkedHashMap();
+        //Map obj = new LinkedHashMap();
+        HashMap<String, String> obj = new HashMap<>();
+        List<String> data =  new ArrayList<>(); 
+        Collection<JSONObject> registros = new ArrayList<>();
         
             
         /*List<String> codigo_prestador = new ArrayList<>();
@@ -197,55 +211,40 @@ public class RadicacionCRServlet extends HttpServlet {
                     String nume_fact = null;
                     String fec_fact = null;
                     String val_fact = null;
-                    String jsonText = new JSONObject(obj).toString();
-                   for(int j = 0; j < ary.length; j ++) {
+                    //String jsonText = new JSONObject(obj).toString();
+                     //JSONArray arreglo = new JSONArray();
+                    for(int j = 0; j < ary.length; j ++) {
                         String lineas = ary[j];
                         String[] lines = lineas.split(",");
-                        //data.add(lines[4]);
-                        
-                        obj.put("numerofactura",lines[4]);
-                        obj.put("fechafactura",lines[6]);
-                         // jsonText = new JSONObject(obj).toString();
-                        //System.out.println(obj);
+                        JSONObject item1 = new JSONObject();
+                        try {
+                            item1.put("numerofactura",lines[4]);
+                            item1.put("fechafactura",lines[6]);
+                            item1.put("valorfactura",lines[16]);
+                            registros.add(item1);
+                            
+                        } catch (JSONException ex) {
+                            Logger.getLogger(RadicacionCRServlet.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
-                    //System.out.println(obj);
-                    
-                    //System.out.println(data);
+                    response.setCharacterEncoding("utf-8");
+                    response.setHeader("Pragma", "no-cache");
+                    response.setHeader("Cache-Control", "no-cache,must-revalidate");
+                    response.setHeader("Pragma", "no-cache");
+                    response.getWriter().print(registros);
+                    response.getWriter().close();
                     archivotransaccion = false;
                 }
                 if(archivodetalle){//RIPS DE DETALLE
                     for(int j = 0; j < ary.length; j ++) {
                         String lineas = ary[j];
-                        String[] lines = lineas.split(",");
+                        String[] lines = lineas.split(","); 
                     }
                     archivodetalle = false;
                 }        
             }
         }
-        //System.out.println(numero_factura);
-        //System.out.println(numero_factura.toString());
-//        data.add(numero_factura.toString());
-//        data.add(fecha_factura.toString());
-//        data.add(valor_factura.toString());
-        
-       
-        //String jsonText;
-        
-       // String jsonText = new JSONObject(obj).toString();
-        //String jsonText = "654";
-       // jsonText = "["+jsonText+"]";
-        //jsonText = JSONValue.toJSONString(obj);
-       //System.out.println(obj);
-
-            JSONArray json = new JSONArray(data);
-          // System.out.println(json);
-            response.setCharacterEncoding("utf-8");
-            response.setHeader("Pragma", "no-cache");
-            response.setHeader("Cache-Control", "no-cache,must-revalidate");
-            response.setHeader("Pragma", "no-cache");
-            response.getWriter().print(json);
-            response.getWriter().close();
-
+       }
     }
 
     /**

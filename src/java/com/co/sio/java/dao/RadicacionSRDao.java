@@ -150,7 +150,7 @@ public class RadicacionSRDao {
             ArrayList<HashMap<String,Object>> consultar = db.consultar(sql,params);
             
             if (consultar.size()==1) {
-                System.out.println("UPDATE");
+                //System.out.println("UPDATE");
                sql="UPDATE CMRADICACION SET FECHA_RADICACION = TO_DATE(?,?), OFICINA = ?, PREFIJO_FACTURA = ?,"
                         + " SUFIJO_FACTURA = ? , NUMERO_FACTURA = ?, FECHA_FACTURA = TO_DATE(?,?),"
                         + " VALOR_FACTURA = ? ,MOTIVO_ESTADO = ? ,ESTADO_FACTURA = ?, TIPO_RADICACION = ?, "

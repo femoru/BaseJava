@@ -41,6 +41,6 @@ legend.scheduler-border {
 .contenttablas .ui-jqgrid tr.jqgrow td{
     white-space: inherit !important;
 }
-#jqGrid2{
+#jqGrid2, #jqGrid2 input , #jqGrid2 select{
     font-size: 11px;
 }

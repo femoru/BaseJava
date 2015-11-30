@@ -1,26 +1,39 @@
-//var jqdata = [{}];
+var jqdata = new Array();
+var lastSel;
+var selICol;
+var selIRow;
   var filas;
     if (!window.console) window.console = {};
     if (!window.console.log) window.console.log = function () { };
-     //creargrilla(jqdata);
+    /// creargrilla(jqdata);
 function creargrilla(jqdata){
         $("#jqGrid2").jqGrid({
         datatype: "local",
         data:jqdata,
         styleUI : 'Bootstrap',
+        editurl: '/CuentasMedicas/RadicacionCRServlet',
         modal: true,
         autoOpen: false,
         ignoreCase: true,
-        colNames : ['id', 'Número Factura', 'Fecha Factura', 'Valor Factura', 'Valor IVA', 'Tipo Plan', 'Tipo Cuenta','Factura Física', 'Motivo Estado','Fecha Radicación','Estado Factura'],
+        colNames : ['id','Opciones','Número Factura', 'Fecha Factura', 'Valor Factura', 'Valor IVA', 'Tipo Plan', 'Tipo Cuenta','Factura Física', 'Motivo Estado','Fecha Radicación','Estado Factura'],
         colModel: [ 
-            { name : 'id', index : 'id',editable : false, hidden:false},
+             { name : 'id', index : 'id',editable : false, hidden:true},
+             {name: "opciones",index : 'opciones',
+                        formatter: "actions",
+                        formatoptions: {
+                            keys: true,
+                            editOptions:{},
+                            //addOptions: {},
+                            delOptions: {}
+                        }       
+                    },
             { name : 'numerofactura', index : 'numerofactura',editable : true,width:125},
             { name : 'fechafactura', index : 'fechafactura', editable : true, sorttype:"date",editoptions: {
             dataInit: function (element) {
                 var dateNow = new Date();
                $(element).datetimepicker({
                     locale: 'es',
-                    format: 'YYYY/MM/DD HH:mm',
+                    format: 'DD/MM/YYYY',
                     defaultDate:dateNow
                 });
             }
@@ -58,29 +71,48 @@ function creargrilla(jqdata){
             { name : 'facturafisica', index : 'facturafisica',editable : true,width:110,align:"center",
          formatter: "checkbox",
          edittype: "checkbox", editoptions: { value: "1:0", defaultValue: "0" },},
-            { name : 'motivoestado', index : 'motivoestado',editable : true,width:115},
+            { name : 'motivoestado', index : 'motivoestado',editable : false,width:115},
             { name : 'fecharadicacion', index : 'fecharadicacion', editable : true, sorttype:"date",editoptions: {
+                     readonly: "readonly" ,
             dataInit: function (element) {
                 var dateNow = new Date();
                $(element).datetimepicker({
                     locale: 'es',
-                    format: 'YYYY/MM/DD HH:mm',
+                    format: 'DD/MM/YYYY',
                     defaultDate:dateNow
                 });
             }
         }, align : "left",width:140},
-            { name : 'estadofactura', index : 'estadofactura',editable : true,width:130}
+            { name : 'estadofactura', index : 'estadofactura',editable : false,width:130}
         ],
         loadonce : true,
         autowidth: true,
-        height: 200,
+        height: 300,
         rowNum : 10,
+        shrinkToFit: false,
         rowList : [10, 20, 30 ,50 ,100 ,500,1000],
         toolbarfilter: true,
         viewrecords : true,
+        /*onSelectRow: function(id){
+            
+            if(id && id!==lastSel){ 
+                var gridArr = $("#jqGrid2").getDataIDs();
+                var selrow = $("#jqGrid2").getGridParam("selrow");
+                var curr_index = 0;
+               jQuery('#jqGrid2').restoreRow(lastSel); 
+               lastSel=id; 
+               //alert(id);
+               $("#jEditButton_"+id).click();
+               $("#jSaveButton_"+id).on("click",function(){
+                   jQuery("#jqGrid2").saveRow(gridArr[curr_index]);
+               });
+            }
+            jQuery('#jqGrid2').editRow(id, true); 
+          },*/
         pager: "#jqGridPager"
     });
 }
+
 
  //console.log(jqgrid_data);
 $("#fileinput").css("display","none");
@@ -106,14 +138,18 @@ function showRequest(formData, jqForm, options) {
     return true; 
 } 
 var data;
-var jqdata = new Array();
+
+
 function showResponse(responseText, statusText, xhr, $form)  {
-    alert(responseText);
     for(var i = 0;i < responseText.length; i++){
         data = {
-            numerofactura : responseText[i]
+            numerofactura : responseText[i].numerofactura,
+            fechafactura : responseText[i].fechafactura,
+            valorfactura : responseText[i].valorfactura,
+            valoriva : "0",
+            estadofactura: "PROCESO"
+
         };
         jqdata.push(data);
-       alert( responseText[i]);
     }creargrilla(jqdata);
 }
