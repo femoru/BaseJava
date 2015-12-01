@@ -13,14 +13,17 @@ public class RadicacionCR {
     private int id;
     private String numero_factura;
     private String fecha_factura;
-    private String valor_factura;
-    private String valor_iva;
+    private int valor_factura;
+    private int valor_iva;
     private int tipo_plan;
     private int tipo_cuenta;
     private int factura_fisica;
     private String motivo_estado;
     private String fecha_radicacion;
     private String estado_factura;
+    private int tipo_radicacion;
+    private int idprestador;
+    private String codigo_interno;
 
     /**
      * @return the id
@@ -67,28 +70,28 @@ public class RadicacionCR {
     /**
      * @return the valor_factura
      */
-    public String getValor_factura() {
+    public int getValor_factura() {
         return valor_factura;
     }
 
     /**
      * @param valor_factura the valor_factura to set
      */
-    public void setValor_factura(String valor_factura) {
+    public void setValor_factura(int valor_factura) {
         this.valor_factura = valor_factura;
     }
 
     /**
      * @return the valor_iva
      */
-    public String getValor_iva() {
+    public int getValor_iva() {
         return valor_iva;
     }
 
     /**
      * @param valor_iva the valor_iva to set
      */
-    public void setValor_iva(String valor_iva) {
+    public void setValor_iva(int valor_iva) {
         this.valor_iva = valor_iva;
     }
 
@@ -174,5 +177,47 @@ public class RadicacionCR {
      */
     public void setEstado_factura(String estado_factura) {
         this.estado_factura = estado_factura;
+    }
+
+    /**
+     * @return the tipo_radicacion
+     */
+    public int getTipo_radicacion() {
+        return tipo_radicacion;
+    }
+
+    /**
+     * @param tipo_radicacion the tipo_radicacion to set
+     */
+    public void setTipo_radicacion(int tipo_radicacion) {
+        this.tipo_radicacion = tipo_radicacion;
+    }
+
+    /**
+     * @return the idprestador
+     */
+    public int getIdprestador() {
+        return idprestador;
+    }
+
+    /**
+     * @param idprestador the idprestador to set
+     */
+    public void setIdprestador(int idprestador) {
+        this.idprestador = idprestador;
+    }
+
+    /**
+     * @return the codigo_interno
+     */
+    public String getCodigo_interno() {
+        return codigo_interno;
+    }
+
+    /**
+     * @param codigo_interno the codigo_interno to set
+     */
+    public void setCodigo_interno(String codigo_interno) {
+        this.codigo_interno = codigo_interno;
     }
 }

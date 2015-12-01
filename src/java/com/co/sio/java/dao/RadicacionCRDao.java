@@ -10,6 +10,8 @@ import com.co.sio.java.model.RadicacionCR;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -25,29 +27,56 @@ public class RadicacionCRDao {
     
     public boolean EdicionRIPS(RadicacionCR radicacioncr)throws Exception{
         try {
-            sql="UPDATE CMRADICACION SET FECHA_RADICACION = TO_DATE(?,?), OFICINA = ?, PREFIJO_FACTURA = ?,"
-                        + " SUFIJO_FACTURA = ? , NUMERO_FACTURA = ?, FECHA_FACTURA = TO_DATE(?,?),"
-                        + " VALOR_FACTURA = ? ,MOTIVO_ESTADO = ? ,ESTADO_FACTURA = ?, TIPO_RADICACION = ?, "
-                        + " IDPRESTADOR = ? WHERE ID = ?";
+            sql="SELECT R.NUMERO_FACTURA FROM CMRADICACION R INNER JOIN CMPRESTADORES P\n" +
+            "ON R.IDPRESTADOR = P.ID\n" +
+            "WHERE R.NUMERO_FACTURA = ? ";
+            
+            String [] params = {radicacioncr.getNumero_factura()};
+            ArrayList<HashMap<String,Object>> consultar = db.consultar(sql,params);
+            
+            if (consultar.size()==1) {
+                
+           sql="UPDATE CMRADICACION SET FECHA_RADICACION = TO_DATE(?,?),NUMERO_FACTURA = ?, FECHA_FACTURA = TO_DATE(?,?),"
+                 + " VALOR_FACTURA = ? ,ESTADO_FACTURA = ?, VALORIVA = ?, TIPO_RADICACION = ?, IDPRESTADOR = ? WHERE NUMERO_FACTURA = ?";
             db.conectar();
             db.callableStatement(sql);
-             String formato = "yyyy/mm/dd hh24:mi";
-                db.AsignarParametro(1, radicacioncr.getFecha_radicacion(), 1);
-                /* db.AsignarParametro(2, formato, 1);
-                 db.AsignarParametro(3, radicacioncr.getOficina(), 1);
-                 db.AsignarParametro(4, radicacioncr.getPrefijo_factura(), 1);
-                 db.AsignarParametro(5, radicacioncr.getSufijo_factura(), 1);
-                 db.AsignarParametro(6, radicacioncr.getNumero_factura(), 1);
-                 db.AsignarParametro(7, radicacioncr.getFecha_factura(), 1);
-                 db.AsignarParametro(8, formato, 1);
-                 db.AsignarParametro(9, Integer.toString(radicacioncr.getValor_factura()), 2);
-                 db.AsignarParametro(10, radicacioncr.getMotivo_estado(), 1);
-                 db.AsignarParametro(11, radicacioncr.getEstado_factura(), 1);
-                 db.AsignarParametro(12, radicacioncr.getTipo_radicacion(), 1);
-                 db.AsignarParametro(13, Integer.toString(radicacioncr.getIdprestador()), 1);
-                 db.AsignarParametro(14, Integer.toString(radicacioncr.getIdradicacion()), 2);*/
+            String formato = "dd/mm/yyyy hh24:mi";
+            db.AsignarParametro(1, radicacioncr.getFecha_radicacion(), 1);
+            db.AsignarParametro(2, formato, 1);
+            db.AsignarParametro(3, radicacioncr.getNumero_factura(), 1);
+            db.AsignarParametro(4, radicacioncr.getFecha_factura(), 1);
+            db.AsignarParametro(5, formato, 1);
+            db.AsignarParametro(6, Integer.toString(radicacioncr.getValor_factura()), 2);
+            db.AsignarParametro(7, "RADICADA", 1);
+            db.AsignarParametro(8, Integer.toString(radicacioncr.getValor_iva()), 2);
+            db.AsignarParametro(9, Integer.toString(radicacioncr.getTipo_radicacion()), 2);
+            db.AsignarParametro(10,Integer.toString(radicacioncr.getIdprestador()),2);
+            db.AsignarParametro(11, radicacioncr.getNumero_factura(), 1);
+            
+            }else{
+                sql = "INSERT INTO CUENTASMEDICAS.CMRADICACION ( FECHA_RADICACION, NUMERO_FACTURA, FECHA_FACTURA, "
+                        + " VALOR_FACTURA,ESTADO_FACTURA, TIPO_RADICACION, IDPRESTADOR, VALORIVA, TIPO_PLAN, TIPO_CUENTA, FACTURA_FISICA) "+
+                        "  VALUES (TO_DATE(?,?),?,TO_DATE(?,?),?,?,?,?,?,?,?,?)";
+                db.conectar();
+                db.callableStatement(sql);
+                String formato = "dd/mm/yyyy hh24:mi";
+                db.AsignarParametro(1,radicacioncr.getFecha_radicacion(),1);
+                db.AsignarParametro(2,formato,1);
+                db.AsignarParametro(3, radicacioncr.getNumero_factura(),1);
+                db.AsignarParametro(4, radicacioncr.getFecha_factura(),1);
+                db.AsignarParametro(5,formato,1);
+                db.AsignarParametro(6,Integer.toString(radicacioncr.getValor_factura()),1);
+                db.AsignarParametro(7,radicacioncr.getEstado_factura(),1);
+                db.AsignarParametro(8,Integer.toString(radicacioncr.getTipo_radicacion()),2);
+                db.AsignarParametro(9,Integer.toString(radicacioncr.getIdprestador()),2);
+                db.AsignarParametro(10,Integer.toString(radicacioncr.getValor_iva()),2);
+                db.AsignarParametro(11,Integer.toString(radicacioncr.getTipo_plan()),2);
+                db.AsignarParametro(12,Integer.toString(radicacioncr.getTipo_cuenta()),2);
+                db.AsignarParametro(13,Integer.toString(radicacioncr.getFactura_fisica()),2);
+
+            }
             return db.registrar();
-        } catch (SQLException | ParseException e) {
+        } catch (SQLException e) {
             throw new Exception(e.getMessage());
         }
         finally{

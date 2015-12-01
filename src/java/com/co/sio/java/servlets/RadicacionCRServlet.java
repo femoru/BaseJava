@@ -5,6 +5,7 @@
  */
 package com.co.sio.java.servlets;
 
+import com.co.sio.java.dao.RadicacionCRDao;
 import com.co.sio.java.model.RadicacionCR;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -84,19 +85,41 @@ public class RadicacionCRServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        RadicacionCR radicacioncr = new RadicacionCR();
+       RadicacionCRDao radicaciondao = new RadicacionCRDao();
         boolean isset  = (request.getParameter("id") == null);
        if(!isset){
            radicacioncr.setId(Integer.parseInt(request.getParameter("id")));
+           radicacioncr.setIdprestador(Integer.parseInt(request.getParameter("idprestador")));
            radicacioncr.setNumero_factura(request.getParameter("numerofactura"));
            radicacioncr.setFecha_factura(request.getParameter("fechafactura"));
-           radicacioncr.setValor_factura(request.getParameter("valorfactura"));
-           radicacioncr.setValor_iva(request.getParameter("valoriva"));
+           
+           String valor_factura = request.getParameter("valorfactura");
+           String valor_iva = request.getParameter("valoriva");
+           
+           valor_factura = valor_factura.replaceAll("\\.",""); 
+           valor_factura = valor_factura.replaceAll("\\,","");
+           
+           valor_iva = valor_iva.replaceAll("\\.",""); 
+           valor_iva = valor_iva.replaceAll("\\,","");
+           
+           radicacioncr.setValor_factura(Integer.parseInt(valor_factura));
+           radicacioncr.setValor_iva(Integer.parseInt(valor_iva));
+           
+           radicacioncr.setTipo_radicacion(1);
            radicacioncr.setTipo_plan(Integer.parseInt(request.getParameter("tipoplan")));
            radicacioncr.setTipo_cuenta(Integer.parseInt(request.getParameter("tipocuenta")));
            radicacioncr.setFactura_fisica(Integer.parseInt(request.getParameter("facturafisica")));
            radicacioncr.setMotivo_estado(request.getParameter("motivoestado"));
            radicacioncr.setFecha_radicacion(request.getParameter("fecharadicacion"));
            radicacioncr.setEstado_factura(request.getParameter("estadofactura"));
+           radicacioncr.setCodigo_interno(request.getParameter("codigointerno"));
+           
+           try {
+               radicaciondao.EdicionRIPS(radicacioncr);
+           } catch (Exception ex) {
+               Logger.getLogger(RadicacionCRServlet.class.getName()).log(Level.SEVERE, null, ex);
+           }
+           
 
         }else{
        // processRequest(request, response);
@@ -208,16 +231,12 @@ public class RadicacionCRServlet extends HttpServlet {
                     archivousuarios = false;
                 }
                 if(archivotransaccion){//RIPS DE TRANSACCION
-                    String nume_fact = null;
-                    String fec_fact = null;
-                    String val_fact = null;
-                    //String jsonText = new JSONObject(obj).toString();
-                     //JSONArray arreglo = new JSONArray();
                     for(int j = 0; j < ary.length; j ++) {
                         String lineas = ary[j];
                         String[] lines = lineas.split(",");
                         JSONObject item1 = new JSONObject();
                         try {
+                            item1.put("codigointerno",lines[0]);
                             item1.put("numerofactura",lines[4]);
                             item1.put("fechafactura",lines[6]);
                             item1.put("valorfactura",lines[16]);

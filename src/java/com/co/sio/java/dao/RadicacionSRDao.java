@@ -52,7 +52,7 @@ public class RadicacionSRDao {
              + " R.ESTADO_FACTURA, R.TIPO_RADICACION, R.IDPRESTADOR "+
                 "FROM CMRADICACION R INNER JOIN CMPRESTADORES P\n" +
                 "ON R.IDPRESTADOR = P.ID\n" +
-                "WHERE P.CODIGO_INTERNO = ?";
+                "WHERE P.CODIGO_INTERNO = ? AND R.TIPO_RADICACION = 2";
             String [] params = {codigo_interno};
             ArrayList<HashMap<String,Object>> consultar = db.consultar(sql,params);
             JSONArray json = new JSONArray(consultar);
@@ -90,7 +90,7 @@ public class RadicacionSRDao {
              + " R.ESTADO_FACTURA, R.TIPO_RADICACION, R.IDPRESTADOR "+
                 "FROM CMRADICACION R INNER JOIN CMPRESTADORES P\n" +
                 "ON R.IDPRESTADOR = P.ID\n" +
-                "WHERE P.IDENTIFICACION = ?";
+                "WHERE P.IDENTIFICACION = ?  AND R.TIPO_RADICACION = 2";
             String [] params = {identificacion};
             ArrayList<HashMap<String,Object>> consultar = db.consultar(sql,params);
             JSONArray json = new JSONArray(consultar);
@@ -127,7 +127,7 @@ public class RadicacionSRDao {
             "R.ESTADO_FACTURA, R.TIPO_RADICACION, R.IDPRESTADOR \n" +
             "FROM CMRADICACION R INNER JOIN CMPRESTADORES P\n" +
             "ON R.IDPRESTADOR = P.ID\n" +
-            " WHERE UPPER(P.NOMBRE) LIKE UPPER('%"+cadena+"%') AND P.CODIGO_INTERNO = ?";
+            " WHERE UPPER(P.NOMBRE) LIKE UPPER('%"+cadena+"%') AND P.CODIGO_INTERNO = ?  AND R.TIPO_RADICACION = 2";
             
             String [] params = {codigo_interno};
                     

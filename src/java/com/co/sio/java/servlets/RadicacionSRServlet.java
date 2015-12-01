@@ -84,7 +84,6 @@ public class RadicacionSRServlet extends HttpServlet {
                 String codigo_interno  = request.getParameter("codigo_interno");
 
                 try {
-                    System.out.println(codigo_interno);
                     String json = radicaciondao.PrestadorCodigo(codigo_interno);
                     String json2 = radicaciondao.RadicacionCodigo(codigo_interno);
                     response.setContentType("application/json");
